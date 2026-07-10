@@ -899,7 +899,7 @@
         
         </div>
         
-                        <div id="body-inner">
+                                <div id="body-inner">
           
 
             <h1>
@@ -913,6 +913,116 @@
   <p>⚠️ <strong>Lưu ý:</strong> Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng <strong>không sao chép nguyên văn</strong> cho bài báo cáo của bạn kể cả warning này.</p>
 
 </div>
+
+<h1 id="budget-tracker-workshop">Budget Tracker Workshop — Hướng dẫn triển khai AWS Console</h1>
+<p>Workshop này hướng dẫn thực hành triển khai dự án Budget Tracker trên AWS, bao gồm thiết lập tài khoản, IAM, cơ sở hạ tầng, thiết kế database và bảo mật.</p>
+<h3 id="module-1">Module 1: Tổng quan</h3>
+<p>Hiểu kiến trúc hệ thống: Route 53, CloudFront, S3, API Gateway, Lambda, DynamoDB, Cognito, SNS/SQS, EventBridge, và CloudWatch.</p>
+<h3 id="module-2">Module 2: Chuẩn bị chung</h3>
+<p>Thiết lập tài khoản AWS, cài đặt AWS CLI, tạo IAM user phát triển, và cài đặt công cụ phát triển như Node.js, .NET 8 SDK, AWS CLI, SAM CLI và Docker.</p>
+<h3 id="module-3">Module 3: Xây dựng nền tảng hạ tầng</h3>
+<p>Chuẩn bị IAM roles và policies cho Lambda, API Gateway, Cognito; thiết lập Route 53 DNS và WAF bảo mật.</p>
+<h3 id="module-4">Module 4: Database & Data Layer</h3>
+<p>Tạo bảng DynamoDB và bucket S3 cho frontend và lưu trữ hóa đơn, cùng cấu hình lifecycle rule nếu cần.</p>
+<h3 id="module-5">Module 5: Hoàn thiện thiết lập</h3>
+<p>Tiếp tục các bước triển khai cơ sở hạ tầng, kiểm tra quyền truy cập và áp dụng chính sách bảo mật.</p>
+
+<h3 id="workshop-screenshots">Hình ảnh các bước triển khai Workshop</h3>
+<p>
+  <strong>Step 0:</strong><br><img src="../../images/workshop/0.png" alt="Step 0" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 1:</strong><br><img src="../../images/workshop/1.png" alt="Step 1" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 2:</strong><br><img src="../../images/workshop/2.png" alt="Step 2" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 3:</strong><br><img src="../../images/workshop/3.png" alt="Step 3" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 4:</strong><br><img src="../../images/workshop/4.png" alt="Step 4" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 5:</strong><br><img src="../../images/workshop/5.png" alt="Step 5" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 6:</strong><br><img src="../../images/workshop/6.png" alt="Step 6" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 7:</strong><br><img src="../../images/workshop/7.png" alt="Step 7" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 8:</strong><br><img src="../../images/workshop/8.png" alt="Step 8" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 9:</strong><br><img src="../../images/workshop/9.png" alt="Step 9" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 10:</strong><br><img src="../../images/workshop/10.png" alt="Step 10" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 11:</strong><br><img src="../../images/workshop/11.png" alt="Step 11" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 12:</strong><br><img src="../../images/workshop/12.png" alt="Step 12" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 13:</strong><br><img src="../../images/workshop/13.png" alt="Step 13" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 14:</strong><br><img src="../../images/workshop/14.png" alt="Step 14" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 15:</strong><br><img src="../../images/workshop/15.png" alt="Step 15" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 16:</strong><br><img src="../../images/workshop/16.png" alt="Step 16" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 17:</strong><br><img src="../../images/workshop/17.png" alt="Step 17" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 18:</strong><br><img src="../../images/workshop/18.png" alt="Step 18" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 19:</strong><br><img src="../../images/workshop/19.png" alt="Step 19" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 20:</strong><br><img src="../../images/workshop/20.png" alt="Step 20" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 21:</strong><br><img src="../../images/workshop/21.png" alt="Step 21" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 22:</strong><br><img src="../../images/workshop/22.png" alt="Step 22" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 23:</strong><br><img src="../../images/workshop/23.png" alt="Step 23" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 24:</strong><br><img src="../../images/workshop/24.png" alt="Step 24" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 25:</strong><br><img src="../../images/workshop/25.png" alt="Step 25" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 26:</strong><br><img src="../../images/workshop/26.png" alt="Step 26" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 27:</strong><br><img src="../../images/workshop/27.png" alt="Step 27" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 28:</strong><br><img src="../../images/workshop/28.png" alt="Step 28" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 29:</strong><br><img src="../../images/workshop/29.png" alt="Step 29" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 30:</strong><br><img src="../../images/workshop/30.png" alt="Step 30" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 31:</strong><br><img src="../../images/workshop/31.png" alt="Step 31" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 32:</strong><br><img src="../../images/workshop/32.png" alt="Step 32" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 33:</strong><br><img src="../../images/workshop/33.png" alt="Step 33" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 34:</strong><br><img src="../../images/workshop/34.png" alt="Step 34" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 35:</strong><br><img src="../../images/workshop/35.png" alt="Step 35" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 36:</strong><br><img src="../../images/workshop/36.png" alt="Step 36" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 37:</strong><br><img src="../../images/workshop/37.png" alt="Step 37" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 38:</strong><br><img src="../../images/workshop/38.png" alt="Step 38" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 39:</strong><br><img src="../../images/workshop/39.png" alt="Step 39" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 40:</strong><br><img src="../../images/workshop/40.png" alt="Step 40" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 41:</strong><br><img src="../../images/workshop/41.png" alt="Step 41" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 42:</strong><br><img src="../../images/workshop/42.png" alt="Step 42" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 43:</strong><br><img src="../../images/workshop/43.png" alt="Step 43" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 44:</strong><br><img src="../../images/workshop/44.png" alt="Step 44" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 45:</strong><br><img src="../../images/workshop/45.png" alt="Step 45" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 46:</strong><br><img src="../../images/workshop/46.png" alt="Step 46" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 47:</strong><br><img src="../../images/workshop/47.png" alt="Step 47" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 48:</strong><br><img src="../../images/workshop/48.png" alt="Step 48" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 49:</strong><br><img src="../../images/workshop/49.png" alt="Step 49" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 50:</strong><br><img src="../../images/workshop/50.png" alt="Step 50" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 51:</strong><br><img src="../../images/workshop/51.png" alt="Step 51" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 52:</strong><br><img src="../../images/workshop/52.png" alt="Step 52" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 53:</strong><br><img src="../../images/workshop/53.png" alt="Step 53" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 54:</strong><br><img src="../../images/workshop/54.png" alt="Step 54" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 55:</strong><br><img src="../../images/workshop/55.png" alt="Step 55" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 56:</strong><br><img src="../../images/workshop/56.png" alt="Step 56" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 57:</strong><br><img src="../../images/workshop/57.png" alt="Step 57" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 58:</strong><br><img src="../../images/workshop/58.png" alt="Step 58" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 59:</strong><br><img src="../../images/workshop/59.png" alt="Step 59" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 60:</strong><br><img src="../../images/workshop/60.png" alt="Step 60" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 61:</strong><br><img src="../../images/workshop/61.png" alt="Step 61" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 62:</strong><br><img src="../../images/workshop/62.png" alt="Step 62" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 63:</strong><br><img src="../../images/workshop/63.png" alt="Step 63" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 64:</strong><br><img src="../../images/workshop/64.png" alt="Step 64" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 65:</strong><br><img src="../../images/workshop/65.png" alt="Step 65" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 66:</strong><br><img src="../../images/workshop/66.png" alt="Step 66" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 67:</strong><br><img src="../../images/workshop/67.png" alt="Step 67" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 68:</strong><br><img src="../../images/workshop/68.png" alt="Step 68" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 69:</strong><br><img src="../../images/workshop/69.png" alt="Step 69" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 70:</strong><br><img src="../../images/workshop/70.png" alt="Step 70" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 71:</strong><br><img src="../../images/workshop/71.png" alt="Step 71" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 72:</strong><br><img src="../../images/workshop/72.png" alt="Step 72" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 73:</strong><br><img src="../../images/workshop/73.png" alt="Step 73" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 74:</strong><br><img src="../../images/workshop/74.png" alt="Step 74" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 75:</strong><br><img src="../../images/workshop/75.png" alt="Step 75" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 76:</strong><br><img src="../../images/workshop/76.png" alt="Step 76" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 77:</strong><br><img src="../../images/workshop/77.png" alt="Step 77" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 78:</strong><br><img src="../../images/workshop/78.png" alt="Step 78" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 79:</strong><br><img src="../../images/workshop/79.png" alt="Step 79" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 80:</strong><br><img src="../../images/workshop/80.png" alt="Step 80" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 81:</strong><br><img src="../../images/workshop/81.png" alt="Step 81" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 82:</strong><br><img src="../../images/workshop/82.png" alt="Step 82" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 83:</strong><br><img src="../../images/workshop/83.png" alt="Step 83" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 84:</strong><br><img src="../../images/workshop/84.png" alt="Step 84" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 85:</strong><br><img src="../../images/workshop/85.png" alt="Step 85" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 86:</strong><br><img src="../../images/workshop/86.png" alt="Step 86" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 87:</strong><br><img src="../../images/workshop/87.png" alt="Step 87" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 88:</strong><br><img src="../../images/workshop/88.png" alt="Step 88" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 89:</strong><br><img src="../../images/workshop/89.png" alt="Step 89" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 90:</strong><br><img src="../../images/workshop/90.png" alt="Step 90" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 91:</strong><br><img src="../../images/workshop/91.png" alt="Step 91" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br>
+  <strong>Step 92:</strong><br><img src="../../images/workshop/92.png" alt="Step 92" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 10px 0; display:block;"><br><br></p>
+        </div>
 
 <h1 id="budget-tracker-workshop">Budget Tracker Workshop — Hướng dẫn triển khai AWS Console</h1>
 <p>Workshop này hướng dẫn thực hành triển khai dự án Budget Tracker trên AWS, bao gồm thiết lập tài khoản, IAM, cơ sở hạ tầng, thiết kế database và bảo mật.</p>

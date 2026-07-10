@@ -1000,10 +1000,7 @@
 </ul>
 <h3 id="4-system-architecture">4. System Architecture</h3>
 <p>The system uses a serverless AWS architecture: the React frontend is hosted on S3 and distributed by CloudFront. API Gateway receives requests and routes them to Lambda for business logic. DynamoDB stores transactional and user data, while S3 stores receipts and attachments. Amazon Bedrock supports financial analysis. CloudWatch monitors the environment, and SNS sends notifications.</p>
-<div style="text-align:center;margin:1.5rem 0;">
-  <img src="../images/proposal/sodo.jpg" alt="Budget Tracker System Architecture Diagram" style="max-width:100%;border-radius:10px;border:2px solid rgba(255,153,0,0.4);box-shadow:0 4px 20px rgba(0,0,0,0.4);">
-  <p style="font-size:0.85rem;color:#aaa;margin-top:0.5rem;font-style:italic;">Figure 1: Budget Tracker — System Architecture on AWS Serverless</p>
-</div>
+<p><img src="../images/proposal/sodo.jpg" alt="Budget Tracker System Architecture Diagram" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 15px 0;"></p>
 <h3 id="5-system-workflow">5. System Workflow</h3>
 <ul>
 <li>Users access the React application through CloudFront.</li>

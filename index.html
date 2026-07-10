@@ -858,7 +858,9 @@
   <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
     <i class="fas fa-bars"></i> navigation
   </a>
-</span> <h1 id="internship-report">Internship Report</h1>
+</span>
+
+ <h1 id="internship-report">Internship Report</h1>
 
 <div
   class="notices warning"
@@ -868,191 +870,27 @@
 
 </div>
 
-<style>
-  .profile-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    background: linear-gradient(135deg, #1a2a3a 0%, #0d1f2d 100%);
-    border: 1px solid rgba(255, 153, 0, 0.3);
-    border-radius: 16px;
-    padding: 2rem;
-    margin: 1.5rem 0 2rem 0;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,153,0,0.1);
-    position: relative;
-    overflow: hidden;
-  }
-  .profile-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #ff9900, #f5a623, #ff9900);
-    background-size: 200% 100%;
-    animation: shimmer 2s infinite;
-  }
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-  .profile-avatar-wrap {
-    flex-shrink: 0;
-    text-align: center;
-  }
-  .profile-avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 4px solid #ff9900;
-    object-fit: cover;
-    box-shadow: 0 4px 20px rgba(255, 153, 0, 0.4);
-    display: block;
-    margin: 0 auto 0.75rem auto;
-  }
-  .profile-name-badge {
-    background: rgba(255, 153, 0, 0.15);
-    border: 1px solid rgba(255, 153, 0, 0.4);
-    border-radius: 20px;
-    padding: 0.3rem 0.8rem;
-    font-size: 0.75rem;
-    color: #ff9900;
-    font-weight: 600;
-    text-align: center;
-    white-space: nowrap;
-  }
-  .profile-info {
-    flex: 1;
-    min-width: 0;
-  }
-  .profile-info h2 {
-    margin: 0 0 0.25rem 0;
-    font-size: 1.6rem;
-    color: #fff;
-    font-weight: 700;
-  }
-  .profile-info .profile-subtitle {
-    color: #ff9900;
-    font-size: 0.95rem;
-    margin-bottom: 1.25rem;
-    font-weight: 500;
-  }
-  .profile-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem 1.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1.25rem 0;
-  }
-  .profile-details li {
-    display: flex;
-    align-items: baseline;
-    gap: 0.4rem;
-    font-size: 0.9rem;
-    color: #cdd6e0;
-    line-height: 1.5;
-  }
-  .profile-details li .detail-label {
-    color: #ff9900;
-    font-weight: 600;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .profile-details li .detail-value {
-    color: #e8edf2;
-  }
-  .profile-details li a {
-    color: #5dade2;
-  }
-  .internship-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(255,153,0,0.12);
-    border: 1px solid rgba(255,153,0,0.35);
-    border-radius: 8px;
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-    color: #ff9900;
-    font-weight: 600;
-  }
-  .internship-badge .duration {
-    color: #adbccc;
-    font-weight: 400;
-    font-size: 0.8rem;
-  }
-  @media (max-width: 600px) {
-    .profile-card { flex-direction: column; align-items: center; }
-    .profile-details { grid-template-columns: 1fr; }
-    .profile-info h2 { text-align: center; }
-    .profile-info .profile-subtitle { text-align: center; }
-  }
-  .report-nav {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 0.75rem;
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0 1.5rem 0;
-  }
-  .report-nav li a {
-    display: block;
-    background: rgba(255,153,0,0.08);
-    border: 1px solid rgba(255,153,0,0.25);
-    border-radius: 10px;
-    padding: 0.65rem 1rem;
-    color: #e8edf2;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: all 0.2s ease;
-  }
-  .report-nav li a:hover {
-    background: rgba(255,153,0,0.2);
-    border-color: rgba(255,153,0,0.6);
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255,153,0,0.2);
-  }
-  .report-nav li a .nav-num {
-    color: #ff9900;
-    font-weight: 700;
-    margin-right: 0.3rem;
-  }
-</style>
-
-<div class="profile-card">
-  <div class="profile-avatar-wrap">
-    <img class="profile-avatar" src="./images/avatar.png" alt="Nguyễn Hoàng Chung - Profile Photo">
-    <div class="profile-name-badge">🎓 AWS Intern</div>
-  </div>
-  <div class="profile-info">
-    <h2>Nguyễn Hoàng Chung</h2>
-    <div class="profile-subtitle">Workforce Bootcamp · First Cloud AI Journey</div>
-    <ul class="profile-details">
-      <li><span class="detail-label">📞 Phone:</span> <span class="detail-value">038 2027 649</span></li>
-      <li><span class="detail-label">✉️ Email:</span> <span class="detail-value"><a href="mailto:hoangchungofficial@gmail.com">hoangchungofficial@gmail.com</a></span></li>
-      <li><span class="detail-label">🏫 University:</span> <span class="detail-value">Ho Chi Minh City University of Technology</span></li>
-      <li><span class="detail-label">📚 Major:</span> <span class="detail-value">Information Technology</span></li>
-      <li><span class="detail-label">🎓 Class:</span> <span class="detail-value">22DTHA2</span></li>
-      <li><span class="detail-label">🏢 Company:</span> <span class="detail-value">Amazon Web Services Viet Nam Co., Ltd.</span></li>
-    </ul>
-    <div class="internship-badge">
-      ☁️ Internship Duration: <span class="duration">05/05/2026 – 30/07/2026</span>
-    </div>
-  </div>
-</div>
-
+<h3 id="student-information">Student Information:</h3>
+<p>  <strong>Full Name:</strong> Nguyễn Hoàng Chung</p>
+<p>  <strong>Phone Number:</strong> 038 2027 649</p>
+<p>  <strong>Email:</strong> <a href="mailto:hoangchungofficial@gmail.com">hoangchungofficial@gmail.com</a></p>
+<p>  <strong>University:</strong> Ho Chi Minh City University of Technology</p>
+<p>  <strong>Major:</strong> Information Technology</p>
+<p>  <strong>Class:</strong> 22DTHA2</p>
+<p>  <strong>Internship Company:</strong> Amazon Web Services Viet Nam Company Limited</p>
+<p>  <strong>Internship Position:</strong> Workforce Bootcamp - First Cloud AI Journey</p>
+<p>  <strong>Internship Duration:</strong> From 05/05/2026 to 30/07/2026</p>
+<p><img alt="Your profile picture" src="./images/avatar.png"></p>
 <h3 id="report-content">Report Content</h3>
-<ul class="report-nav">
-  <li><a href="./1-worklog/"><span class="nav-num">1.</span> Worklog</a></li>
-  <li><a href="./2-proposal/"><span class="nav-num">2.</span> Proposal</a></li>
-  <li><a href="./3-blogsposted/"><span class="nav-num">3.</span> Blogs Posted</a></li>
-  <li><a href="./4-eventparticipated/"><span class="nav-num">4.</span> Events Participated</a></li>
-  <li><a href="./5-workshop/"><span class="nav-num">5.</span> Workshop</a></li>
-  <li><a href="./6-self-evaluation/"><span class="nav-num">6.</span> Self-evaluation</a></li>
-  <li><a href="./7-feedback/"><span class="nav-num">7.</span> Sharing and Feedback</a></li>
-</ul>
+<ol>
+<li><a href="./1-worklog/">Worklog</a></li>
+<li><a href="./2-proposal/">Proposal</a></li>
+<li><a href="./3-blogsposted/">Blogs Posted</a></li>
+<li><a href="./4-eventparticipated/">Events Participated</a></li>
+<li><a href="./5-workshop/">Workshop</a></li>
+<li><a href="./6-self-evaluation/">Self-evaluation</a></li>
+<li><a href="./7-feedback/">Sharing and Feedback</a></li>
+</ol>
           
         </div>
 <div id="navigation">

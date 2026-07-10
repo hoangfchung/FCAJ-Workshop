@@ -906,7 +906,7 @@
         
         </div>
         
-                        <div id="body-inner">
+                                <div id="body-inner">
           
 
             <h1>
@@ -920,6 +920,122 @@
   <p>⚠️ <strong>Lưu ý:</strong> Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng <strong>không sao chép nguyên văn</strong> cho bài báo cáo của bạn kể cả warning này.</p>
 
 </div>
+
+<p>Budget Tracker là hệ thống quản lý chi tiêu cá nhân thông minh được xây dựng theo mô hình Serverless trên Amazon Web Services.</p>
+<h3 id="1-giới-thiệu">1. Giới thiệu</h3>
+<p>Mục tiêu của hệ thống là hỗ trợ người dùng ghi nhận các khoản thu, chi, quản lý ngân sách, lưu trữ hóa đơn điện tử và ứng dụng AI để phân tích hành vi chi tiêu, từ đó đưa ra khuyến nghị tài chính phù hợp.</p>
+<p>Khác với các ứng dụng truyền thống, Budget Tracker sử dụng dịch vụ AWS Serverless để giảm chi phí vận hành, tự động mở rộng theo lưu lượng và nâng cao bảo mật.</p>
+<h3 id="2-mục-tiêu-dự-án">2. Mục tiêu của dự án</h3>
+<ul>
+<li>Quản lý thu nhập và chi tiêu cá nhân.</li>
+<li>Quản lý danh mục giao dịch.</li>
+<li>Thiết lập ngân sách theo danh mục.</li>
+<li>Theo dõi tình trạng vượt ngân sách.</li>
+<li>Lưu trữ hóa đơn điện tử.</li>
+<li>Phân tích dữ liệu tài chính bằng AI.</li>
+<li>Đưa ra lời khuyên giúp tối ưu chi tiêu.</li>
+<li>Gửi cảnh báo email khi vượt ngân sách.</li>
+<li>Triển khai hoàn toàn trên AWS theo mô hình Serverless.</li>
+</ul>
+<h3 id="3-công-nghệ-sử-dụng">3. Công nghệ sử dụng</h3>
+<h4>Frontend</h4>
+<ul>
+<li>ReactJS</li>
+<li>HTML5</li>
+<li>CSS3</li>
+<li>JavaScript</li>
+<li>Axios</li>
+</ul>
+<p>Frontend được build thành Static Website và triển khai trên Amazon S3.</p>
+<h4>Backend</h4>
+<ul>
+<li>ASP.NET Core Web API (.NET 8)</li>
+<li>AWS Lambda</li>
+<li>RESTful API</li>
+</ul>
+<p>Business Logic chạy trên AWS Lambda.</p>
+<h4>Cơ sở dữ liệu</h4>
+<ul>
+<li>Amazon DynamoDB</li>
+<li>Lưu trữ Users, Categories, Transactions, Budgets, Reports</li>
+</ul>
+<h4>AI</h4>
+<ul>
+<li>Amazon Bedrock</li>
+<li>Phân loại giao dịch</li>
+<li>Phân tích chi tiêu</li>
+<li>Dự đoán xu hướng</li>
+<li>Đề xuất tài chính</li>
+</ul>
+<h4>Lưu trữ</h4>
+<ul>
+<li>Amazon S3 lưu trữ frontend, hóa đơn, tệp đính kèm và báo cáo.</li>
+</ul>
+<h4>Xác thực</h4>
+<ul>
+<li>Amazon Cognito đăng ký, đăng nhập, logout và JWT.</li>
+</ul>
+<h4>Giám sát</h4>
+<ul>
+<li>Amazon CloudWatch theo dõi logs và metrics.</li>
+</ul>
+<h4>Thông báo</h4>
+<ul>
+<li>Amazon SNS gửi email và cảnh báo ngân sách.</li>
+</ul>
+<h4>DNS & CDN</h4>
+<ul>
+<li>Amazon Route 53</li>
+<li>Amazon CloudFront</li>
+</ul>
+<h4>Bảo mật</h4>
+<ul>
+<li>AWS WAF bảo vệ khỏi SQL Injection, XSS và HTTP Flood.</li>
+</ul>
+<h3 id="4-kiến-trúc-hệ-thống">4. Kiến trúc hệ thống</h3>
+<p>Sản phẩm được xây dựng theo kiến trúc AWS Serverless: frontend React lưu trên Amazon S3 và phân phối bởi CloudFront. API Gateway tiếp nhận yêu cầu, gọi Lambda để xử lý nghiệp vụ. DynamoDB lưu trữ dữ liệu người dùng và giao dịch, S3 lưu hóa đơn và tệp đính kèm. Amazon Bedrock hỗ trợ phân tích AI. CloudWatch giám sát hệ thống, SNS gửi thông báo.</p>
+<p><img src="../../images/proposal/sodo.jpg" alt="Sơ đồ kiến trúc hệ thống Budget Tracker" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 15px 0;"></p>
+<h3 id="5-luồng-hoạt-động">5. Luồng hoạt động</h3>
+<ul>
+<li>Người dùng truy cập ứng dụng qua CloudFront.</li>
+<li>Yêu cầu được gửi tới API Gateway và qua Lambda.</li>
+<li>Lambda thao tác dữ liệu trên DynamoDB, lưu file trên S3, xác thực qua Cognito.</li>
+<li>Yêu cầu AI được chuyển tới Amazon Bedrock.</li>
+<li>CloudWatch thu thập logs và kích hoạt SNS khi cần.</li>
+</ul>
+<h3 id="6-chức-năng-chính">6. Chức năng chính</h3>
+<ul>
+<li>Quản lý người dùng và hồ sơ.</li>
+<li>Quản lý giao dịch thu/chi.</li>
+<li>Quản lý ngân sách theo danh mục.</li>
+<li>Upload hóa đơn và lưu trữ file.</li>
+<li>Phân tích AI và đề xuất chi tiêu.</li>
+<li>Thông báo và cảnh báo ngân sách.</li>
+</ul>
+<h3 id="7-lợi-ích">7. Lợi ích</h3>
+<ul>
+<li>Hoàn toàn Serverless.</li>
+<li>Tự động mở rộng và chi phí tối ưu.</li>
+<li>Bảo mật và xác thực tốt qua Cognito.</li>
+<li>Quản lý dữ liệu linh hoạt với DynamoDB và S3.</li>
+<li>AI phân tích tài chính với Amazon Bedrock.</li>
+</ul>
+<h3 id="8-hạn-chế">8. Hạn chế</h3>
+<ul>
+<li>Phụ thuộc dịch vụ AWS.</li>
+<li>Lambda có thể gặp cold start.</li>
+<li>Amazon Bedrock phát sinh chi phí.</li>
+<li>DynamoDB cần thiết kế khóa phân vùng tốt.</li>
+</ul>
+<h3 id="9-mở-rộng">9. Mở rộng tương lai</h3>
+<ul>
+<li>Ứng dụng di động.</li>
+<li>Dashboard quản trị.</li>
+<li>OCR đọc hóa đơn tự động.</li>
+<li>Voice assistant.</li>
+</ul>
+          
+        </div>
 
 <p>Budget Tracker là hệ thống quản lý chi tiêu cá nhân thông minh được xây dựng theo mô hình Serverless trên Amazon Web Services.</p>
 <h3 id="1-giới-thiệu">1. Giới thiệu</h3>
