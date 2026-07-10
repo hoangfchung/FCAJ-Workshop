@@ -870,26 +870,191 @@
 
 </div>
 
-<p>  <strong>Họ và tên:</strong> Nguyễn Hoàng Chung</p>
-<p>  <strong>Số điện thoại:</strong> 038 2027 649</p>
-<p>  <strong>Email:</strong> <a href="mailto:hoangchungofficial@gmail.com">hoangchungofficial@gmail.com</a></p>
-<p>  <strong>Trường:</strong> Đại học Sư phạm Kỹ thuật TP.HCM</p>
-<p>  <strong>Ngành:</strong> Công nghệ thông tin</p>
-<p>  <strong>Lớp:</strong> 22DTHA2</p>
-<p>  <strong>Công ty thực tập:</strong> Công ty TNHH Amazon Web Services Viet Nam</p>
-<p>  <strong>Vị trí thực tập:</strong> Workforce Bootcamp - First Cloud AI Journey</p>
-<p>  <strong>Thời gian thực tập:</strong> Từ ngày 04/05/2026 đến 25/07/2026</p>
-<p><img alt="Ảnh đại diện của bạn" src="../images/avatar.png"></p>
+<style>
+  .profile-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    background: linear-gradient(135deg, #1a2a3a 0%, #0d1f2d 100%);
+    border: 1px solid rgba(255, 153, 0, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 1.5rem 0 2rem 0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,153,0,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff9900, #f5a623, #ff9900);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .profile-avatar-wrap {
+    flex-shrink: 0;
+    text-align: center;
+  }
+  .profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #ff9900;
+    object-fit: cover;
+    box-shadow: 0 4px 20px rgba(255, 153, 0, 0.4);
+    display: block;
+    margin: 0 auto 0.75rem auto;
+  }
+  .profile-name-badge {
+    background: rgba(255, 153, 0, 0.15);
+    border: 1px solid rgba(255, 153, 0, 0.4);
+    border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.75rem;
+    color: #ff9900;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .profile-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .profile-info h2 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: 700;
+  }
+  .profile-info .profile-subtitle {
+    color: #ff9900;
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+  .profile-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem 0;
+  }
+  .profile-details li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: #cdd6e0;
+    line-height: 1.5;
+  }
+  .profile-details li .detail-label {
+    color: #ff9900;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .profile-details li .detail-value {
+    color: #e8edf2;
+  }
+  .profile-details li a {
+    color: #5dade2;
+  }
+  .internship-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,153,0,0.12);
+    border: 1px solid rgba(255,153,0,0.35);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    color: #ff9900;
+    font-weight: 600;
+  }
+  .internship-badge .duration {
+    color: #adbccc;
+    font-weight: 400;
+    font-size: 0.8rem;
+  }
+  @media (max-width: 600px) {
+    .profile-card { flex-direction: column; align-items: center; }
+    .profile-details { grid-template-columns: 1fr; }
+    .profile-info h2 { text-align: center; }
+    .profile-info .profile-subtitle { text-align: center; }
+  }
+  .report-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 1.5rem 0;
+  }
+  .report-nav li a {
+    display: block;
+    background: rgba(255,153,0,0.08);
+    border: 1px solid rgba(255,153,0,0.25);
+    border-radius: 10px;
+    padding: 0.65rem 1rem;
+    color: #e8edf2;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  .report-nav li a:hover {
+    background: rgba(255,153,0,0.2);
+    border-color: rgba(255,153,0,0.6);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255,153,0,0.2);
+  }
+  .report-nav li a .nav-num {
+    color: #ff9900;
+    font-weight: 700;
+    margin-right: 0.3rem;
+  }
+</style>
+
+<div class="profile-card">
+  <div class="profile-avatar-wrap">
+    <img class="profile-avatar" src="../images/avatar.png" alt="Nguyễn Hoàng Chung - Ảnh đại diện">
+    <div class="profile-name-badge">🎓 Thực tập sinh AWS</div>
+  </div>
+  <div class="profile-info">
+    <h2>Nguyễn Hoàng Chung</h2>
+    <div class="profile-subtitle">Workforce Bootcamp · First Cloud AI Journey</div>
+    <ul class="profile-details">
+      <li><span class="detail-label">📞 Điện thoại:</span> <span class="detail-value">038 2027 649</span></li>
+      <li><span class="detail-label">✉️ Email:</span> <span class="detail-value"><a href="mailto:hoangchungofficial@gmail.com">hoangchungofficial@gmail.com</a></span></li>
+      <li><span class="detail-label">🏫 Trường:</span> <span class="detail-value">Đại học Sư phạm Kỹ thuật TP.HCM</span></li>
+      <li><span class="detail-label">📚 Ngành:</span> <span class="detail-value">Công nghệ thông tin</span></li>
+      <li><span class="detail-label">🎓 Lớp:</span> <span class="detail-value">22DTHA2</span></li>
+      <li><span class="detail-label">🏢 Công ty:</span> <span class="detail-value">Công ty TNHH Amazon Web Services Việt Nam</span></li>
+    </ul>
+    <div class="internship-badge">
+      ☁️ Thời gian thực tập: <span class="duration">05/05/2026 – 30/07/2026</span>
+    </div>
+  </div>
+</div>
+
 <h3 id="nội-dung-báo-cáo">Nội dung báo cáo</h3>
-<ol>
-<li><a href="../vi/1-worklog/">Worklog</a></li>
-<li><a href="../vi/2-proposal/">Proposal</a></li>
-<li><a href="../vi/3-blogsposted/">Các bài blogs đã đăng</a></li>
-<li><a href="../vi/4-eventparticipated/">Các events đã tham gia</a></li>
-<li><a href="../vi/5-workshop/">Workshop</a></li>
-<li><a href="../vi/6-self-evaluation/">Tự đánh giá</a></li>
-<li><a href="../vi/7-feedback/">Chia sẻ, đóng góp ý kiến</a></li>
-</ol>
+<ul class="report-nav">
+  <li><a href="../vi/1-worklog/"><span class="nav-num">1.</span> Worklog</a></li>
+  <li><a href="../vi/2-proposal/"><span class="nav-num">2.</span> Proposal</a></li>
+  <li><a href="../vi/3-blogsposted/"><span class="nav-num">3.</span> Các bài blogs</a></li>
+  <li><a href="../vi/4-eventparticipated/"><span class="nav-num">4.</span> Các events</a></li>
+  <li><a href="../vi/5-workshop/"><span class="nav-num">5.</span> Workshop</a></li>
+  <li><a href="../vi/6-self-evaluation/"><span class="nav-num">6.</span> Tự đánh giá</a></li>
+  <li><a href="../vi/7-feedback/"><span class="nav-num">7.</span> Chia sẻ và góp ý</a></li>
+</ul>
           
         </div>
 <div id="navigation">
