@@ -4,7 +4,7 @@
 > AWS Internship · Workforce Bootcamp · First Cloud AI Journey  
 > 04/05/2026 – 25/07/2026
 
-🌐 **Live site:** https://hoangchung2801.github.io/FCAJ-Workshop/
+🌐 **Live site:** https://hoangfchung.github.io/FCAJ-Workshop/
 
 ---
 
