@@ -39,7 +39,7 @@
     
 
   </head>
-  <body class="" data-url="../../1-worklog/1.1-week1/">
+  <body class="" data-url="../../5-workshop/5.1-module1/">
     <nav
   id="sidebar"
   class="showVisitedLinks"
@@ -517,7 +517,12 @@
    
 </li>
     
-    </ul>
+    <li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li></ul>
 
      
     <section id="shortcuts">
@@ -553,7 +558,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.1-module1/"
                   selected
                 >
                   English
@@ -561,7 +566,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.1-module1/"
                 >
                   Tiếng Việt
                 </option>
@@ -671,39 +676,12 @@
         </div>
         
         <div id="body-inner">
-
-<h1 style="text-transform:uppercase; text-align:center;">Module 1: Introduction</h1>
-
-<p><em>Người phụ trách: Tất cả</em></p>
-<p><em>Thời gian: 15 phút</em></p>
-<h3>1.1 Architecture Overview</h3>
-<p>Mục đích: Hiểu tổng quan kiến trúc toàn hệ thống</p>
-<p>Các thành phần chính:</p>
-<p>Internet User</p>
-<p>↓</p>
-<p>Route 53 (DNS)</p>
-<p>↓</p>
-<p>CloudFront (CDN) ← WAF</p>
-<p>↓</p>
-<p>├─ S3 (React Frontend)</p>
-<p>├─ API Gateway ← WAF</p>
-<p>↓</p>
-<p>AWS Lambda (C# Functions)</p>
-<p>├─ DynamoDB (Database)</p>
-<p>├─ S3 (File Storage)</p>
-<p>├─ Cognito (Auth)</p>
-<p>├─ SNS/SQS (Notifications)</p>
-<p>├─ EventBridge (Scheduler)</p>
-<p>└─ Google Gemini API (AI)</p>
-<p>↓</p>
-<p>CloudWatch (Monitoring)</p>
-<h3>1.2 Tech Stack Review</h3>
-<h3>1.3 Team Roles</h3>
-<p>Chung: Infrastructure &amp; DevOps</p>
-<p>Huy: Backend Core &amp; Notifications</p>
-<p>Khiêm: Database &amp; Authentication</p>
-<p>Công: Frontend &amp; AI Integration</p>
-
+<h2 id="module-1">Module 1: Introduction</h2>
+<p>Understand the Budget Tracker architecture, project goals, team responsibilities, and the order in which cloud services are configured.</p>
+<h3 id="objectives">Objectives</h3><ul><li>Complete the configuration safely in the shared AWS environment.</li><li>Record configuration values and verify access before moving to the next module.</li><li>Apply least privilege, encryption, and monitoring where relevant.</li></ul>
+<h3 id="implementation-steps">Implementation Steps</h3><ol><li>Review the module prerequisites and the target architecture.</li><li>Configure the AWS resources shown below.</li><li>Test the result and capture evidence for the workshop report.</li></ol>
+<h3 id="screenshots">Workshop Screenshots</h3><p><img src="../../images/workshop/0.png" alt="Module 1 workshop screenshot 1" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/1.png" alt="Module 1 workshop screenshot 2" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/2.png" alt="Module 1 workshop screenshot 3" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/3.png" alt="Module 1 workshop screenshot 4" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/4.png" alt="Module 1 workshop screenshot 5" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/5.png" alt="Module 1 workshop screenshot 6" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/6.png" alt="Module 1 workshop screenshot 7" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<h3 id="verification">Verification</h3><p>Confirm that the configured resource is available, protected by the intended permissions, and integrated with the components required by the next module.</p>
 
 <footer class=" footline" >
 	
@@ -1337,10 +1315,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../1-worklog/" title="Worklog"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../" title="Workshop"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../1-worklog/1.2-week2/" title="Week 2 Worklog" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../5.2-module2/" title="Module 2: Shared Prerequisites" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

@@ -39,7 +39,7 @@
     
 
   </head>
-  <body class="" data-url="../../1-worklog/1.1-week1/">
+  <body class="" data-url="../../5-workshop/5.4-module4/">
     <nav
   id="sidebar"
   class="showVisitedLinks"
@@ -517,7 +517,12 @@
    
 </li>
     
-    </ul>
+    <li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li></ul>
 
      
     <section id="shortcuts">
@@ -553,7 +558,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.4-module4/"
                   selected
                 >
                   English
@@ -561,7 +566,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.4-module4/"
                 >
                   Tiếng Việt
                 </option>
@@ -671,103 +676,12 @@
         </div>
         
         <div id="body-inner">
-
-<h1 style="text-transform:uppercase; text-align:center;">Module 4: Database &amp; Data Layer</h1>
-
-<p><em>Người phụ trách: Khiêm</em></p>
-<p><em>Thời gian: 1.5 tiếng</em></p>
-<h3>4.1 DynamoDB Table Creation</h3>
-<h4>Bước 1: AWS Console → DynamoDB → Tables → Create table</h4>
-<p>Table name: BudgetTracket-dev</p>
-<p>Partition key (PK): userId (String)</p>
-<p>Sort key (SK): entityId (String)</p>
-<p>Example items:</p>
-<p>- PK: USER#user123, SK: PROFILE</p>
-<p>- PK: USER#user123, SK: TXN#2026-01-15#txn001</p>
-<p>- PK: USER#user123, SK: BUDGET#2026-01#Food</p>
-<h4>Bước 2: Table settings</h4>
-<p>Billing mode: PAY_PER_REQUEST (cho development)</p>
-<p>Hoặc: Provisioned (1 RCU read, 1 WCU write)</p>
-<p>Encryption: AWS owned key (mặc định)</p>
-<p>Point-in-time recovery: Enable (optional)</p>
-<p>Create table</p>
-<h4>Bước 3: Wait for status = ACTIVE</h4>
-<pre><code># Verify via CLI</code></pre>
-<p>aws dynamodb describe-table --table-name BudgetTracket-dev --region ap-southeast-1</p>
-<h3>4.2 DynamoDB Schema Details</h3>
-<p>Sample Items:</p>
-<p>{</p>
-<p>"userId": { "S": "user#abc123" },</p>
-<p>"entityId": { "S": "PROFILE" },</p>
-<p>"email": { "S": "user@example.com" },</p>
-<p>"name": { "S": "John Doe" },</p>
-<p>"currency": { "S": "VND" },</p>
-<p>"notifyBudgetAlert": { "BOOL": true },</p>
-<p>"notifyMonthlyReport": { "BOOL": true },</p>
-<p>"notifyAnomaly": { "BOOL": false },</p>
-<p>"createdAt": { "S": "2026-01-15T10:30:00Z" },</p>
-<p>"updatedAt": { "S": "2026-01-15T10:30:00Z" }</p>
-<p>}</p>
-<p>{</p>
-<p>"userId": { "S": "user#abc123" },</p>
-<p>"entityId": { "S": "TXN#2026-01-15#txn001" },</p>
-<p>"type": { "S": "expense" },</p>
-<p>"description": { "S": "Lunch at Pho restaurant" },</p>
-<p>"amount": { "N": "150000" },</p>
-<p>"category": { "S": "food" },</p>
-<p>"date": { "S": "2026-01-15" },</p>
-<p>"note": { "S": "Business lunch" },</p>
-<p>"receiptUrl": { "S": "s3://bucket/receipts/txn001.jpg" }</p>
-<p>}</p>
-<h3>4.3 S3 Buckets</h3>
-<h4>Bước 1: AWS Console → S3 → Create bucket</h4>
-<p>Bucket 1: Frontend Hosting</p>
-<p>Bucket name: budget-tracket-frontend-dev (phải globally unique)</p>
-<p>Region: ap-southeast-1</p>
-<p>Block all public access: Uncheck (cho CloudFront public access)</p>
-<p>Create bucket</p>
-<h4>Bước 2: Enable Static Website Hosting</h4>
-<p>Click vào bucket</p>
-<p>Properties → Static website hosting → Edit</p>
-<p>Enable</p>
-<p>Index document: index.html</p>
-<p>Error document: index.html (cho React routing)</p>
-<p>Save</p>
-<p>Bucket 2: Receipt Storage</p>
-<p>Bucket name: budget-tracket-receipts-dev</p>
-<p>Region: ap-southeast-1</p>
-<p>Block all public access: Check (chỉ pre-signed URLs)</p>
-<p>Create bucket</p>
-<h4>Bước 3: Add lifecycle policy (xóa receipts cũ)</h4>
-<p>Click vào bucket</p>
-<p>Management → Lifecycle rules → Create lifecycle rule</p>
-<p>Rule name: DeleteOldReceipts</p>
-<p>Apply to all objects</p>
-<p>Expiration: 180 days</p>
-<p>Create rule</p>
-<h3>4.4 Secrets Manager</h3>
-<h4>Bước 1: AWS Console → Secrets Manager → Store a new secret</h4>
-<p>Secret 1: Gemini API Key</p>
-<p>Secret type: Other type of secret</p>
-<p>Key/value:</p>
-<p>Key: GEMINI_API_KEY</p>
-<p>Value: &lt;your-gemini-api-key&gt;</p>
-<p>Secret name: budget-tracket/gemini-api-key</p>
-<p>Store secret</p>
-<p>Copy ARN: (dùng cho Lambda environment)</p>
-<p>Secret 2: Cognito Config (tạo sau Module 7)</p>
-<p>Key/value:</p>
-<p>COGNITO_USER_POOL_ID: &lt;pool-id&gt;</p>
-<p>COGNITO_CLIENT_ID: &lt;client-id&gt;</p>
-<p>Secret name: budget-tracket/cognito-config</p>
-<h3>4.5 Verify via AWS CLI</h3>
-<pre><code># Check DynamoDB table</code></pre>
-<p>aws dynamodb list-tables --region ap-southeast-1</p>
-<pre><code># Check S3 buckets</code></pre>
-<p>aws s3 ls | grep budget-tracket</p>
-<pre><code># Check Secrets</code></pre>
-<p>aws secretsmanager list-secrets --region ap-southeast-1</p>
-
+<h2 id="module-4">Module 4: Database and Data Layer</h2>
+<p>Configure DynamoDB tables, S3 receipt storage, and Secrets Manager so application data is durable, private, and available to services.</p>
+<h3 id="objectives">Objectives</h3><ul><li>Complete the configuration safely in the shared AWS environment.</li><li>Record configuration values and verify access before moving to the next module.</li><li>Apply least privilege, encryption, and monitoring where relevant.</li></ul>
+<h3 id="implementation-steps">Implementation Steps</h3><ol><li>Review the module prerequisites and the target architecture.</li><li>Configure the AWS resources shown below.</li><li>Test the result and capture evidence for the workshop report.</li></ol>
+<h3 id="screenshots">Workshop Screenshots</h3><p><img src="../../images/workshop/21.png" alt="Module 4 workshop screenshot 22" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/22.png" alt="Module 4 workshop screenshot 23" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/23.png" alt="Module 4 workshop screenshot 24" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/24.png" alt="Module 4 workshop screenshot 25" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/25.png" alt="Module 4 workshop screenshot 26" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/26.png" alt="Module 4 workshop screenshot 27" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/27.png" alt="Module 4 workshop screenshot 28" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<h3 id="verification">Verification</h3><p>Confirm that the configured resource is available, protected by the intended permissions, and integrated with the components required by the next module.</p>
 
 <footer class=" footline" >
 	
@@ -1401,10 +1315,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../1-worklog/" title="Worklog"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../5.3-module3/" title="Module 3: IAM and Infrastructure Foundation"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../1-worklog/1.2-week2/" title="Week 2 Worklog" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../5.5-module5/" title="Module 5: Backend Core: Lambda and API" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

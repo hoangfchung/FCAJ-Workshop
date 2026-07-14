@@ -39,7 +39,7 @@
     
 
   </head>
-  <body class="" data-url="../../1-worklog/1.1-week1/">
+  <body class="" data-url="../../5-workshop/5.11-module11/">
     <nav
   id="sidebar"
   class="showVisitedLinks"
@@ -517,7 +517,12 @@
    
 </li>
     
-    </ul>
+    <li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li></ul>
 
      
     <section id="shortcuts">
@@ -553,7 +558,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.11-module11/"
                   selected
                 >
                   English
@@ -561,7 +566,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.11-module11/"
                 >
                   Tiếng Việt
                 </option>
@@ -671,110 +676,12 @@
         </div>
         
         <div id="body-inner">
-
-<h1 style="text-transform:uppercase; text-align:center;">Module 11: Deployment</h1>
-
-<p><em>Người phụ trách: Chung</em></p>
-<p><em>Thời gian: 1.5 tiếng</em></p>
-<h3>11.1 SAM Template Structure</h3>
-<pre><code># infrastructure/template.yaml</code></pre>
-<p>AWSTemplateFormatVersion: '2010-09-09'</p>
-<p>Transform: AWS::Serverless-2010-05-13</p>
-<p>Parameters:</p>
-<p>Environment:</p>
-<p>Type: String</p>
-<p>Default: dev</p>
-<p>AllowedValues: [dev, staging, prod]</p>
-<p>GeminiApiKey:</p>
-<p>Type: String</p>
-<p>NoEcho: true</p>
-<p>Globals:</p>
-<p>Function:</p>
-<p>Runtime: dotnet8</p>
-<p>Timeout: 30</p>
-<p>MemorySize: 512</p>
-<p>Environment:</p>
-<p>Variables:</p>
-<p>DYNAMODB_TABLE: !Sub 'BudgetTracket-${Environment}'</p>
-<p>GEMINI_API_KEY: !Ref GeminiApiKey</p>
-<p>AWS_REGION: ap-southeast-1</p>
-<p>Resources:</p>
-<p>BudgetTracketApi:</p>
-<p>Type: AWS::Serverless::Api</p>
-<p>Properties:</p>
-<p>StageName: !Ref Environment</p>
-<p>Name: BudgetTracketAPI</p>
-<p>AuthFunction:</p>
-<p>Type: AWS::Serverless::Function</p>
-<p>Properties:</p>
-<p>FunctionName: !Sub 'BudgetTracket-AuthFunction-${Environment}'</p>
-<p>CodeUri: ../backend/src/BudgetTracket.Lambda/</p>
-<p>Handler: BudgetTracket.Lambda::BudgetTracket.Lambda.Functions.AuthFunction::FunctionHandler</p>
-<p>Events:</p>
-<p>LoginEvent:</p>
-<p>Type: Api</p>
-<p>Properties:</p>
-<p>RestApiId: !Ref BudgetTracketApi</p>
-<p>Path: /api/v1/auth/login</p>
-<p>Method: POST</p>
-<p>DynamoDBTable:</p>
-<p>Type: AWS::DynamoDB::Table</p>
-<p>Properties:</p>
-<p>TableName: !Sub 'BudgetTracket-${Environment}'</p>
-<p>AttributeDefinitions:</p>
-<p>- AttributeName: userId</p>
-<p>AttributeType: S</p>
-<p>- AttributeName: entityId</p>
-<p>AttributeType: S</p>
-<p>KeySchema:</p>
-<p>- AttributeName: userId</p>
-<p>KeyType: HASH</p>
-<p>- AttributeName: entityId</p>
-<p>KeyType: RANGE</p>
-<p>BillingMode: PAY_PER_REQUEST</p>
-<p>Outputs:</p>
-<p>ApiEndpoint:</p>
-<p>Value: !Sub 'https://${BudgetTracketApi}.execute-api.ap-southeast-1.amazonaws.com/${Environment}'</p>
-<p>DynamoDBTableName:</p>
-<p>Value: !Ref DynamoDBTable</p>
-<h3>11.2 Deploy via SAM</h3>
-<p>cd infrastructure</p>
-<pre><code># Build</code></pre>
-<p>sam build</p>
-<pre><code># Deploy</code></pre>
-<p>sam deploy \</p>
-<p>--template-file .aws-sam/build/template.yaml \</p>
-<p>--stack-name budget-tracket-dev \</p>
-<p>--s3-bucket budget-tracket-sam-artifacts \</p>
-<p>--capabilities CAPABILITY_IAM \</p>
-<p>--parameter-overrides \</p>
-<p>Environment=dev \</p>
-<p>GeminiApiKey=&lt;your-api-key&gt; \</p>
-<p>--region ap-southeast-1</p>
-<h3>11.3 GitHub Actions CI/CD</h3>
-<pre><code># .github/workflows/deploy.yml</code></pre>
-<p>name: Deploy to AWS</p>
-<p>on:</p>
-<p>push:</p>
-<p>branches: [main]</p>
-<p>jobs:</p>
-<p>deploy:</p>
-<p>runs-on: ubuntu-latest</p>
-<p>steps:</p>
-<p>- uses: actions/checkout@v2</p>
-<p>- name: Configure AWS credentials</p>
-<p>uses: aws-actions/configure-aws-credentials@v1</p>
-<p>with:</p>
-<p>aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}</p>
-<p>aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}</p>
-<p>aws-region: ap-southeast-1</p>
-<p>- name: Build &amp; Deploy</p>
-<p>run: |</p>
-<p>cd infrastructure</p>
-<p>sam build</p>
-<p>sam deploy --no-confirm-changeset --no-fail-on-empty-changeset \</p>
-<p>--parameter-overrides GeminiApiKey=${{ secrets.GEMINI_API_KEY }}</p>
-
+<h2 id="module-11">Module 11: Deployment</h2>
+<p>Build and publish the frontend, deploy backend infrastructure, set configuration values, and validate the production environment.</p>
+<h3 id="objectives">Objectives</h3><ul><li>Complete the configuration safely in the shared AWS environment.</li><li>Record configuration values and verify access before moving to the next module.</li><li>Apply least privilege, encryption, and monitoring where relevant.</li></ul>
+<h3 id="implementation-steps">Implementation Steps</h3><ol><li>Review the module prerequisites and the target architecture.</li><li>Configure the AWS resources shown below.</li><li>Test the result and capture evidence for the workshop report.</li></ol>
+<h3 id="screenshots">Workshop Screenshots</h3><p><img src="../../images/workshop/70.png" alt="Module 11 workshop screenshot 71" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/71.png" alt="Module 11 workshop screenshot 72" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/72.png" alt="Module 11 workshop screenshot 73" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/73.png" alt="Module 11 workshop screenshot 74" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/74.png" alt="Module 11 workshop screenshot 75" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/75.png" alt="Module 11 workshop screenshot 76" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/76.png" alt="Module 11 workshop screenshot 77" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<h3 id="verification">Verification</h3><p>Confirm that the configured resource is available, protected by the intended permissions, and integrated with the components required by the next module.</p>
 
 <footer class=" footline" >
 	
@@ -1408,10 +1315,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../1-worklog/" title="Worklog"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../5.10-module10/" title="Module 10: Monitoring and Operations"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../1-worklog/1.2-week2/" title="Week 2 Worklog" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../5.12-module12/" title="Module 12: Resource Cleanup" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

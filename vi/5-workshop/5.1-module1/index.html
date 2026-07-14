@@ -553,14 +553,14 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.1-module1/"
                 >
                   English
                 </option>
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.1-module1/"
                   selected
                 >
                   Tiếng Việt
@@ -671,39 +671,27 @@
         </div>
         
         <div id="body-inner">
-
-<h1 style="text-transform:uppercase; text-align:center;">Module 1: Introduction</h1>
-
-<p><em>Người phụ trách: Tất cả</em></p>
-<p><em>Thời gian: 15 phút</em></p>
-<h3>1.1 Architecture Overview</h3>
-<p>Mục đích: Hiểu tổng quan kiến trúc toàn hệ thống</p>
-<p>Các thành phần chính:</p>
-<p>Internet User</p>
+<h1 style="text-transform:uppercase; text-align:center;">Module 1: Introduction — Tổng quan dự án</h1>
+<h3 id="1-tổng-quan-budget-tracket">1. Tổng quan Budget Tracket</h3>
+<p>Budget Tracket là nền tảng quản lý tài chính cá nhân xây dựng trên AWS serverless (React + C# .NET 8 Lambda + DynamoDB), tích hợp AI phân loại giao dịch / chatbot tư vấn tài chính qua Google Gemini API (gemini-2.5-flash). Request từ React frontend → API Gateway (JWT qua Cognito Authorizer) → Lambda xử lý nghiệp vụ → DynamoDB/S3 lưu dữ liệu, có pipeline thông báo qua SNS + SQS + EventBridge gửi email cho user.</p>
+<h3 id="phân-công-4-thành-viên-1-account-chung">Phân công 4 thành viên — 1 account chung</h3>
+<div style="overflow-x:auto"><table><tbody><tr><th>Thành viên</th><th>Khối</th><th>Mục workshop</th></tr><tr><td>Chung</td><td>IAM + Route 53 + WAFv2 (Infrastructure Foundation)</td><td>3</td></tr><tr><td>Khiêm</td><td>DynamoDB + Secrets Manager + S3 (Database &amp; Data layer) + Cognito Auth &amp; Edge</td><td>4, 7</td></tr><tr><td>Huy</td><td>API Gateway + Lambda Core (Transaction/Budget/Report) + Notifications (SNS/SQS/EventBridge)</td><td>5, 8</td></tr><tr><td>Công</td><td>React Frontend + Cognito login flow + Gemini AI integration</td><td>6</td></tr></tbody></table></div>
+<p>(Modules 1, 2, 9, 10 — Introduction, Prerequisites, Testing, Monitoring — thực hiện chung cả nhóm)</p>
+<h3 id="2-luồng-production">2. Luồng production</h3>
+<p>Client Browser</p>
 <p>↓</p>
-<p>Route 53 (DNS)</p>
+<p>CloudFront (WAF) → S3 (React static site)</p>
 <p>↓</p>
-<p>CloudFront (CDN) ← WAF</p>
+<p>API Gateway (Cognito JWT Authorizer + WAF)</p>
 <p>↓</p>
-<p>├─ S3 (React Frontend)</p>
-<p>├─ API Gateway ← WAF</p>
+<p>AWS Lambda</p>
+<p>├─ TransactionFunction / BudgetFunction / ReportFunction → DynamoDB</p>
+<p>├─ ProfileFunction → DynamoDB (+ SNS subscribe for email)</p>
+<p>├─ AiFunction → Google Gemini API (categorize / insights / chat)</p>
+<p>├─ NotificationFunction (SQS-triggered) → SNS → User email</p>
+<p>└─ MonthlySummaryFunction (EventBridge cron, 1st/month) → SQS → SNS</p>
 <p>↓</p>
-<p>AWS Lambda (C# Functions)</p>
-<p>├─ DynamoDB (Database)</p>
-<p>├─ S3 (File Storage)</p>
-<p>├─ Cognito (Auth)</p>
-<p>├─ SNS/SQS (Notifications)</p>
-<p>├─ EventBridge (Scheduler)</p>
-<p>└─ Google Gemini API (AI)</p>
-<p>↓</p>
-<p>CloudWatch (Monitoring)</p>
-<h3>1.2 Tech Stack Review</h3>
-<h3>1.3 Team Roles</h3>
-<p>Chung: Infrastructure &amp; DevOps</p>
-<p>Huy: Backend Core &amp; Notifications</p>
-<p>Khiêm: Database &amp; Authentication</p>
-<p>Công: Frontend &amp; AI Integration</p>
-
+<p>CloudWatch (logs, metrics, alarms on all functions)</p>
 
 <footer class=" footline" >
 	

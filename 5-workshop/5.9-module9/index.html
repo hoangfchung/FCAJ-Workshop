@@ -39,7 +39,7 @@
     
 
   </head>
-  <body class="" data-url="../../1-worklog/1.1-week1/">
+  <body class="" data-url="../../5-workshop/5.9-module9/">
     <nav
   id="sidebar"
   class="showVisitedLinks"
@@ -517,7 +517,12 @@
    
 </li>
     
-    </ul>
+    <li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li></ul>
 
      
     <section id="shortcuts">
@@ -553,7 +558,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.9-module9/"
                   selected
                 >
                   English
@@ -561,7 +566,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.9-module9/"
                 >
                   Tiếng Việt
                 </option>
@@ -671,80 +676,12 @@
         </div>
         
         <div id="body-inner">
-
-<h1 style="text-transform:uppercase; text-align:center;">Module 9: End-to-End Testing</h1>
-
-<p><em>Người phụ trách: Tất cả</em></p>
-<p><em>Thời gian: 1 tiếng</em></p>
-<h3>9.1 Frontend Unit Tests (Vitest)</h3>
-<p>cd frontend</p>
-<p>npm install -D vitest @testing-library/react @testing-library/jest-dom</p>
-<p>// src/__tests__/Login.test.jsx</p>
-<p>import { render, screen, fireEvent } from '@testing-library/react';</p>
-<p>import { vi } from 'vitest';</p>
-<p>import Login from '../pages/Login';</p>
-<p>vi.mock('../services/authService', () =&gt; ({</p>
-<p>login: vi.fn(),</p>
-<p>}));</p>
-<p>describe('Login Component', () =&gt; {</p>
-<p>it('should submit form with email and password', async () =&gt; {</p>
-<p>render(&lt;Login /&gt;);</p>
-<p>fireEvent.change(screen.getByPlaceholderText('Email'), {</p>
-<p>target: { value: 'test@example.com' },</p>
-<p>});</p>
-<p>fireEvent.change(screen.getByPlaceholderText('Password'), {</p>
-<p>target: { value: 'password123' },</p>
-<p>});</p>
-<p>fireEvent.click(screen.getByText('Login'));</p>
-<p>expect(authService.login).toHaveBeenCalledWith('test@example.com', 'password123');</p>
-<p>});</p>
-<p>});</p>
-<p>npm run test  # Run tests</p>
-<p>npm run test:coverage  # Coverage report</p>
-<h3>9.2 Backend Unit Tests (xUnit)</h3>
-<p>// BudgetTracket.Core.Tests/Services/TransactionServiceTests.cs</p>
-<p>public class TransactionServiceTests</p>
-<p>{</p>
-<p>private readonly TransactionService _service;</p>
-<p>private readonly Mock&lt;ITransactionRepository&gt; _mockRepo;</p>
-<p>public TransactionServiceTests()</p>
-<p>{</p>
-<p>_mockRepo = new Mock&lt;ITransactionRepository&gt;();</p>
-<p>_service = new TransactionService(_mockRepo.Object);</p>
-<p>}</p>
-<p>[Fact]</p>
-<p>public async Task CreateTransaction_WithValidInput_ShouldReturnSuccess()</p>
-<p>{</p>
-<p>// Arrange</p>
-<p>var txn = new CreateTransactionRequest { Amount = 100000, Category = "food" };</p>
-<p>// Act</p>
-<p>var result = await _service.CreateAsync(txn);</p>
-<p>// Assert</p>
-<p>Assert.NotNull(result);</p>
-<p>_mockRepo.Verify(r =&gt; r.CreateAsync(It.IsAny&lt;Transaction&gt;()), Times.Once);</p>
-<p>}</p>
-<p>}</p>
-<p>cd backend</p>
-<p>dotnet test</p>
-<h3>9.3 Integration Tests (DynamoDB Local)</h3>
-<pre><code># Start DynamoDB Local</code></pre>
-<p>docker run -d -p 8000:8000 amazon/dynamodb-local</p>
-<pre><code># Run integration tests</code></pre>
-<p>dotnet test --filter "Category=Integration"</p>
-<h3>9.4 E2E Tests (Playwright)</h3>
-<p>npm install -D @playwright/test</p>
-<p>// frontend/tests/e2e/login.spec.js</p>
-<p>import { test, expect } from '@playwright/test';</p>
-<p>test('User can login and view dashboard', async ({ page }) =&gt; {</p>
-<p>await page.goto('https://localhost:3000/login');</p>
-<p>await page.fill('[type="email"]', 'test@example.com');</p>
-<p>await page.fill('[type="password"]', 'password123');</p>
-<p>await page.click('button[type="submit"]');</p>
-<p>await page.waitForURL('**/dashboard');</p>
-<p>await expect(page.locator('h1')).toContainText('Dashboard');</p>
-<p>});</p>
-<p>npx playwright test</p>
-
+<h2 id="module-9">Module 9: End-to-End Testing</h2>
+<p>Verify user journeys from sign-in through transaction entry, reporting, AI assistance, alerts, and error handling.</p>
+<h3 id="objectives">Objectives</h3><ul><li>Complete the configuration safely in the shared AWS environment.</li><li>Record configuration values and verify access before moving to the next module.</li><li>Apply least privilege, encryption, and monitoring where relevant.</li></ul>
+<h3 id="implementation-steps">Implementation Steps</h3><ol><li>Review the module prerequisites and the target architecture.</li><li>Configure the AWS resources shown below.</li><li>Test the result and capture evidence for the workshop report.</li></ol>
+<h3 id="screenshots">Workshop Screenshots</h3><p><img src="../../images/workshop/56.png" alt="Module 9 workshop screenshot 57" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/57.png" alt="Module 9 workshop screenshot 58" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/58.png" alt="Module 9 workshop screenshot 59" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/59.png" alt="Module 9 workshop screenshot 60" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/60.png" alt="Module 9 workshop screenshot 61" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/61.png" alt="Module 9 workshop screenshot 62" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/62.png" alt="Module 9 workshop screenshot 63" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<h3 id="verification">Verification</h3><p>Confirm that the configured resource is available, protected by the intended permissions, and integrated with the components required by the next module.</p>
 
 <footer class=" footline" >
 	
@@ -1378,10 +1315,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../1-worklog/" title="Worklog"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../5.8-module8/" title="Module 8: Notifications Pipeline"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../1-worklog/1.2-week2/" title="Week 2 Worklog" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../5.10-module10/" title="Module 10: Monitoring and Operations" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

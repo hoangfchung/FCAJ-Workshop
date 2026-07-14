@@ -553,14 +553,14 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/2-proposal/"
+                  value="/2-proposal/"
                 >
                   English
                 </option>
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/2-proposal/"
+                  value="/vi/2-proposal/"
                   selected
                 >
                   Tiếng Việt
@@ -660,22 +660,7 @@
                 </div>
                 
                     <div class="progress">
-  <div class="wrapper"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#giải-pháp-aws-serverless-hợp-nhất-cho-giám-sát-thời-tiết-thời-gian-thực">Giải pháp AWS Serverless hợp nhất cho giám sát thời tiết thời gian thực</a>
-      <ul>
-        <li><a href="#1-tóm-tắt-điều-hành">1. Tóm tắt điều hành</a></li>
-        <li><a href="#2-tuyên-bố-vấn-đề">2. Tuyên bố vấn đề</a></li>
-        <li><a href="#3-kiến-trúc-giải-pháp">3. Kiến trúc giải pháp</a></li>
-        <li><a href="#4-triển-khai-kỹ-thuật">4. Triển khai kỹ thuật</a></li>
-        <li><a href="#5-lộ-trình--mốc-triển-khai">5. Lộ trình &amp; Mốc triển khai</a></li>
-        <li><a href="#6-ước-tính-ngân-sách">6. Ước tính ngân sách</a></li>
-        <li><a href="#7-đánh-giá-rủi-ro">7. Đánh giá rủi ro</a></li>
-        <li><a href="#8-kết-quả-kỳ-vọng">8. Kết quả kỳ vọng</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
+  <div class="wrapper"><nav id="TableOfContents"><ul><li><a href="#1-tóm-tắt-điều-hành">1. TÓM TẮT ĐIỀU HÀNH</a></li><li><a href="#2-tuyên-bố-vấn-đề">2. TUYÊN BỐ VẤN ĐỀ</a></li><li><a href="#21-vấn-đề-hiện-tại">2.1 Vấn Đề Hiện Tại</a></li><li><a href="#22-giải-pháp-đề-xuất">2.2 Giải Pháp Đề Xuất</a></li><li><a href="#23-lợi-ích-giá-trị">2.3 Lợi Ích &amp; Giá Trị</a></li><li><a href="#3-kiến-trúc-giải-pháp">3. KIẾN TRÚC GIẢI PHÁP</a></li><li><a href="#31-stack-công-nghệ">3.1 Stack Công Nghệ</a></li><li><a href="#32-quy-trình-kiến-trúc">3.2 Quy Trình Kiến Trúc</a></li><li><a href="#33-thiết-kế-dữ-liệu-dynamodb">3.3 Thiết Kế Dữ Liệu (DynamoDB)</a></li><li><a href="#34-tích-hợp-google-gemini-ai">3.4 Tích Hợp Google Gemini AI</a></li><li><a href="#4-triển-khai-kỹ-thuật">4. TRIỂN KHAI KỸ THUẬT</a></li><li><a href="#41-các-giai-đoạn-phát-triển">4.1 Các Giai Đoạn Phát Triển</a></li><li><a href="#giai-đoạn-1-nghiên-cứu-thiết-kế-kiến-trúc">Giai Đoạn 1: Nghiên Cứu &amp; Thiết Kế Kiến Trúc</a></li><li><a href="#giai-đoạn-2-setup-cơ-sở-hạ-tầng">Giai Đoạn 2: Setup &amp; Cơ Sở Hạ Tầng</a></li><li><a href="#giai-đoạn-3-phát-triển-backend-frontend">Giai Đoạn 3: Phát Triển Backend &amp; Frontend</a></li><li><a href="#giai-đoạn-4-kiểm-thử-triển-khai">Giai Đoạn 4: Kiểm Thử &amp; Triển Khai</a></li><li><a href="#42-yêu-cầu-kỹ-thuật-chi-tiết">4.2 Yêu Cầu Kỹ Thuật Chi Tiết</a></li><li><a href="#frontend-reactjs">Frontend (ReactJS)</a></li><li><a href="#backend-c-net-8">Backend (C# .NET 8)</a></li><li><a href="#5-lộ-trình-mốc-triển-khai">5. LỘ TRÌNH &amp; MỐC TRIỂN KHAI</a></li><li><a href="#6-ước-tính-ngân-sách">6. ƯỚC TÍNH NGÂN SÁCH</a></li><li><a href="#61-chi-phí-phát-triển">6.1 Chi Phí Phát Triển</a></li><li><a href="#62-chi-phí-vận-hành-hàng-tháng">6.2 Chi Phí Vận Hành (Hàng Tháng)</a></li><li><a href="#63-tóm-tắt-chi-phí-roi">6.3 Tóm Tắt Chi Phí &amp; ROI</a></li><li><a href="#7-đánh-giá-rủi-ro">7. ĐÁNH GIÁ RỦI RO</a></li><li><a href="#71-ma-trận-rủi-ro">7.1 Ma Trận Rủi Ro</a></li><li><a href="#72-chiến-lược-giảm-thiểu-rủi-ro">7.2 Chiến Lược Giảm Thiểu Rủi Ro</a></li><li><a href="#rủi-ro-vượt-timeline">Rủi Ro: Vượt Timeline</a></li><li><a href="#rủi-ro-lỗi-ai-gemini">Rủi Ro: Lỗi AI Gemini</a></li><li><a href="#rủi-ro-lỗi-bảo-mật">Rủi Ro: Lỗi Bảo Mật</a></li><li><a href="#rủi-ro-vấn-đề-scaling">Rủi Ro: Vấn Đề Scaling</a></li><li><a href="#8-kỳ-vọng-kết-quả">8. KỲ VỌNG &amp; KẾT QUẢ</a></li><li><a href="#81-cải-tiến-kỹ-thuật">8.1 Cải Tiến Kỹ Thuật</a></li><li><a href="#82-giá-trị-dài-hạn">8.2 Giá Trị Dài Hạn</a></li><li><a href="#83-tiêu-chí-thành-công">8.3 Tiêu Chí Thành Công</a></li><li><a href="#kết-luận">KẾT LUẬN</a></li></ul></nav></div>
 </div>
 
                 
@@ -692,245 +677,170 @@
             <h1>
               Bản đề xuất
             </h1>
-
-<div
-  class="notices warning"
-  
->
-  <p>⚠️ <strong>Lưu ý:</strong> Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng <strong>không sao chép nguyên văn</strong> cho bài báo cáo của bạn kể cả warning này.</p>
-
-</div>
-
-<p>Budget Tracker là hệ thống quản lý chi tiêu cá nhân thông minh được xây dựng theo mô hình Serverless trên Amazon Web Services.</p>
-<h3 id="1-giới-thiệu">1. Giới thiệu</h3>
-<p>Mục tiêu của hệ thống là hỗ trợ người dùng ghi nhận các khoản thu, chi, quản lý ngân sách, lưu trữ hóa đơn điện tử và ứng dụng AI để phân tích hành vi chi tiêu, từ đó đưa ra khuyến nghị tài chính phù hợp.</p>
-<p>Khác với các ứng dụng truyền thống, Budget Tracker sử dụng dịch vụ AWS Serverless để giảm chi phí vận hành, tự động mở rộng theo lưu lượng và nâng cao bảo mật.</p>
-<h3 id="2-mục-tiêu-dự-án">2. Mục tiêu của dự án</h3>
-<ul>
-<li>Quản lý thu nhập và chi tiêu cá nhân.</li>
-<li>Quản lý danh mục giao dịch.</li>
-<li>Thiết lập ngân sách theo danh mục.</li>
-<li>Theo dõi tình trạng vượt ngân sách.</li>
-<li>Lưu trữ hóa đơn điện tử.</li>
-<li>Phân tích dữ liệu tài chính bằng AI.</li>
-<li>Đưa ra lời khuyên giúp tối ưu chi tiêu.</li>
-<li>Gửi cảnh báo email khi vượt ngân sách.</li>
-<li>Triển khai hoàn toàn trên AWS theo mô hình Serverless.</li>
-</ul>
-<h3 id="3-công-nghệ-sử-dụng">3. Công nghệ sử dụng</h3>
-<h4>Frontend</h4>
-<ul>
-<li>ReactJS</li>
-<li>HTML5</li>
-<li>CSS3</li>
-<li>JavaScript</li>
-<li>Axios</li>
-</ul>
-<p>Frontend được build thành Static Website và triển khai trên Amazon S3.</p>
-<h4>Backend</h4>
-<ul>
-<li>ASP.NET Core Web API (.NET 8)</li>
-<li>AWS Lambda</li>
-<li>RESTful API</li>
-</ul>
-<p>Business Logic chạy trên AWS Lambda.</p>
-<h4>Cơ sở dữ liệu</h4>
-<ul>
-<li>Amazon DynamoDB</li>
-<li>Lưu trữ Users, Categories, Transactions, Budgets, Reports</li>
-</ul>
-<h4>AI</h4>
-<ul>
-<li>Amazon Bedrock</li>
-<li>Phân loại giao dịch</li>
-<li>Phân tích chi tiêu</li>
-<li>Dự đoán xu hướng</li>
-<li>Đề xuất tài chính</li>
-</ul>
-<h4>Lưu trữ</h4>
-<ul>
-<li>Amazon S3 lưu trữ frontend, hóa đơn, tệp đính kèm và báo cáo.</li>
-</ul>
-<h4>Xác thực</h4>
-<ul>
-<li>Amazon Cognito đăng ký, đăng nhập, logout và JWT.</li>
-</ul>
-<h4>Giám sát</h4>
-<ul>
-<li>Amazon CloudWatch theo dõi logs và metrics.</li>
-</ul>
-<h4>Thông báo</h4>
-<ul>
-<li>Amazon SNS gửi email và cảnh báo ngân sách.</li>
-</ul>
-<h4>DNS & CDN</h4>
-<ul>
-<li>Amazon Route 53</li>
-<li>Amazon CloudFront</li>
-</ul>
-<h4>Bảo mật</h4>
-<ul>
-<li>AWS WAF bảo vệ khỏi SQL Injection, XSS và HTTP Flood.</li>
-</ul>
-<h3 id="4-kiến-trúc-hệ-thống">4. Kiến trúc hệ thống</h3>
-<p>Sản phẩm được xây dựng theo kiến trúc AWS Serverless: frontend React lưu trên Amazon S3 và phân phối bởi CloudFront. API Gateway tiếp nhận yêu cầu, gọi Lambda để xử lý nghiệp vụ. DynamoDB lưu trữ dữ liệu người dùng và giao dịch, S3 lưu hóa đơn và tệp đính kèm. Amazon Bedrock hỗ trợ phân tích AI. CloudWatch giám sát hệ thống, SNS gửi thông báo.</p>
-<p><img src="../../images/proposal/sodo.jpg" alt="Sơ đồ kiến trúc hệ thống Budget Tracker" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 15px 0;"></p>
-<h3 id="5-luồng-hoạt-động">5. Luồng hoạt động</h3>
-<ul>
-<li>Người dùng truy cập ứng dụng qua CloudFront.</li>
-<li>Yêu cầu được gửi tới API Gateway và qua Lambda.</li>
-<li>Lambda thao tác dữ liệu trên DynamoDB, lưu file trên S3, xác thực qua Cognito.</li>
-<li>Yêu cầu AI được chuyển tới Amazon Bedrock.</li>
-<li>CloudWatch thu thập logs và kích hoạt SNS khi cần.</li>
-</ul>
-<h3 id="6-chức-năng-chính">6. Chức năng chính</h3>
-<ul>
-<li>Quản lý người dùng và hồ sơ.</li>
-<li>Quản lý giao dịch thu/chi.</li>
-<li>Quản lý ngân sách theo danh mục.</li>
-<li>Upload hóa đơn và lưu trữ file.</li>
-<li>Phân tích AI và đề xuất chi tiêu.</li>
-<li>Thông báo và cảnh báo ngân sách.</li>
-</ul>
-<h3 id="7-lợi-ích">7. Lợi ích</h3>
-<ul>
-<li>Hoàn toàn Serverless.</li>
-<li>Tự động mở rộng và chi phí tối ưu.</li>
-<li>Bảo mật và xác thực tốt qua Cognito.</li>
-<li>Quản lý dữ liệu linh hoạt với DynamoDB và S3.</li>
-<li>AI phân tích tài chính với Amazon Bedrock.</li>
-</ul>
-<h3 id="8-hạn-chế">8. Hạn chế</h3>
-<ul>
-<li>Phụ thuộc dịch vụ AWS.</li>
-<li>Lambda có thể gặp cold start.</li>
-<li>Amazon Bedrock phát sinh chi phí.</li>
-<li>DynamoDB cần thiết kế khóa phân vùng tốt.</li>
-</ul>
-<h3 id="9-mở-rộng">9. Mở rộng tương lai</h3>
-<ul>
-<li>Ứng dụng di động.</li>
-<li>Dashboard quản trị.</li>
-<li>OCR đọc hóa đơn tự động.</li>
-<li>Voice assistant.</li>
-</ul>
-          
-        </div>
-
-<p>Budget Tracker là hệ thống quản lý chi tiêu cá nhân thông minh được xây dựng theo mô hình Serverless trên Amazon Web Services.</p>
-<h3 id="1-giới-thiệu">1. Giới thiệu</h3>
-<p>Mục tiêu của hệ thống là hỗ trợ người dùng ghi nhận các khoản thu, chi, quản lý ngân sách, lưu trữ hóa đơn điện tử và ứng dụng AI để phân tích hành vi chi tiêu, từ đó đưa ra khuyến nghị tài chính phù hợp.</p>
-<p>Khác với các ứng dụng truyền thống, Budget Tracker sử dụng dịch vụ AWS Serverless để giảm chi phí vận hành, tự động mở rộng theo lưu lượng và nâng cao bảo mật.</p>
-<h3 id="2-mục-tiêu-dự-án">2. Mục tiêu của dự án</h3>
-<ul>
-<li>Quản lý thu nhập và chi tiêu cá nhân.</li>
-<li>Quản lý danh mục giao dịch.</li>
-<li>Thiết lập ngân sách theo danh mục.</li>
-<li>Theo dõi tình trạng vượt ngân sách.</li>
-<li>Lưu trữ hóa đơn điện tử.</li>
-<li>Phân tích dữ liệu tài chính bằng AI.</li>
-<li>Đưa ra lời khuyên giúp tối ưu chi tiêu.</li>
-<li>Gửi cảnh báo email khi vượt ngân sách.</li>
-<li>Triển khai hoàn toàn trên AWS theo mô hình Serverless.</li>
-</ul>
-<h3 id="3-công-nghệ-sử-dụng">3. Công nghệ sử dụng</h3>
-<h4>Frontend</h4>
-<ul>
-<li>ReactJS</li>
-<li>HTML5</li>
-<li>CSS3</li>
-<li>JavaScript</li>
-<li>Axios</li>
-</ul>
-<p>Frontend được build thành Static Website và triển khai trên Amazon S3.</p>
-<h4>Backend</h4>
-<ul>
-<li>ASP.NET Core Web API (.NET 8)</li>
-<li>AWS Lambda</li>
-<li>RESTful API</li>
-</ul>
-<p>Business Logic chạy trên AWS Lambda.</p>
-<h4>Cơ sở dữ liệu</h4>
-<ul>
-<li>Amazon DynamoDB</li>
-<li>Lưu trữ Users, Categories, Transactions, Budgets, Reports</li>
-</ul>
-<h4>AI</h4>
-<ul>
-<li>Amazon Bedrock</li>
-<li>Phân loại giao dịch</li>
-<li>Phân tích chi tiêu</li>
-<li>Dự đoán xu hướng</li>
-<li>Đề xuất tài chính</li>
-</ul>
-<h4>Lưu trữ</h4>
-<ul>
-<li>Amazon S3 lưu trữ frontend, hóa đơn, tệp đính kèm và báo cáo.</li>
-</ul>
-<h4>Xác thực</h4>
-<ul>
-<li>Amazon Cognito đăng ký, đăng nhập, logout và JWT.</li>
-</ul>
-<h4>Giám sát</h4>
-<ul>
-<li>Amazon CloudWatch theo dõi logs và metrics.</li>
-</ul>
-<h4>Thông báo</h4>
-<ul>
-<li>Amazon SNS gửi email và cảnh báo ngân sách.</li>
-</ul>
-<h4>DNS & CDN</h4>
-<ul>
-<li>Amazon Route 53</li>
-<li>Amazon CloudFront</li>
-</ul>
-<h4>Bảo mật</h4>
-<ul>
-<li>AWS WAF bảo vệ khỏi SQL Injection, XSS và HTTP Flood.</li>
-</ul>
-<h3 id="4-kiến-trúc-hệ-thống">4. Kiến trúc hệ thống</h3>
-<p>Sản phẩm được xây dựng theo kiến trúc AWS Serverless: frontend React lưu trên Amazon S3 và phân phối bởi CloudFront. API Gateway tiếp nhận yêu cầu, gọi Lambda để xử lý nghiệp vụ. DynamoDB lưu trữ dữ liệu người dùng và giao dịch, S3 lưu hóa đơn và tệp đính kèm. Amazon Bedrock hỗ trợ phân tích AI. CloudWatch giám sát hệ thống, SNS gửi thông báo.</p>
-<h3 id="5-luồng-hoạt-động">5. Luồng hoạt động</h3>
-<ul>
-<li>Người dùng truy cập ứng dụng qua CloudFront.</li>
-<li>Yêu cầu được gửi tới API Gateway và qua Lambda.</li>
-<li>Lambda thao tác dữ liệu trên DynamoDB, lưu file trên S3, xác thực qua Cognito.</li>
-<li>Yêu cầu AI được chuyển tới Amazon Bedrock.</li>
-<li>CloudWatch thu thập logs và kích hoạt SNS khi cần.</li>
-</ul>
-<h3 id="6-chức-năng-chính">6. Chức năng chính</h3>
-<ul>
-<li>Quản lý người dùng và hồ sơ.</li>
-<li>Quản lý giao dịch thu/chi.</li>
-<li>Quản lý ngân sách theo danh mục.</li>
-<li>Upload hóa đơn và lưu trữ file.</li>
-<li>Phân tích AI và đề xuất chi tiêu.</li>
-<li>Thông báo và cảnh báo ngân sách.</li>
-</ul>
-<h3 id="7-lợi-ích">7. Lợi ích</h3>
-<ul>
-<li>Hoàn toàn Serverless.</li>
-<li>Tự động mở rộng và chi phí tối ưu.</li>
-<li>Bảo mật và xác thực tốt qua Cognito.</li>
-<li>Quản lý dữ liệu linh hoạt với DynamoDB và S3.</li>
-<li>AI phân tích tài chính với Amazon Bedrock.</li>
-</ul>
-<h3 id="8-hạn-chế">8. Hạn chế</h3>
-<ul>
-<li>Phụ thuộc dịch vụ AWS.</li>
-<li>Lambda có thể gặp cold start.</li>
-<li>Amazon Bedrock phát sinh chi phí.</li>
-<li>DynamoDB cần thiết kế khóa phân vùng tốt.</li>
-</ul>
-<h3 id="9-mở-rộng">9. Mở rộng tương lai</h3>
-<ul>
-<li>Ứng dụng di động.</li>
-<li>Dashboard quản trị.</li>
-<li>OCR đọc hóa đơn tự động.</li>
-<li>Voice assistant.</li>
-</ul>
-
-
+<p><strong>Budget Tracker</strong> — Personal Finance Management Web Application</p>
+<p><em>AI-Powered Expense Tracking &amp; Financial Intelligence · AWS Serverless + Google Gemini AI</em></p>
+<h2 id="1-tóm-tắt-điều-hành">1. TÓM TẮT ĐIỀU HÀNH</h2>
+<p>Budget Tracker là một ứng dụng quản lý tài chính cá nhân được thiết kế để giúp người dùng theo dõi thu nhập, chi tiêu và ngân sách. Ứng dụng tích hợp trí tuệ nhân tạo (AI) qua Google Gemini API để tự động phân loại giao dịch, phân tích chi tiêu và đưa ra gợi ý tài chính thông minh.</p>
+<p>Nền tảng được xây dựng trên kiến trúc AWS Serverless, đảm bảo tính mở rộng cao, chi phí vận hành thấp và độ tin cậy tối đa. Ứng dụng cung cấp:</p>
+<p>Dashboard theo dõi tài chính thời gian thực</p>
+<p>Quản lý giao dịch với tính năng upload hóa đơn</p>
+<p>Thiết lập và theo dõi ngân sách theo danh mục</p>
+<p>Báo cáo chi tiêu với biểu đồ phân tích</p>
+<p>Chatbot AI để tư vấn tài chính và trả lời câu hỏi</p>
+<p>Thông báo thông minh qua email (vượt ngân sách, chi tiêu bất thường)</p>
+<h2 id="2-tuyên-bố-vấn-đề">2. TUYÊN BỐ VẤN ĐỀ</h2>
+<h3 id="21-vấn-đề-hiện-tại">2.1 Vấn Đề Hiện Tại</h3>
+<p>Người dùng hiện tại gặp nhiều thách thức khi quản lý tài chính cá nhân:</p>
+<p>Phải nhập dữ liệu chi tiêu thủ công, tốn thời gian</p>
+<p>Khó phân loại giao dịch một cách nhất quán</p>
+<p>Thiếu cái nhìn sâu sắc về các thói quen chi tiêu</p>
+<p>Không có hệ thống cảnh báo khi vượt ngân sách</p>
+<p>Khó nhận được lời khuyên tài chính được cá nhân hóa</p>
+<h3 id="22-giải-pháp-đề-xuất">2.2 Giải Pháp Đề Xuất</h3>
+<p>Budget Tracker cung cấp giải pháp toàn diện bằng cách:</p>
+<p>Tự động phân loại giao dịch bằng AI (Google Gemini)</p>
+<p>Hiển thị dashboard trực quan với dữ liệu thời gian thực</p>
+<p>Phân tích chi tiêu tự động và phát hiện xu hướng</p>
+<p>Gửi cảnh báo khi chi tiêu vượt ngân sách</p>
+<p>Cung cấp chatbot AI tư vấn tài chính 24/7</p>
+<p>Hoạt động trên AWS Serverless (chi phí thấp, độ tin cậy cao)</p>
+<h3 id="23-lợi-ích-giá-trị">2.3 Lợi Ích &amp; Giá Trị</h3>
+<p>Budget Tracker mang lại các lợi ích thiết thực:</p>
+<p>Tiết kiệm 5-10 giờ/tháng nhập dữ liệu thủ công</p>
+<p>Cải thiện kỷ luật tài chính nhờ cảnh báo tự động</p>
+<p>Phát hiện cơ hội tiết kiệm qua phân tích chi tiêu</p>
+<p>Đạt mục tiêu tài chính nhanh hơn nhờ lời khuyên AI</p>
+<p>Giao diện thân thiện, dễ sử dụng cho mọi cấp độ</p>
+<p>Chi Phí &amp; ROI:</p>
+<p>Chi phí phát triển ước tính: $5.000 - $8.000 (một lần)</p>
+<p>Chi phí vận hành hàng tháng: $50-100 USD (AWS + Gemini)</p>
+<p>ROI: Nếu là dự án thương mại (freemium model), hoàn vốn trong 6-12 tháng</p>
+<h2 id="3-kiến-trúc-giải-pháp">3. KIẾN TRÚC GIẢI PHÁP</h2>
+<p>Budget Tracker sử dụng kiến trúc AWS Serverless với tích hợp Google Gemini API, được thiết kế cho khả năng mở rộng, chi phí tối ưu và độ tin cậy cao.</p>
+<h3 id="31-stack-công-nghệ">3.1 Stack Công Nghệ</h3>
+<div style="overflow-x:auto"><table><tbody><tr><th>Thành Phần</th><th>Công Nghệ</th><th>Mục Đích</th></tr><tr><td>Frontend</td><td>ReactJS (JavaScript) + Tailwind CSS</td><td>Giao diện web hiện đại, responsive</td></tr><tr><td>Backend</td><td>C# .NET 8 (ASP.NET Core)</td><td>Lambda functions xử lý business logic</td></tr><tr><td>Database</td><td>Amazon DynamoDB (NoSQL)</td><td>Lưu trữ dữ liệu người dùng, giao dịch, ngân sách</td></tr><tr><td>API Gateway</td><td>Amazon API Gateway (REST)</td><td>Định tuyến request tới Lambda functions</td></tr><tr><td>Authentication</td><td>Amazon Cognito + JWT</td><td>Xác thực người dùng an toàn</td></tr><tr><td>Storage</td><td>Amazon S3</td><td>Lưu trữ hóa đơn và tệp đính kèm</td></tr><tr><td>Queue</td><td>Amazon SQS</td><td>Xử lý bất đồng bộ thông báo</td></tr><tr><td>AI</td><td>Google Gemini API</td><td>Phân loại giao dịch, phân tích chi tiêu, chatbot</td></tr><tr><td>Notifications</td><td>Amazon SNS</td><td>Gửi email thông báo tới người dùng</td></tr><tr><td>Monitoring</td><td>Amazon CloudWatch</td><td>Logging, metrics, alarms</td></tr><tr><td>CDN</td><td>Amazon CloudFront</td><td>Phân phối nội dung tĩnh nhanh</td></tr><tr><td>DNS</td><td>Amazon Route 53</td><td>Quản lý tên miền</td></tr><tr><td>Security</td><td>AWS WAF</td><td>Bảo vệ chống DDoS, SQL injection, XSS</td></tr></tbody></table></div>
+<h3 id="32-quy-trình-kiến-trúc">3.2 Quy Trình Kiến Trúc</h3>
+<p>Người dùng truy cập ứng dụng thông qua trình duyệt web:</p>
+<p>1. Route 53 giải quyết tên miền</p>
+<p>2. CloudFront phân phối React app (HTML, CSS, JS) từ S3 (có AWS WAF bảo vệ)</p>
+<p>3. React app gọi API Gateway (HTTPS REST) qua Axios</p>
+<p>4. API Gateway định tuyến tới Lambda C# .NET 8</p>
+<p>5. Lambda xử lý request: xác thực qua Cognito, đọc/ghi DynamoDB, gọi Gemini API</p>
+<p>6. Xử lý bất đồng bộ: Lambda gửi thông báo vào SQS → SNS gửi email</p>
+<p>7. CloudWatch theo dõi logs và metrics</p>
+<h3 id="33-thiết-kế-dữ-liệu-dynamodb">3.3 Thiết Kế Dữ Liệu (DynamoDB)</h3>
+<p>DynamoDB sử dụng single table design với PK = USER#&lt;userId&gt;:</p>
+<p>PROFILE: Thông tin người dùng, tùy chọn thông báo</p>
+<p>TXN#&lt;timestamp&gt;#&lt;id&gt;: Giao dịch (thu nhập/chi tiêu)</p>
+<p>BUDGET#&lt;year-month&gt;#&lt;category&gt;: Ngân sách theo danh mục</p>
+<p>CHAT#&lt;timestamp&gt;#&lt;id&gt;: Lịch sử chat với AI</p>
+<h3 id="34-tích-hợp-google-gemini-ai">3.4 Tích Hợp Google Gemini AI</h3>
+<p>Lambda gọi Gemini API trực tiếp (không qua AWS SDK) với 3 tác vụ chính:</p>
+<p>Auto-categorize: Gợi ý danh mục cho giao dịch mới</p>
+<p>Spending Analysis: Phân tích xu hướng chi tiêu (ngôn ngữ tự nhiên)</p>
+<p>AI Chatbox: Tư vấn tài chính thời gian thực</p>
+<p>Insights: Gợi ý tiết kiệm cá nhân hóa</p>
+<h2 id="4-triển-khai-kỹ-thuật">4. TRIỂN KHAI KỸ THUẬT</h2>
+<h3 id="41-các-giai-đoạn-phát-triển">4.1 Các Giai Đoạn Phát Triển</h3>
+<p>Dự án được chia thành 4 giai đoạn chính:</p>
+<h4 id="giai-đoạn-1-nghiên-cứu-thiết-kế-kiến-trúc">Giai Đoạn 1: Nghiên Cứu &amp; Thiết Kế Kiến Trúc</h4>
+<p>Thời gian: 2 tuần</p>
+<p>Nội dung: Thiết kế kiến trúc AWS, chọn tech stack, tạo wireframe giao diện</p>
+<h4 id="giai-đoạn-2-setup-cơ-sở-hạ-tầng">Giai Đoạn 2: Setup &amp; Cơ Sở Hạ Tầng</h4>
+<p>Thời gian: 2 tuần</p>
+<p>Nội dung: Cấu hình AWS services (DynamoDB, S3, Lambda, Cognito), thiết lập CI/CD</p>
+<h4 id="giai-đoạn-3-phát-triển-backend-frontend">Giai Đoạn 3: Phát Triển Backend &amp; Frontend</h4>
+<p>Thời gian: 6-8 tuần</p>
+<p>Nội dung: Xây dựng Lambda handlers (C# .NET 8), React components, tích hợp Gemini API</p>
+<h4 id="giai-đoạn-4-kiểm-thử-triển-khai">Giai Đoạn 4: Kiểm Thử &amp; Triển Khai</h4>
+<p>Thời gian: 3-4 tuần</p>
+<p>Nội dung: Unit tests, integration tests, UAT, triển khai production</p>
+<h3 id="42-yêu-cầu-kỹ-thuật-chi-tiết">4.2 Yêu Cầu Kỹ Thuật Chi Tiết</h3>
+<h4 id="frontend-reactjs">Frontend (ReactJS)</h4>
+<p>JavaScript (không TypeScript), React Hooks, Context API / Zustand</p>
+<p>Tailwind CSS cho styling minimalist</p>
+<p>Axios cho HTTP requests</p>
+<p>Recharts cho biểu đồ/báo cáo</p>
+<h4 id="backend-c-net-8">Backend (C# .NET 8)</h4>
+<p>ASP.NET Core Web API trên AWS Lambda</p>
+<p>DynamoDB context (Document Model) cho data access</p>
+<p>FluentValidation cho input validation</p>
+<p>IHttpClientFactory cho gọi Gemini API</p>
+<p>Dependency Injection &amp; Async/await</p>
+<h2 id="5-lộ-trình-mốc-triển-khai">5. LỘ TRÌNH &amp; MỐC TRIỂN KHAI</h2>
+<div style="overflow-x:auto"><table><tbody><tr><th>Giai Đoạn</th><th>Tuần</th><th>Nội Dung Chính</th><th>Kết Quả Mong Đợi</th></tr><tr><td>Thiết Kế</td><td>Tuần 1–2</td><td>Kiến trúc, wireframe, lựa chọn công nghệ</td><td>Design document</td></tr><tr><td>Setup</td><td>Tuần 3–4</td><td>Cấu hình AWS, CI/CD, repo</td><td>Hạ tầng sẵn sàng</td></tr><tr><td>Backend (Giai Đoạn 1)</td><td>Tuần 5–7</td><td>Lambda handlers cơ bản, DynamoDB</td><td>API endpoints hoạt động</td></tr><tr><td>Frontend (Giai Đoạn 1)</td><td>Tuần 5–7</td><td>Dashboard, Transactions page</td><td>React app cơ bản</td></tr><tr><td>Backend (Giai Đoạn 2)</td><td>Tuần 8–10</td><td>Gemini integration, notifications</td><td>AI features hoạt động</td></tr><tr><td>Frontend (Giai Đoạn 2)</td><td>Tuần 8–10</td><td>Budgets, Reports, AI Chatbox</td><td>UI hoàn chỉnh</td></tr><tr><td>Testing</td><td>Tuần 11–12</td><td>Unit tests, integration tests, UAT</td><td>70%+ code coverage</td></tr><tr><td>Production Deploy</td><td>Tuần 13</td><td>Triển khai production, monitoring</td><td>App live</td></tr></tbody></table></div>
+<p>Các Mốc Quan Trọng:</p>
+<p>Tuần 2: Phê duyệt thiết kế kiến trúc</p>
+<p>Tuần 4: Hạ tầng AWS sẵn sàng</p>
+<p>Tuần 7: MVP (Minimum Viable Product) với tính năng cơ bản</p>
+<p>Tuần 10: Toàn bộ tính năng AI hoàn thiện</p>
+<p>Tuần 13: Triển khai production</p>
+<h2 id="6-ước-tính-ngân-sách">6. ƯỚC TÍNH NGÂN SÁCH</h2>
+<h3 id="61-chi-phí-phát-triển">6.1 Chi Phí Phát Triển</h3>
+<div style="overflow-x:auto"><table><tbody><tr><th>Khoản Mục</th><th>Giờ Công</th><th>Chi Phí/Giờ</th><th>Tổng Cộng</th></tr><tr><td>Backend (C# .NET 8)</td><td>160</td><td>$50</td><td>$8.000</td></tr><tr><td>Frontend (React + UI)</td><td>120</td><td>$45</td><td>$5.400</td></tr><tr><td>DevOps &amp; Infrastructure</td><td>40</td><td>$55</td><td>$2.200</td></tr><tr><td>Testing &amp; QA</td><td>60</td><td>$45</td><td>$2.700</td></tr><tr><td>Project Management</td><td>30</td><td>$60</td><td>$1.800</td></tr><tr><td>Documentation &amp; Training</td><td>20</td><td>$40</td><td>$800</td></tr><tr><td>TỔNG CỘNG</td><td>430</td><td>-</td><td>$21.700</td></tr></tbody></table></div>
+<p>* Giả định: đội ngũ US/EU rates; có thể điều chỉnh theo địa phương</p>
+<h3 id="62-chi-phí-vận-hành-hàng-tháng">6.2 Chi Phí Vận Hành (Hàng Tháng)</h3>
+<p>* Giá AWS theo US Region (us-east-1); các region khác có thể khác</p>
+<h3 id="63-tóm-tắt-chi-phí-roi">6.3 Tóm Tắt Chi Phí &amp; ROI</h3>
+<div style="overflow-x:auto"><table><tbody><tr><th>Khoản Mục</th><th>Chi Phí</th><th>Ghi Chú</th></tr><tr><td>Phát triển ban đầu</td><td>$21.700</td><td>Một lần (13 tuần)</td></tr><tr><td>Vận hành/tháng</td><td>$44</td><td>AWS + Gemini (trung bình)</td></tr><tr><td>Vận hành/năm</td><td>$528</td><td>Đầu năm thứ 2 trở đi</td></tr><tr><td>Tổng năm 1</td><td>$22.228</td><td>Phát triển + vận hành</td></tr><tr><td>Tổng năm 2+</td><td>$528/năm</td><td>Chỉ vận hành (hoàn vốn)</td></tr><tr><td>Break-even (freemium)</td><td>6–12 tháng</td><td>Nếu 1% users convert → $500/tháng</td></tr></tbody></table></div>
+<p>Chiến Lược ROI:</p>
+<p>Model freemium: free tier cho 2 người dùng, $3-5/tháng cho Pro</p>
+<p>Nếu đạt 1.000 Pro users: $3.000-5.000/tháng → hoàn vốn phát triển trong 5-7 tháng</p>
+<p>Nếu là dự án nội bộ: khống chế chi phí vận hành $44/tháng</p>
+<h2 id="7-đánh-giá-rủi-ro">7. ĐÁNH GIÁ RỦI RO</h2>
+<h3 id="71-ma-trận-rủi-ro">7.1 Ma Trận Rủi Ro</h3>
+<div style="overflow-x:auto"><table><tbody><tr><th>Rủi Ro</th><th>Mô Tả</th><th>Ảnh Hưởng</th><th>Xác Suất</th><th>Mức Độ</th></tr><tr><td>Vượt Timeline</td><td>Phát triển chậm hơn kế hoạch</td><td>Cao</td><td>Trung bình</td><td>Cao</td></tr><tr><td>Vượt Ngân Sách</td><td>Chi phí phát triển vượt $21.7K</td><td>Cao</td><td>Thấp</td><td>Trung bình</td></tr><tr><td>Lỗi AI Gemini</td><td>Phân loại sai giao dịch</td><td>Trung bình</td><td>Trung bình</td><td>Cao</td></tr><tr><td>Lỗi Bảo Mật</td><td>Lọt dữ liệu người dùng</td><td>Cực cao</td><td>Thấp</td><td>Cực cao</td></tr><tr><td>Vấn Đề Scaling</td><td>DynamoDB không đủ throughput</td><td>Cao</td><td>Thấp</td><td>Trung bình</td></tr><tr><td>Sự Cạnh Tranh</td><td>Có ứng dụng tương tự tốt hơn</td><td>Trung bình</td><td>Cao</td><td>Cao</td></tr><tr><td>Thay Đổi Giá Gemini</td><td>Google tăng giá API</td><td>Trung bình</td><td>Trung bình</td><td>Trung bình</td></tr></tbody></table></div>
+<h3 id="72-chiến-lược-giảm-thiểu-rủi-ro">7.2 Chiến Lược Giảm Thiểu Rủi Ro</h3>
+<h4 id="rủi-ro-vượt-timeline">Rủi Ro: Vượt Timeline</h4>
+<p>Giải Pháp:</p>
+<p>Agile sprint 2 tuần, standup hàng ngày</p>
+<p>Lập kế hoạch dự phòng 15% thời gian</p>
+<p>Ưu tiên MVP trước, thêm tính năng sau</p>
+<h4 id="rủi-ro-lỗi-ai-gemini">Rủi Ro: Lỗi AI Gemini</h4>
+<p>Giải Pháp:</p>
+<p>Cho phép người dùng chỉnh sửa category được gợi ý</p>
+<p>Thiết lập confidence score, manual review nếu &lt;70%</p>
+<p>Fallback về danh mục mặc định &quot;other&quot; nếu lỗi</p>
+<h4 id="rủi-ro-lỗi-bảo-mật">Rủi Ro: Lỗi Bảo Mật</h4>
+<p>Giải Pháp:</p>
+<p>AWS WAF bảo vệ DDoS, SQL injection, XSS</p>
+<p>Cognito xử lý authentication, JWT tokens</p>
+<p>Mã hóa dữ liệu (TLS in-transit, encryption at-rest)</p>
+<p>Kiểm tra bảo mật định kỳ (penetration testing)</p>
+<h4 id="rủi-ro-vấn-đề-scaling">Rủi Ro: Vấn Đề Scaling</h4>
+<p>Giải Pháp:</p>
+<p>Bắt đầu DynamoDB on-demand (tự scale)</p>
+<p>Thêm GSI (Global Secondary Index) nếu cần tìm kiếm phức tạp</p>
+<p>CloudFront cache để giảm tải API</p>
+<h2 id="8-kỳ-vọng-kết-quả">8. KỲ VỌNG &amp; KẾT QUẢ</h2>
+<h3 id="81-cải-tiến-kỹ-thuật">8.1 Cải Tiến Kỹ Thuật</h3>
+<p>Tự Động Hóa Phân Loại Giao Dịch</p>
+<p>Người dùng không cần nhập danh mục thủ công, Gemini gợi ý 95% chính xác</p>
+<p>Dashboard Thời Gian Thực</p>
+<p>Cập nhật số dư, chi tiêu, ngân sách tức thì (latency &lt; 2 giây)</p>
+<p>Phân Tích Thông Minh</p>
+<p>Gemini phân tích xu hướng chi tiêu và đưa ra lời khuyên tiết kiệm</p>
+<p>Chatbot AI 24/7</p>
+<p>Người dùng được tư vấn tài chính tức thì qua AI chatbox</p>
+<h3 id="82-giá-trị-dài-hạn">8.2 Giá Trị Dài Hạn</h3>
+<p>Nền Tảng Mở Rộng</p>
+<p>Kiến trúc Serverless cho phép mở rộng tới hàng triệu người dùng</p>
+<p>Dữ Liệu &amp; Insights Mạnh Mẽ</p>
+<p>Thu thập dữ liệu tài chính của người dùng để phân tích (anonymized)</p>
+<p>Model Kinh Doanh Flexible</p>
+<p>Có thể phát triển thành freemium SaaS hoặc B2B (ngân hàng, fintech)</p>
+<h3 id="83-tiêu-chí-thành-công">8.3 Tiêu Chí Thành Công</h3>
+<p>Dashboard hoạt động ổn định, load time &lt; 2 giây</p>
+<p>Tính năng AI (categorize, chat, insights) hoạt động chính xác ≥95%</p>
+<p>Thông báo gửi thành công tới email (SNS delivery rate ≥99%)</p>
+<p>Tất cả API endpoints đạt 99.9% uptime</p>
+<p>70%+ code coverage (unit + integration tests)</p>
+<p>Chi phí vận hành ≤ $50/tháng (3-4 người dùng hoạt động)</p>
+<h2 id="kết-luận">KẾT LUẬN</h2>
+<p>Budget Tracker là một ứng dụng quản lý tài chính hiện đại, sử dụng kiến trúc AWS Serverless và AI Gemini để tự động hóa và tối ưu hóa trải nghiệm người dùng. Với chi phí phát triển vừa phải (~$21.7K) và chi phí vận hành thấp (~$44/tháng), dự án có tiềm năng trở thành một sản phẩm SaaS thành công.</p>
+<p>Kiến trúc được thiết kế để mở rộng, thích ứng và bảo mật. Dự án sẽ giúp người dùng cải thiện kỷ luật tài chính, phát hiện cơ hội tiết kiệm và đạt mục tiêu tài chính nhanh hơn.</p>
+<p>Với lộ trình 13 tuần rõ ràng, đội ngũ và tài nguyên phù hợp, Budget Tracker có thể sẵn sàng cho người dùng trong 3 tháng.</p>
+<p>Ngày: 12/7/2026</p>
 
 <footer class=" footline" >
 	

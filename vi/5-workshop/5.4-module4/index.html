@@ -553,14 +553,14 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.4-module4/"
                 >
                   English
                 </option>
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.4-module4/"
                   selected
                 >
                   Tiếng Việt
@@ -671,62 +671,64 @@
         </div>
         
         <div id="body-inner">
-
 <h1 style="text-transform:uppercase; text-align:center;">Module 4: Database &amp; Data Layer</h1>
-
-<p><em>Người phụ trách: Khiêm</em></p>
-<p><em>Thời gian: 1.5 tiếng</em></p>
-<h3>4.1 DynamoDB Table Creation</h3>
+<p>Thành viên: Khiêm</p>
+<h3 id="41-dynamodb-table-creation">4.1 DynamoDB Table Creation</h3>
+<p><img src="../../../images/workshop/workshop-docx/module-4-1.png" alt="Workshop module 4 screenshot 1" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <h4>Bước 1: AWS Console → DynamoDB → Tables → Create table</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-4-2.png" alt="Workshop module 4 screenshot 2" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Table name: BudgetTracket-dev</p>
-<p>Partition key (PK): userId (String)</p>
-<p>Sort key (SK): entityId (String)</p>
+<p>Partition key (PK): userId (String)
+Sort key (SK): entityId (String)</p>
 <p>Example items:</p>
 <p>- PK: USER#user123, SK: PROFILE</p>
 <p>- PK: USER#user123, SK: TXN#2026-01-15#txn001</p>
 <p>- PK: USER#user123, SK: BUDGET#2026-01#Food</p>
-<h4>Bước 2: Table settings</h4>
-<p>Billing mode: PAY_PER_REQUEST (cho development)</p>
-<p>Hoặc: Provisioned (1 RCU read, 1 WCU write)</p>
-<p>Encryption: AWS owned key (mặc định)</p>
-<p>Point-in-time recovery: Enable (optional)</p>
-<p>Create table</p>
+<h4>Bước 2: Create table</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-4-3.png" alt="Workshop module 4 screenshot 3" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <h4>Bước 3: Wait for status = ACTIVE</h4>
 <pre><code># Verify via CLI</code></pre>
-<p>aws dynamodb describe-table --table-name BudgetTracket-dev --region ap-southeast-1</p>
-<h3>4.2 DynamoDB Schema Details</h3>
+<pre><code>aws dynamodb describe-table --table-name BudgetTracket-dev --region ap-southeast-1</code></pre>
+<p><img src="../../../images/workshop/workshop-docx/module-4-4.png" alt="Workshop module 4 screenshot 4" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<h3 id="42-dynamodb-schema-details">4.2 DynamoDB Schema Details</h3>
 <p>Sample Items:</p>
-<p>{</p>
-<p>"userId": { "S": "user#abc123" },</p>
-<p>"entityId": { "S": "PROFILE" },</p>
-<p>"email": { "S": "user@example.com" },</p>
-<p>"name": { "S": "John Doe" },</p>
-<p>"currency": { "S": "VND" },</p>
-<p>"notifyBudgetAlert": { "BOOL": true },</p>
-<p>"notifyMonthlyReport": { "BOOL": true },</p>
-<p>"notifyAnomaly": { "BOOL": false },</p>
-<p>"createdAt": { "S": "2026-01-15T10:30:00Z" },</p>
-<p>"updatedAt": { "S": "2026-01-15T10:30:00Z" }</p>
-<p>}</p>
-<p>{</p>
-<p>"userId": { "S": "user#abc123" },</p>
-<p>"entityId": { "S": "TXN#2026-01-15#txn001" },</p>
-<p>"type": { "S": "expense" },</p>
-<p>"description": { "S": "Lunch at Pho restaurant" },</p>
-<p>"amount": { "N": "150000" },</p>
-<p>"category": { "S": "food" },</p>
-<p>"date": { "S": "2026-01-15" },</p>
-<p>"note": { "S": "Business lunch" },</p>
-<p>"receiptUrl": { "S": "s3://bucket/receipts/txn001.jpg" }</p>
-<p>}</p>
-<h3>4.3 S3 Buckets</h3>
+<pre><code>{</code></pre>
+<p>&quot;userId&quot;: { &quot;S&quot;: &quot;user#abc123&quot; },</p>
+<p>&quot;entityId&quot;: { &quot;S&quot;: &quot;PROFILE&quot; },</p>
+<p>&quot;email&quot;: { &quot;S&quot;: &quot;user@example.com&quot; },</p>
+<p>&quot;name&quot;: { &quot;S&quot;: &quot;John Doe&quot; },</p>
+<p>&quot;currency&quot;: { &quot;S&quot;: &quot;VND&quot; },</p>
+<p>&quot;notifyBudgetAlert&quot;: { &quot;BOOL&quot;: true },</p>
+<p>&quot;notifyMonthlyReport&quot;: { &quot;BOOL&quot;: true },</p>
+<p>&quot;notifyAnomaly&quot;: { &quot;BOOL&quot;: false },</p>
+<p>&quot;createdAt&quot;: { &quot;S&quot;: &quot;2026-01-15T10:30:00Z&quot; },</p>
+<p>&quot;updatedAt&quot;: { &quot;S&quot;: &quot;2026-01-15T10:30:00Z&quot; }</p>
+<pre><code>}</code></pre>
+<pre><code>{</code></pre>
+<p>&quot;userId&quot;: { &quot;S&quot;: &quot;user#abc123&quot; },</p>
+<p>&quot;entityId&quot;: { &quot;S&quot;: &quot;TXN#2026-01-15#txn001&quot; },</p>
+<p>&quot;type&quot;: { &quot;S&quot;: &quot;expense&quot; },</p>
+<p>&quot;description&quot;: { &quot;S&quot;: &quot;Lunch at Pho restaurant&quot; },</p>
+<p>&quot;amount&quot;: { &quot;N&quot;: &quot;150000&quot; },</p>
+<p>&quot;category&quot;: { &quot;S&quot;: &quot;food&quot; },</p>
+<p>&quot;date&quot;: { &quot;S&quot;: &quot;2026-01-15&quot; },</p>
+<p>&quot;note&quot;: { &quot;S&quot;: &quot;Business lunch&quot; },</p>
+<p>&quot;receiptUrl&quot;: { &quot;S&quot;: &quot;s3://bucket/receipts/txn001.jpg&quot; }</p>
+<pre><code>}</code></pre>
+<h3 id="43-s3-buckets">4.3 S3 Buckets</h3>
+<p><img src="../../../images/workshop/workshop-docx/module-4-5.png" alt="Workshop module 4 screenshot 5" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <h4>Bước 1: AWS Console → S3 → Create bucket</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-4-6.png" alt="Workshop module 4 screenshot 6" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Bucket 1: Frontend Hosting</p>
 <p>Bucket name: budget-tracket-frontend-dev (phải globally unique)</p>
 <p>Region: ap-southeast-1</p>
 <p>Block all public access: Uncheck (cho CloudFront public access)</p>
 <p>Create bucket</p>
+<p><img src="../../../images/workshop/workshop-docx/module-4-7.png" alt="Workshop module 4 screenshot 7" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <h4>Bước 2: Enable Static Website Hosting</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-4-8.png" alt="Workshop module 4 screenshot 8" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p><img src="../../../images/workshop/workshop-docx/module-4-9.png" alt="Workshop module 4 screenshot 9" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p><img src="../../../images/workshop/workshop-docx/module-4-10.png" alt="Workshop module 4 screenshot 10" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Click vào bucket</p>
 <p>Properties → Static website hosting → Edit</p>
 <p>Enable</p>
@@ -734,20 +736,26 @@
 <p>Error document: index.html (cho React routing)</p>
 <p>Save</p>
 <p>Bucket 2: Receipt Storage</p>
+<p><img src="../../../images/workshop/workshop-docx/module-4-11.png" alt="Workshop module 4 screenshot 11" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Bucket name: budget-tracket-receipts-dev</p>
 <p>Region: ap-southeast-1</p>
 <p>Block all public access: Check (chỉ pre-signed URLs)</p>
 <p>Create bucket</p>
 <h4>Bước 3: Add lifecycle policy (xóa receipts cũ)</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-4-12.png" alt="Workshop module 4 screenshot 12" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Click vào bucket</p>
 <p>Management → Lifecycle rules → Create lifecycle rule</p>
+<p><img src="../../../images/workshop/workshop-docx/module-4-13.png" alt="Workshop module 4 screenshot 13" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Rule name: DeleteOldReceipts</p>
 <p>Apply to all objects</p>
 <p>Expiration: 180 days</p>
 <p>Create rule</p>
-<h3>4.4 Secrets Manager</h3>
+<h3 id="44-secrets-manager">4.4 Secrets Manager</h3>
+<p><img src="../../../images/workshop/workshop-docx/module-4-14.png" alt="Workshop module 4 screenshot 14" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <h4>Bước 1: AWS Console → Secrets Manager → Store a new secret</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-4-15.png" alt="Workshop module 4 screenshot 15" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Secret 1: Gemini API Key</p>
+<p><img src="../../../images/workshop/workshop-docx/module-4-16.png" alt="Workshop module 4 screenshot 16" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Secret type: Other type of secret</p>
 <p>Key/value:</p>
 <p>Key: GEMINI_API_KEY</p>
@@ -760,14 +768,12 @@
 <p>COGNITO_USER_POOL_ID: &lt;pool-id&gt;</p>
 <p>COGNITO_CLIENT_ID: &lt;client-id&gt;</p>
 <p>Secret name: budget-tracket/cognito-config</p>
-<h3>4.5 Verify via AWS CLI</h3>
-<pre><code># Check DynamoDB table</code></pre>
-<p>aws dynamodb list-tables --region ap-southeast-1</p>
-<pre><code># Check S3 buckets</code></pre>
-<p>aws s3 ls | grep budget-tracket</p>
-<pre><code># Check Secrets</code></pre>
-<p>aws secretsmanager list-secrets --region ap-southeast-1</p>
-
+<h3 id="45-verify-via-aws-cli">4.5 Verify via AWS CLI</h3>
+<p>Check DynamoDB table</p>
+<p><img src="../../../images/workshop/workshop-docx/module-4-17.png" alt="Workshop module 4 screenshot 17" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<pre><code>aws dynamodb list-tables --region ap-southeast-1</code></pre>
+<p>Check S3 buckets</p>
+<pre><code>aws s3 ls</code></pre>
 
 <footer class=" footline" >
 	

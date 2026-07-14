@@ -517,7 +517,12 @@
    
 </li>
     
-    </ul>
+    <li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li></ul>
 
      
     <section id="shortcuts">
@@ -553,7 +558,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/3-blogsposted/3.1-blog1/"
+                  value="/3-blogsposted/3.1-blog1/"
                   selected
                 >
                   English
@@ -561,7 +566,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/3-blogsposted/3.1-blog1/"
+                  value="/vi/3-blogsposted/3.1-blog1/"
                 >
                   Tiếng Việt
                 </option>
@@ -666,7 +671,7 @@
                 </div>
                 
                     <div class="progress">
-  <div class="wrapper"><nav id="TableOfContents"></nav></div>
+  <div class="wrapper"><nav id="TableOfContents"><ul><li><a href="#blog-1">Bringing AIOps into Practice with an Amazon Bedrock-Powered AWS Health Assistant</a></li><li><a href="#key-takeaways">Key Takeaways</a></li><li><a href="#implementation-guide">Implementation Guide</a></li></ul></nav></div>
 </div>
 
                 
@@ -683,34 +688,12 @@
             <h1>
               Blog 1
             </h1>
-
-<div
-  class="notices warning"
-  
->
-  <p>⚠️ <strong>Note:</strong> The information below is for reference purposes only. Please <strong>do not copy verbatim</strong> for your report, including this warning.</p>
-
-</div>
-
-<h1 id="bringing-aiops-into-practice">Bringing AIOps into Practice: Building an AI Assistant for AWS Health with Amazon Bedrock</h1>
-<p>This blog introduces an architecture that captures AWS Health events with EventBridge, stores them centrally in S3, and makes them queryable by Athena.</p>
-<ul>
-<li>Use OpenSearch vector search on a runbook/playbook knowledge base for fast incident guidance.</li>
-<li>Use Amazon Bedrock Agents to interpret queries and execute SQL or action flows.</li>
-<li>Apply RAG to produce accurate responses with step-by-step remediation.</li>
-<li>Keep all incident data private in the AWS account without using public model training datasets.</li>
-</ul>
-<p>This design is especially useful for DevOps and SRE teams to reduce mean time to recovery and avoid alert fatigue.</p>
-<p>Link: <a href="https://aws.amazon.com/vi/blogs/machine-learning/build-self-service-aws-health-analytics-to-find-actionable-health-insights-with-ai-agents-powered-by-amazon-bedrock/">AWS blog</a></p>
-<h3>Deployment guidance</h3>
-<ul>
-<li>Create an EventBridge rule to capture AWS Health events.</li>
-<li>Use Lambda to parse raw event data and store it in S3.</li>
-<li>Build a Knowledge Base in Amazon Bedrock from internal runbook documents.</li>
-<li>Use Bedrock Agents to orchestrate SQL queries through Athena and return guided responses.</li>
-</ul>
-
-
+<h2 id="blog-1">Bringing AIOps into Practice with an Amazon Bedrock-Powered AWS Health Assistant</h2>
+<p><img src="../../images/blog/blog1.png" alt="Illustration for blog 1" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<p>An architecture for self-service AWS Health analysis that converts operational events into clear, actionable remediation steps.</p>
+<h3 id="key-takeaways">Key Takeaways</h3><ul><li>Collect AWS Health events with EventBridge and centralize them in an S3/Athena data lake.</li><li>Use a Bedrock knowledge base and OpenSearch vectors to retrieve internal runbooks and playbooks.</li><li>Let a Bedrock agent translate natural-language questions into controlled Athena queries and remediation guidance.</li><li>Use retrieval-augmented generation (RAG) to provide grounded answers and reduce alert fatigue.</li></ul>
+<h3 id="implementation-guide">Implementation Guide</h3><ol><li>Create an EventBridge rule and Lambda ingestion function for AWS Health events.</li><li>Configure Athena tables over the S3 event data.</li><li>Create a Bedrock knowledge base backed by OpenSearch Serverless.</li><li>Connect action groups to Lambda functions that execute approved Athena queries.</li><li>Integrate the agent runtime into an operations dashboard.</li></ol>
+<p><strong>Source:</strong> <a href="https://aws.amazon.com/vi/blogs/machine-learning/build-self-service-aws-health-analytics-to-find-actionable-health-insights-with-ai-agents-powered-by-amazon-bedrock/">AWS article and documentation</a></p>
 
 <footer class=" footline" >
 	

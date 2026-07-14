@@ -517,7 +517,12 @@
    
 </li>
     
-    </ul>
+    <li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li></ul>
 
      
     <section id="shortcuts">
@@ -553,7 +558,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/3-blogsposted/3.3-blog3/"
+                  value="/3-blogsposted/3.3-blog3/"
                   selected
                 >
                   English
@@ -561,7 +566,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/3-blogsposted/3.3-blog3/"
+                  value="/vi/3-blogsposted/3.3-blog3/"
                 >
                   Tiếng Việt
                 </option>
@@ -666,7 +671,7 @@
                 </div>
                 
                     <div class="progress">
-  <div class="wrapper"><nav id="TableOfContents"></nav></div>
+  <div class="wrapper"><nav id="TableOfContents"><ul><li><a href="#blog-3">Claude Sonnet 5 on AWS: Raising the Bar for Practical AI</a></li><li><a href="#key-takeaways">Key Takeaways</a></li><li><a href="#implementation-guide">Implementation Guide</a></li></ul></nav></div>
 </div>
 
                 
@@ -683,26 +688,12 @@
             <h1>
               Blog 3
             </h1>
-
-<div
-  class="notices warning"
-  
->
-  <p>⚠️ <strong>Note:</strong> The information below is for reference purposes only. Please <strong>do not copy verbatim</strong> for your report, including this warning.</p>
-
-</div>
-
-<h1 id="introducing-claude-sonnet-5">Introducing Claude Sonnet 5 on AWS Anthropic</h1>
-<p>This blog describes the launch of Claude Sonnet 5 on AWS Anthropic and its role in powering advanced Autonomous Agents.</p>
-<ul>
-<li>Claude Sonnet 5 balances intelligence, fast response, and cost efficiency for large-scale applications.</li>
-<li>It is well suited for structured reasoning, code generation, and multi-step tool workflows.</li>
-<li>Model access is managed through Amazon Bedrock with secure corporate data residency.</li>
-<li>Recommended best practices include playground testing, temperature tuning, and SDK integration.</li>
-</ul>
-<p>Link: <a href="https://aws.amazon.com/blogs/machine-learning/introducing-claude-sonnet-5-on-aws-anthropics-most-capable-sonnet-model/">AWS blog</a></p>
-
-
+<h2 id="blog-3">Claude Sonnet 5 on AWS: Raising the Bar for Practical AI</h2>
+<p><img src="../../images/blog/blog3.png" alt="Illustration for blog 3" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<p>An overview of using Claude Sonnet on Amazon Bedrock for capable, responsive, and cost-aware generative-AI workloads at scale.</p>
+<h3 id="key-takeaways">Key Takeaways</h3><ul><li>Use Amazon Bedrock for managed access to foundation models through a consistent API.</li><li>Choose a model based on quality, latency, context needs, and cost for the workload.</li><li>Protect applications with prompt controls, access policies, and observability.</li><li>Measure output quality and operating cost before expanding production use.</li></ul>
+<h3 id="implementation-guide">Implementation Guide</h3><ol><li>Define a focused use case and success metrics.</li><li>Prototype with representative data and safety requirements.</li><li>Integrate the Bedrock runtime behind a secure backend service.</li><li>Evaluate, monitor, and iterate before scaling the workload.</li></ol>
+<p><strong>Source:</strong> <a href="https://aws.amazon.com/bedrock/">AWS article and documentation</a></p>
 
 <footer class=" footline" >
 	

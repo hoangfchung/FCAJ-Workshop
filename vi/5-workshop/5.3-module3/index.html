@@ -553,14 +553,14 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.3-module3/"
                 >
                   English
                 </option>
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.3-module3/"
                   selected
                 >
                   Tiếng Việt
@@ -671,18 +671,17 @@
         </div>
         
         <div id="body-inner">
-
 <h1 style="text-transform:uppercase; text-align:center;">Module 3: IAM, Infrastructure Foundation</h1>
-
-<p><em>Người phụ trách: Chung</em></p>
-<p><em>Thời gian: 1 tiếng</em></p>
-<h3>3.1 Create IAM Roles &amp; Policies</h3>
+<p>Thành viên: Chung</p>
+<h3 id="31-create-iam-roles-policies">3.1 Create IAM Roles &amp; Policies</h3>
 <h4>Bước 1: Lambda Execution Role</h4>
 <p>AWS Console → IAM → Roles → Create role</p>
+<p><img src="../../../images/workshop/workshop-docx/module-3-1.png" alt="Workshop module 3 screenshot 1" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Select trusted entity: AWS service</p>
 <p>Use case: Lambda</p>
 <p>Click Lambda</p>
 <p>Next</p>
+<p><img src="../../../images/workshop/workshop-docx/module-3-2.png" alt="Workshop module 3 screenshot 2" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <h4>Bước 2: Thêm Permissions</h4>
 <p>Attach policies:</p>
 <p>AWSLambdaBasicExecutionRole (CloudWatch Logs)</p>
@@ -694,86 +693,19 @@
 <p>Next</p>
 <p>Role name: BudgetTracketLambdaRole</p>
 <p>Create role</p>
+<p><img src="../../../images/workshop/workshop-docx/module-3-3.png" alt="Workshop module 3 screenshot 3" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p><img src="../../../images/workshop/workshop-docx/module-3-4.png" alt="Workshop module 3 screenshot 4" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Copy ARN: arn:aws:iam::&lt;account-id&gt;:role/BudgetTracketLambdaRole (dùng cho Module 5)</p>
 <h4>Bước 3: API Gateway Invocation Policy (Add inline policy)</h4>
-<p>Add permissions → Create inline policy</p>
 <p>Policy editor: JSON</p>
-<p>{</p>
-<p>"Version": "2012-10-17",</p>
-<p>"Statement": [</p>
-<p>{</p>
-<p>"Effect": "Allow",</p>
-<p>"Action": [</p>
-<p>"apigateway:*"</p>
-<p>],</p>
-<p>"Resource": "arn:aws:apigateway:ap-southeast-1::/restapis/*"</p>
-<p>}</p>
-<p>]</p>
-<p>}</p>
-<p>Review policy</p>
+<p><img src="../../../images/workshop/workshop-docx/module-3-5.png" alt="Workshop module 3 screenshot 5" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Policy name: LambdaApiGatewayInvoke</p>
-<p>Create policy</p>
-<h4>Bước 4: Cognito Service Role</h4>
-<p>AWS Console → IAM → Roles → Create role</p>
-<p>Select trusted entity: AWS service</p>
-<p>Use case: Cognito</p>
-<p>Next</p>
-<p>Attach policies: AmazonCognitoPowerUser</p>
-<p>Role name: BudgetTracketCognitoRole</p>
-<p>Create role</p>
-<h3>3.2 Route 53 - DNS Setup</h3>
-<h4>Bước 1: AWS Console → Route 53 → Hosted zones</h4>
-<p>Create hosted zone</p>
-<p>Domain name: budget-tracket.com (hoặc domain của bạn)</p>
-<p>Type: Public</p>
-<p>Create hosted zone</p>
-<h4>Bước 2: Copy nameservers</h4>
-<p>Hosted zone vừa tạo</p>
-<p>Tab Nameservers</p>
-<p>Copy 4 nameserver records</p>
-<p>Update ở domain registrar (Namecheap, GoDaddy, v.v.)</p>
-<h4>Bước 3: Create A Record (cho CloudFront)</h4>
-<p>Create record</p>
-<p>Record name: api (subdomain)</p>
-<p>Type: A</p>
-<p>Alias: Yes</p>
-<p>Route to: CloudFront distribution (sẽ tạo ở Module 6)</p>
-<p>Create record</p>
+<h3 id="32-route-53-dns-setup">3.2 Route 53 - DNS Setup</h3>
+<p>Hiện nay, Route 53 đã không còn tạo được domain riêng miễn phí. Thay vì mua domain + Route 53, chỉ cần dùng CloudFront domain tự động</p>
 <p>Note: Tạm để trống, quay lại sau khi có CloudFront distribution</p>
-<h3>3.3 WAFv2 Setup</h3>
-<h4>Bước 1: AWS Console → WAF &amp; Shield → Web ACLs</h4>
-<p>Create web ACL</p>
-<p>Name: BudgetTracketWAF</p>
-<p>Resource type: API Gateway + CloudFront</p>
-<p>Region: us-east-1 (cho CloudFront) / ap-southeast-1 (cho API Gateway)</p>
-<p>Next</p>
-<h4>Bước 2: Add Rules</h4>
-<p>Rule 1: SQL Injection Protection</p>
-<p>Add rule → AWS managed rule</p>
-<p>Select rule: AWSManagedRulesSQLiRuleSet</p>
-<p>Action: Block</p>
-<p>Add rule</p>
-<p>Rule 2: XSS Protection</p>
-<p>Add rule → AWS managed rule</p>
-<p>Select rule: AWSManagedRulesKnownBadInputsRuleSet</p>
-<p>Action: Block</p>
-<p>Add rule</p>
-<p>Rule 3: Rate Limiting (on /auth/login)</p>
-<p>Add rule → Create custom rule</p>
-<p>Name: RateLimitLoginAttempts</p>
-<p>Type: Rate-based rule</p>
-<p>Rate limit: 10 requests per 5 minutes</p>
-<p>Scope: Single IP</p>
-<p>Action: Block</p>
-<p>Condition: Match /auth/login path</p>
-<p>Add rule</p>
-<h4>Bước 3: Set Default Action</h4>
-<p>Default action: Allow</p>
-<p>Create web ACL</p>
-<h4>Bước 4: Associate with Resources (sau khi tạo API Gateway &amp; CloudFront)</h4>
-<p>Associated resources → Add resources</p>
-<p>Select API Gateway &amp; CloudFront distribution</p>
-
+<h3 id="33-wafv2-setup">3.3 WAFv2 Setup</h3>
+<p><img src="../../../images/workshop/workshop-docx/module-3-6.png" alt="Workshop module 3 screenshot 6" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p><img src="../../../images/workshop/workshop-docx/module-3-7.png" alt="Workshop module 3 screenshot 7" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 
 <footer class=" footline" >
 	

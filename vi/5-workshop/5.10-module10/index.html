@@ -553,14 +553,14 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.10-module10/"
                 >
                   English
                 </option>
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.10-module10/"
                   selected
                 >
                   Tiếng Việt
@@ -671,27 +671,23 @@
         </div>
         
         <div id="body-inner">
-
 <h1 style="text-transform:uppercase; text-align:center;">Module 10: Monitoring &amp; Operations</h1>
-
-<p><em>Người phụ trách: Tất cả</em></p>
-<p><em>Thời gian: 1 tiếng</em></p>
-<h3>10.1 CloudWatch Logs</h3>
-<h4>Bước 1: AWS Console → CloudWatch → Log groups</h4>
+<h3 id="101-cloudwatch-logs">10.1 CloudWatch Logs</h3>
+<p><img src="../../../images/workshop/workshop-docx/module-10-1.png" alt="Workshop module 10 screenshot 1" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p><img src="../../../images/workshop/workshop-docx/module-10-2.png" alt="Workshop module 10 screenshot 2" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p>AWS Console → CloudWatch → Log groups</p>
 <p>Log Groups được tạo tự động:</p>
 <p>/aws/lambda/BudgetTracket-AuthFunction-dev</p>
 <p>/aws/lambda/BudgetTracket-TransactionFunction-dev</p>
+<p>/aws/lambda/BudgetTracket-BudgetFunction-dev</p>
+<p>/aws/lambda/BudgetTracket-ReportFunction-dev</p>
+<p>/aws/lambda/BudgetTracket-AiFunction-dev</p>
+<p>/aws/lambda/BudgetTracket-ProfileFunction-dev</p>
 <p>/aws/lambda/BudgetTracket-NotificationFunction-dev</p>
-<h4>Bước 2: View Logs</h4>
-<pre><code># View logs via CLI</code></pre>
-<p>aws logs tail /aws/lambda/BudgetTracket-AuthFunction-dev --follow --region ap-southeast-1</p>
-<pre><code># Filter specific errors</code></pre>
-<p>aws logs filter-log-events \</p>
-<p>--log-group-name /aws/lambda/BudgetTracket-AuthFunction-dev \</p>
-<p>--filter-pattern "ERROR" \</p>
-<p>--region ap-southeast-1</p>
-<h3>10.2 CloudWatch Metrics &amp; Alarms</h3>
+<p>/aws/lambda/BudgetTracket-MonthlySummaryFunction-dev</p>
+<h3 id="102-cloudwatch-metrics-alarms">10.2 CloudWatch Metrics &amp; Alarms</h3>
 <h4>Bước 1: Create Alarm for Lambda Errors</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-10-3.png" alt="Workshop module 10 screenshot 3" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>CloudWatch → Alarms → Create alarm</p>
 <p>Metric: Lambda → Errors</p>
 <p>Function: BudgetTracket-AuthFunction-dev</p>
@@ -700,27 +696,24 @@
 <p>Threshold: &gt;= 5</p>
 <p>Action: Send SNS notification</p>
 <p>Create alarm</p>
+<p>Ý nghĩa: Nếu AuthFunction có ≥ 5 lỗi trong 5 phút, gửi email cảnh báo</p>
 <h4>Bước 2: Create Alarm for DynamoDB</h4>
 <p>Metric: DynamoDB → ConsumedWriteCapacityUnits</p>
 <p>Table: BudgetTracket-dev</p>
 <p>Threshold: &gt;= 80% of provisioned capacity</p>
 <p>Create alarm</p>
-<h3>10.3 WAF Monitoring</h3>
+<p>Tương tự như trên</p>
+<p>Ý nghĩa: Cảnh báo khi approaching DynamoDB write limit</p>
+<h3 id="103-waf-monitoring">10.3 WAF Monitoring</h3>
+<p><img src="../../../images/workshop/workshop-docx/module-10-4.png" alt="Workshop module 10 screenshot 4" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>WAF &amp; Shield → Web ACLs → BudgetTracketWAF</p>
 <p>Monitoring tab</p>
 <p>View blocked requests by rule</p>
-<h3>10.4 Lambda Performance Insights</h3>
-<pre><code># Get Lambda invocation metrics</code></pre>
-<p>aws cloudwatch get-metric-statistics \</p>
-<p>--namespace AWS/Lambda \</p>
-<p>--metric-name Duration \</p>
-<p>--dimensions Name=FunctionName,Value=BudgetTracket-AuthFunction-dev \</p>
-<p>--start-time 2026-01-15T00:00:00Z \</p>
-<p>--end-time 2026-01-16T00:00:00Z \</p>
-<p>--period 3600 \</p>
-<p>--statistics Average,Maximum \</p>
-<p>--region ap-southeast-1</p>
-
+<h3 id="104-lambda-performance-insights">10.4 Lambda Performance Insights</h3>
+<p>Get Lambda invocation metrics</p>
+<p><img src="../../../images/workshop/workshop-docx/module-10-5.png" alt="Workshop module 10 screenshot 5" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p>Output:</p>
+<p><img src="../../../images/workshop/workshop-docx/module-10-6.png" alt="Workshop module 10 screenshot 6" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 
 <footer class=" footline" >
 	

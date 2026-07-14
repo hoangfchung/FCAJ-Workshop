@@ -39,7 +39,7 @@
     
 
   </head>
-  <body class="" data-url="../../1-worklog/1.1-week1/">
+  <body class="" data-url="../../5-workshop/5.8-module8/">
     <nav
   id="sidebar"
   class="showVisitedLinks"
@@ -517,7 +517,12 @@
    
 </li>
     
-    </ul>
+    <li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li></ul>
 
      
     <section id="shortcuts">
@@ -553,7 +558,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.8-module8/"
                   selected
                 >
                   English
@@ -561,7 +566,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.8-module8/"
                 >
                   Tiếng Việt
                 </option>
@@ -671,100 +676,12 @@
         </div>
         
         <div id="body-inner">
-
-<h1 style="text-transform:uppercase; text-align:center;">Module 8: Notifications Pipeline</h1>
-
-<p><em>Người phụ trách: Huy</em></p>
-<p><em>Thời gian: 1.5 tiếng</em></p>
-<h3>8.1 SNS Topic Setup</h3>
-<h4>Bước 1: AWS Console → SNS → Topics → Create topic</h4>
-<p>Type: Standard</p>
-<p>Name: budget-tracket-notifications-dev</p>
-<p>Create topic</p>
-<p>Copy Topic ARN: arn:aws:sns:ap-southeast-1:&lt;account&gt;:budget-tracket-notifications-dev</p>
-<h4>Bước 2: Create Email Subscription</h4>
-<p>Create subscription</p>
-<p>Protocol: Email</p>
-<p>Endpoint: your-email@example.com</p>
-<p>Create subscription</p>
-<p>Check inbox → Confirm SNS subscription</p>
-<h3>8.2 SQS Queue Setup</h3>
-<h4>Bước 1: AWS Console → SQS → Create queue</h4>
-<p>Queue name: budget-tracket-notifications-dev</p>
-<p>Type: Standard</p>
-<p>Configuration:</p>
-<p>Message retention period: 4 days</p>
-<p>Visibility timeout: 30 seconds</p>
-<p>Receive message wait time: 20 seconds</p>
-<p>Create queue</p>
-<p>Copy Queue URL:</p>
-<h4>Bước 2: Dead Letter Queue</h4>
-<p>Create queue</p>
-<p>Queue name: budget-tracket-notifications-dev-dlq</p>
-<p>Create queue</p>
-<h4>Bước 3: Set Redrive Policy</h4>
-<p>SQS Queue → Edit → Dead letter queue</p>
-<p>Enable redrive policy: Yes</p>
-<p>Dead letter queue: Select DLQ</p>
-<p>Maximum receives: 3</p>
-<p>Save</p>
-<h3>8.3 EventBridge Rule for Monthly Summary</h3>
-<h4>Bước 1: AWS Console → EventBridge → Rules → Create rule</h4>
-<p>Name: BudgetTracketMonthlySummary</p>
-<p>Event bus: default</p>
-<p>Rule type: Scheduled</p>
-<p>Next</p>
-<h4>Bước 2: Schedule</h4>
-<p>Schedule pattern: Cron</p>
-<p>Cron expression: cron(0 1 1 * ? *) (1 AM on 1st of each month)</p>
-<p>Next</p>
-<h4>Bước 3: Target</h4>
-<p>Target types: AWS service</p>
-<p>Select a target: Lambda function</p>
-<p>Function: BudgetTracket-MonthlySummaryFunction-dev</p>
-<p>Create rule</p>
-<h3>8.4 Lambda → SQS Integration</h3>
-<p>// In TransactionFunction or BudgetFunction</p>
-<p>public async Task PublishNotificationAsync(string userId, string type, string body)</p>
-<p>{</p>
-<p>var message = new</p>
-<p>{</p>
-<p>userId,</p>
-<p>type, // "budget_alert", "monthly_report", "anomaly"</p>
-<p>body,</p>
-<p>timestamp = DateTime.UtcNow</p>
-<p>};</p>
-<p>await _sqsClient.SendMessageAsync(new SendMessageRequest</p>
-<p>{</p>
-<p>QueueUrl = Environment.GetEnvironmentVariable("SQS_QUEUE_URL"),</p>
-<p>MessageBody = JsonConvert.SerializeObject(message)</p>
-<p>});</p>
-<p>}</p>
-<h3>8.5 NotificationFunction Lambda</h3>
-<p>// BudgetTracket.Lambda/Functions/NotificationFunction.cs</p>
-<p>[LambdaFunction]</p>
-<p>public async Task HandleAsync(SQSEvent sqsEvent)</p>
-<p>{</p>
-<p>foreach (var record in sqsEvent.Records)</p>
-<p>{</p>
-<p>var message = JsonConvert.DeserializeObject&lt;NotificationMessage&gt;(record.Body);</p>
-<p>// Check user notification preferences</p>
-<p>var profile = await _profileService.GetProfileAsync(message.UserId);</p>
-<p>if (profile.NotifyBudgetAlert &amp;&amp; message.Type == "budget_alert")</p>
-<p>{</p>
-<p>await _snsClient.PublishAsync(new PublishRequest</p>
-<p>{</p>
-<p>TopicArn = Environment.GetEnvironmentVariable("SNS_TOPIC_ARN"),</p>
-<p>Message = message.Body,</p>
-<p>MessageAttributes = new Dictionary&lt;string, MessageAttributeValue&gt;</p>
-<p>{</p>
-<p>{ "userId", new MessageAttributeValue { StringValue = message.UserId, DataType = "String" } }</p>
-<p>}</p>
-<p>});</p>
-<p>}</p>
-<p>}</p>
-<p>}</p>
-
+<h2 id="module-8">Module 8: Notifications Pipeline</h2>
+<p>Use EventBridge schedules, SQS queues, SNS topics, and Lambda workers to send reliable budget and monthly-summary emails.</p>
+<h3 id="objectives">Objectives</h3><ul><li>Complete the configuration safely in the shared AWS environment.</li><li>Record configuration values and verify access before moving to the next module.</li><li>Apply least privilege, encryption, and monitoring where relevant.</li></ul>
+<h3 id="implementation-steps">Implementation Steps</h3><ol><li>Review the module prerequisites and the target architecture.</li><li>Configure the AWS resources shown below.</li><li>Test the result and capture evidence for the workshop report.</li></ol>
+<h3 id="screenshots">Workshop Screenshots</h3><p><img src="../../images/workshop/49.png" alt="Module 8 workshop screenshot 50" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/50.png" alt="Module 8 workshop screenshot 51" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/51.png" alt="Module 8 workshop screenshot 52" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/52.png" alt="Module 8 workshop screenshot 53" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/53.png" alt="Module 8 workshop screenshot 54" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/54.png" alt="Module 8 workshop screenshot 55" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/55.png" alt="Module 8 workshop screenshot 56" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<h3 id="verification">Verification</h3><p>Confirm that the configured resource is available, protected by the intended permissions, and integrated with the components required by the next module.</p>
 
 <footer class=" footline" >
 	
@@ -1398,10 +1315,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../1-worklog/" title="Worklog"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../5.7-module7/" title="Module 7: Authentication and Edge Layer"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../1-worklog/1.2-week2/" title="Week 2 Worklog" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../5.9-module9/" title="Module 9: End-to-End Testing" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

@@ -517,6 +517,12 @@
    
 </li>
     
+<li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li>
     </ul>
 
      
@@ -553,7 +559,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/2-proposal/"
+                  value="/2-proposal/"
                   selected
                 >
                   English
@@ -561,7 +567,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/2-proposal/"
+                  value="/vi/2-proposal/"
                 >
                   Tiếng Việt
                 </option>
@@ -660,28 +666,7 @@
                 </div>
                 
                     <div class="progress">
-  <div class="wrapper"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#a-unified-aws-serverless-solution-for-real-time-weather-monitoring">A Unified AWS Serverless Solution for Real-Time Weather Monitoring</a>
-      <ul>
-        <li><a href="#1-executive-summary">1. Executive Summary</a></li>
-        <li><a href="#2-problem-statement">2. Problem Statement</a></li>
-        <li><a href="#whats-the-problem">What’s the Problem?</a></li>
-        <li><a href="#the-solution">The Solution</a></li>
-        <li><a href="#benefits-and-return-on-investment">Benefits and Return on Investment</a></li>
-        <li><a href="#3-solution-architecture">3. Solution Architecture</a></li>
-        <li><a href="#aws-services-used">AWS Services Used</a></li>
-        <li><a href="#component-design">Component Design</a></li>
-        <li><a href="#4-technical-implementation">4. Technical Implementation</a></li>
-        <li><a href="#5-timeline--milestones">5. Timeline &amp; Milestones</a></li>
-        <li><a href="#6-budget-estimation">6. Budget Estimation</a></li>
-        <li><a href="#infrastructure-costs">Infrastructure Costs</a></li>
-        <li><a href="#7-risk-assessment">7. Risk Assessment</a></li>
-        <li><a href="#8-expected-outcomes">8. Expected Outcomes</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
+  <div class="wrapper"><nav id="TableOfContents"><ul><li><a href="#executive-summary">1. Executive Summary</a></li><li><a href="#problem-statement">2. Problem Statement</a></li><li><a href="#current-challenges">2.1 Current Challenges</a></li><li><a href="#proposed-solution">2.2 Proposed Solution</a></li><li><a href="#solution-architecture">3. Solution Architecture</a></li><li><a href="#technology-stack">3.1 Technology Stack</a></li><li><a href="#implementation-plan">4. Implementation Plan</a></li><li><a href="#roadmap">5. Roadmap and Milestones</a></li><li><a href="#budget">6. Budget Estimate</a></li><li><a href="#risk-management">7. Risk Management</a></li><li><a href="#expected-outcomes">8. Expected Outcomes</a></li></ul></nav></div>
 </div>
 
                 
@@ -699,129 +684,31 @@
               Proposal
             </h1>
 
-<div
-  class="notices warning"
-  
->
-  <p>⚠️ <strong>Note:</strong> The information below is for reference purposes only. Please <strong>do not copy verbatim</strong> for your report, including this warning.</p>
+<p><strong>Budget Tracker</strong> is a personal-finance web application that helps users understand income, spending, and budgets. It uses Google Gemini AI to categorize transactions, explain spending patterns, and provide practical financial guidance.</p>
+<h2 id="executive-summary">1. Executive Summary</h2>
+<p>The solution uses an AWS serverless architecture for reliable, scalable, and cost-aware operation. It provides a real-time dashboard, receipt-assisted transaction management, category budgets, analytical reports, an AI financial assistant, and email alerts for unusual spending or budget overruns.</p>
+<h2 id="problem-statement">2. Problem Statement</h2>
+<h3 id="current-challenges">2.1 Current Challenges</h3>
+<p>Personal finance is often tracked manually. This makes transaction categorization inconsistent, hides spending habits, and leaves users without timely budget alerts or personalized advice.</p>
+<h3 id="proposed-solution">2.2 Proposed Solution</h3>
+<p>Budget Tracker automates categorization with Gemini AI, presents up-to-date dashboards, detects spending trends, sends budget alerts, and makes financial help available through a chatbot.</p>
+<h2 id="solution-architecture">3. Solution Architecture</h2>
+<p>The React frontend communicates with Amazon API Gateway and .NET 8 AWS Lambda functions. Amazon DynamoDB stores application data, Amazon S3 stores receipts, Amazon Cognito manages sign-in, and Amazon SNS/SQS/EventBridge deliver notifications. Gemini AI is called securely for categorization and insights.</p>
+<p><img src="../images/proposal/sodo.jpg" alt="Budget Tracker solution architecture" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<h3 id="technology-stack">3.1 Technology Stack</h3>
+<p>React, C#/.NET 8, AWS Lambda, API Gateway, DynamoDB, S3, Cognito, CloudFront, Route 53, WAF, CloudWatch, SNS, SQS, EventBridge, and Google Gemini AI form the core platform.</p>
+<h2 id="implementation-plan">4. Implementation Plan</h2>
+<p>Delivery is organized into four stages: architecture and requirements; cloud foundation; frontend and backend implementation; and testing, deployment, and operational handover.</p>
+<h2 id="roadmap">5. Roadmap and Milestones</h2>
+<p>Each milestone produces a reviewable outcome: a validated design, working infrastructure, integrated product features, and a tested production release.</p>
+<h2 id="budget">6. Budget Estimate</h2>
+<p>The serverless model keeps fixed infrastructure costs low. Operating costs scale with usage and are monitored through AWS billing and CloudWatch metrics.</p>
+<h2 id="risk-management">7. Risk Management</h2>
+<p>Key risks include delivery delays, AI response quality, security defects, and growth in demand. Mitigations include incremental delivery, validation and fallback rules, least-privilege access, encryption, monitoring, and load testing.</p>
+<h2 id="expected-outcomes">8. Expected Outcomes</h2>
+<p>The project delivers a secure and maintainable finance platform with faster transaction handling, clearer spending visibility, and a foundation for future product growth.</p>
 
-</div>
 
-<h1 id="budget-tracker">Budget Tracker – Intelligent Personal Expense Management on AWS Serverless</h1>
-<h3 id="1-introduction">1. Introduction</h3>
-<p>Budget Tracker is a personal expense management system built on AWS Serverless architecture. It helps users record income, expenses, manage budget categories, store digital receipts, and apply AI analytics to offer financial recommendations.</p>
-<p>Unlike traditional expense management applications, Budget Tracker relies on AWS serverless services to lower operating costs, automatically scale with traffic, and improve security and availability.</p>
-<h3 id="2-project-objectives">2. Project Objectives</h3>
-<ul>
-<li>Manage personal income and expenses.</li>
-<li>Organize transaction categories.</li>
-<li>Create budgets for each category.</li>
-<li>Track budget overruns.</li>
-<li>Store electronic receipts.</li>
-<li>Analyze financial data with artificial intelligence.</li>
-<li>Provide spending optimization suggestions.</li>
-<li>Send alerts when budgets are exceeded.</li>
-<li>Deploy fully on AWS using a serverless model.</li>
-</ul>
-<h3 id="3-technologies-used">3. Technologies Used</h3>
-<h4>Frontend</h4>
-<ul>
-<li>ReactJS</li>
-<li>HTML5</li>
-<li>CSS3</li>
-<li>JavaScript</li>
-<li>Axios</li>
-</ul>
-<p>The frontend is built as a static website and hosted on Amazon S3.</p>
-<h4>Backend</h4>
-<ul>
-<li>ASP.NET Core Web API (.NET 8)</li>
-<li>AWS Lambda</li>
-<li>RESTful API</li>
-</ul>
-<p>Business logic is implemented in AWS Lambda functions.</p>
-<h4>Database</h4>
-<ul>
-<li>Amazon DynamoDB for user, category, transaction, budget, and report storage.</li>
-</ul>
-<p>DynamoDB was chosen for its serverless behavior, high performance, auto scaling, and low operational overhead.</p>
-<h4>AI</h4>
-<ul>
-<li>Amazon Bedrock</li>
-<li>Transaction classification</li>
-<li>Expense analysis</li>
-<li>Trend prediction</li>
-<li>Financial advice</li>
-</ul>
-<h4>Storage</h4>
-<ul>
-<li>Amazon S3 for frontend hosting, receipts, attachments, and reports.</li>
-</ul>
-<h4>Authentication</h4>
-<ul>
-<li>Amazon Cognito for registration, login, logout, and JWT authentication.</li>
-</ul>
-<h4>Monitoring</h4>
-<ul>
-<li>Amazon CloudWatch for logs and metrics.</li>
-</ul>
-<h4>Notification</h4>
-<ul>
-<li>Amazon SNS for email and budget alert notifications.</li>
-</ul>
-<h4>DNS & CDN</h4>
-<ul>
-<li>Amazon Route 53</li>
-<li>Amazon CloudFront</li>
-</ul>
-<h4>Security</h4>
-<ul>
-<li>AWS WAF to protect against SQL Injection, Cross-Site Scripting, and HTTP Flood attacks.</li>
-</ul>
-<h3 id="4-system-architecture">4. System Architecture</h3>
-<p>The system uses a serverless AWS architecture: the React frontend is hosted on S3 and distributed by CloudFront. API Gateway receives requests and routes them to Lambda for business logic. DynamoDB stores transactional and user data, while S3 stores receipts and attachments. Amazon Bedrock supports financial analysis. CloudWatch monitors the environment, and SNS sends notifications.</p>
-<p><img src="../images/proposal/sodo.jpg" alt="Budget Tracker System Architecture Diagram" style="max-width:100%; border:1px solid #ddd; border-radius:4px; margin: 15px 0;"></p>
-<h3 id="5-system-workflow">5. System Workflow</h3>
-<ul>
-<li>Users access the React application through CloudFront.</li>
-<li>Requests go to API Gateway and invoke AWS Lambda.</li>
-<li>Lambda reads and writes data in DynamoDB, stores files on S3, and manages authentication with Cognito.</li>
-<li>AI-processing requests are sent to Amazon Bedrock.</li>
-<li>CloudWatch collects logs and triggers SNS alerts for budget thresholds or runtime issues.</li>
-</ul>
-<h3 id="6-core-features">6. Core Features</h3>
-<ul>
-<li>User authentication and profile management.</li>
-<li>Expense and income transaction management.</li>
-<li>Category-based budgeting and overspend alerts.</li>
-<li>Receipt upload and document storage.</li>
-<li>AI-driven classification and spending recommendations.</li>
-<li>Real-time analytics and email notifications.</li>
-</ul>
-<h3 id="7-advantages">7. Advantages</h3>
-<ul>
-<li>Fully serverless design with minimal maintenance.</li>
-<li>Automatic scaling and reduced infrastructure cost.</li>
-<li>Strong security and authentication via Cognito.</li>
-<li>Flexible data storage using DynamoDB and S3.</li>
-<li>AI-powered financial insights using Amazon Bedrock.</li>
-</ul>
-<h3 id="8-limitations">8. Limitations</h3>
-<ul>
-<li>Dependency on AWS managed services.</li>
-<li>Potential Lambda cold starts.</li>
-<li>Amazon Bedrock usage may incur additional AI costs.</li>
-<li>DynamoDB requires careful partition key design.</li>
-</ul>
-<h3 id="9-future-expansion">9. Future Expansion</h3>
-<ul>
-<li>Mobile application support.</li>
-<li>Admin dashboard for management.</li>
-<li>OCR receipt recognition.</li>
-<li>Voice assistant integrations.</li>
-</ul>
-          
-        </div>
 <div id="navigation">
         
         

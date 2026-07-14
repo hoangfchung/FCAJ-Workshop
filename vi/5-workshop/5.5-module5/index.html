@@ -553,14 +553,14 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.5-module5/"
                 >
                   English
                 </option>
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.5-module5/"
                   selected
                 >
                   Tiếng Việt
@@ -671,21 +671,22 @@
         </div>
         
         <div id="body-inner">
-
-<h1 style="text-transform:uppercase; text-align:center;">Module 5: Backend Core - Lambda &amp; API</h1>
-
-<p><em>Người phụ trách: Huy</em></p>
-<p><em>Thời gian: 2 tiếng</em></p>
-<h3>5.1 API Gateway Setup</h3>
+<h1 style="text-transform:uppercase; text-align:center;">Module 5: Backend Core: Lambda &amp; API</h1>
+<p>Thành viên: Huy</p>
+<h3 id="51-api-gateway-setup">5.1 API Gateway Setup</h3>
 <h4>Bước 1: AWS Console → API Gateway → Create API</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-5-1.png" alt="Workshop module 5 screenshot 1" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p><img src="../../../images/workshop/workshop-docx/module-5-2.png" alt="Workshop module 5 screenshot 2" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p><img src="../../../images/workshop/workshop-docx/module-5-3.png" alt="Workshop module 5 screenshot 3" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Choose API type: REST API</p>
-<p>Create</p>
+<p>Build</p>
 <h4>Bước 2: Create API Details</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-5-4.png" alt="Workshop module 5 screenshot 4" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>API name: BudgetTracketAPI</p>
 <p>Endpoint type: Regional</p>
 <p>Create API</p>
 <h4>Bước 3: Create Resource Structure</h4>
-<p>Root: /</p>
+<p>Root:</p>
 <p>Create resource</p>
 <p>Resource name: api</p>
 <p>Create resource</p>
@@ -711,41 +712,48 @@
 <p>/api/v1/ai/insights (GET)</p>
 <p>/api/v1/ai/chat (POST, GET, DELETE)</p>
 <h4>Bước 4: Enable CORS</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-5-5.png" alt="Workshop module 5 screenshot 5" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p><img src="../../../images/workshop/workshop-docx/module-5-6.png" alt="Workshop module 5 screenshot 6" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Select /api/v1 resource</p>
 <p>Actions → Enable CORS</p>
 <p>Default 4XX and 5XX CORS headers: Check</p>
 <p>Replace existing CORS headers: Yes</p>
 <p>Enable CORS and replace existing CORS headers</p>
 <h4>Bước 5: Deploy API</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-5-7.png" alt="Workshop module 5 screenshot 7" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p><img src="../../../images/workshop/workshop-docx/module-5-8.png" alt="Workshop module 5 screenshot 8" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Actions → Deploy API</p>
 <p>Deployment stage: dev</p>
 <p>Create</p>
-<p>Copy Invoke URL: https://&lt;api-id&gt;.execute-api.ap-southeast-1.amazonaws.com/dev</p>
-<h3>5.2 Lambda Functions Setup</h3>
+<p>Copy Invoke URL: https://etqygc1m4d.execute-api.ap-southeast-1.amazonaws.com/dev</p>
+<h3 id="52-lambda-functions-setup">5.2 Lambda Functions Setup</h3>
+<p><img src="../../../images/workshop/workshop-docx/module-5-9.png" alt="Workshop module 5 screenshot 9" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <h4>Bước 1: AWS Console → Lambda → Create function</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-5-10.png" alt="Workshop module 5 screenshot 10" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Function 1: AuthFunction</p>
+<p><img src="../../../images/workshop/workshop-docx/module-5-11.png" alt="Workshop module 5 screenshot 11" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Function name: BudgetTracket-AuthFunction-dev</p>
 <p>Runtime: .NET 8 (C#)</p>
 <p>Architecture: x86_64</p>
-<p>Execution role: BudgetTracketLambdaRole (từ Module 3)</p>
 <p>Create function</p>
 <h4>Bước 2: Configure Environment Variables</h4>
 <p>Configuration → Environment variables → Edit</p>
-<p>Add variables:</p>
-<p>DYNAMODB_TABLE=BudgetTracket-dev</p>
+<p>Add variables:
+DYNAMODB_TABLE=BudgetTracket-dev</p>
 <p>COGNITO_USER_POOL_ID=&lt;from-module-7&gt;</p>
 <p>COGNITO_CLIENT_ID=&lt;from-module-7&gt;</p>
 <p>AWS_REGION=ap-southeast-1</p>
 <p>ASPNETCORE_ENVIRONMENT=Production</p>
 <p>Save</p>
 <h4>Bước 3: Deploy Code</h4>
-<p>cd backend</p>
-<p>dotnet build</p>
-<p>dotnet lambda package -o ~/lambda-auth.zip</p>
+<pre><code>cd backend</code></pre>
+<pre><code>dotnet build</code></pre>
+<pre><code>dotnet lambda package -o</code></pre>
 <p>AWS Console → Lambda Function → Upload from → .zip file</p>
-<p>Select ~/lambda-auth.zip</p>
+<p>Select</p>
 <p>Save</p>
 <p>Repeat for other Lambda Functions:</p>
+<p><img src="../../../images/workshop/workshop-docx/module-5-12.png" alt="Workshop module 5 screenshot 12" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>TransactionFunction</p>
 <p>BudgetFunction</p>
 <p>ReportFunction</p>
@@ -757,13 +765,12 @@
 <p>API Gateway → Resource → Method → Integration request</p>
 <p>Lambda function: Select function</p>
 <p>Save</p>
-<h3>5.3 Test Lambda Locally (Optional)</h3>
-<p>sam local start-api</p>
-<pre><code># Server running on http://localhost:3000/api/v1</code></pre>
-<pre><code># Test endpoint</code></pre>
-<p>curl -X GET http://localhost:3000/api/v1/transactions \</p>
-<p>-H "Authorization: Bearer &lt;token&gt;"</p>
-
+<h3 id="53-test-lambda-locally-optional">5.3 Test Lambda Locally (Optional)</h3>
+<pre><code>sam local start-api</code></pre>
+<p>Server running on http://localhost:3000/api/v1</p>
+<p>Test endpoint</p>
+<pre><code>curl -X GET http://localhost:3000/api/v1/transactions \</code></pre>
+<p>-H &quot;Authorization: Bearer &lt;token&gt;&quot;</p>
 
 <footer class=" footline" >
 	

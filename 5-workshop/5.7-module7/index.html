@@ -39,7 +39,7 @@
     
 
   </head>
-  <body class="" data-url="../../1-worklog/1.1-week1/">
+  <body class="" data-url="../../5-workshop/5.7-module7/">
     <nav
   id="sidebar"
   class="showVisitedLinks"
@@ -517,7 +517,12 @@
    
 </li>
     
-    </ul>
+    <li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li></ul>
 
      
     <section id="shortcuts">
@@ -553,7 +558,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.7-module7/"
                   selected
                 >
                   English
@@ -561,7 +566,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.7-module7/"
                 >
                   Tiếng Việt
                 </option>
@@ -671,83 +676,12 @@
         </div>
         
         <div id="body-inner">
-
-<h1 style="text-transform:uppercase; text-align:center;">Module 7: Authentication &amp; Edge Layer</h1>
-
-<p><em>Người phụ trách: Khiêm</em></p>
-<p><em>Thời gian: 1 tiếng</em></p>
-<h3>7.1 JWT Token Validation in Lambda</h3>
-<p>// BudgetTracket.Lambda/Middleware/AuthenticationMiddleware.cs</p>
-<p>public class AuthenticationMiddleware</p>
-<p>{</p>
-<p>private readonly ILogger&lt;AuthenticationMiddleware&gt; _logger;</p>
-<p>private readonly CognitoUserPool _userPool;</p>
-<p>public async Task&lt;bool&gt; ValidateTokenAsync(string token)</p>
-<p>{</p>
-<p>try</p>
-<p>{</p>
-<p>var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(token);</p>
-<p>// Validate expiration</p>
-<p>if (jwtToken.ValidTo &lt; DateTime.UtcNow)</p>
-<p>return false;</p>
-<p>// Extract userId from token</p>
-<p>var userId = jwtToken.Claims.FirstOrDefault(c =&gt; c.Type == "sub")?.Value;</p>
-<p>return !string.IsNullOrEmpty(userId);</p>
-<p>}</p>
-<p>catch (Exception ex)</p>
-<p>{</p>
-<p>_logger.LogError($"Token validation failed: {ex.Message}");</p>
-<p>return false;</p>
-<p>}</p>
-<p>}</p>
-<p>}</p>
-<h3>7.2 CloudFront + Lambda@Edge Setup</h3>
-<h4>Bước 1: AWS Console → CloudFront → Create distribution</h4>
-<p>Origin:</p>
-<p>Origin domain: budget-tracket-frontend-dev.s3.ap-southeast-1.amazonaws.com</p>
-<p>S3 access: Origin access control (OAC)</p>
-<p>Create OAC</p>
-<p>OAC name: BudgetTracketOAC</p>
-<p>Create</p>
-<h4>Bước 2: Behaviors</h4>
-<p>Path pattern: /*</p>
-<p>Viewer protocol policy: Redirect HTTP to HTTPS</p>
-<p>Allowed HTTP methods: GET, HEAD</p>
-<p>Caching policy: CachingOptimized (S3)</p>
-<p>Origin request policy: CORS-S3Origin</p>
-<p>Compress objects automatically: Yes</p>
-<h4>Bước 3: Web ACL</h4>
-<p>AWS WAF Web ACL: Select BudgetTracketWAF (từ Module 3.3)</p>
-<h4>Bước 4: Create Distribution</h4>
-<p>Copy Distribution domain name: d123abc456.cloudfront.net</p>
-<h4>Bước 5: Update S3 Bucket Policy</h4>
-<p>{</p>
-<p>"Version": "2012-10-17",</p>
-<p>"Statement": [</p>
-<p>{</p>
-<p>"Sid": "AllowCloudFrontAccess",</p>
-<p>"Effect": "Allow",</p>
-<p>"Principal": {</p>
-<p>"Service": "cloudfront.amazonaws.com"</p>
-<p>},</p>
-<p>"Action": "s3:GetObject",</p>
-<p>"Resource": "arn:aws:s3:::budget-tracket-frontend-dev/*",</p>
-<p>"Condition": {</p>
-<p>"StringEquals": {</p>
-<p>"AWS:SourceArn": "arn:aws:cloudfront::&lt;account-id&gt;:distribution/&lt;DISTRIBUTION_ID&gt;"</p>
-<p>}</p>
-<p>}</p>
-<p>}</p>
-<p>]</p>
-<p>}</p>
-<h3>7.3 Update Route 53 A Record</h3>
-<p>Route 53 → Hosted zones → budget-tracket.com → Create record</p>
-<p>Record name: app (hoặc root domain)</p>
-<p>Type: A</p>
-<p>Alias: Yes</p>
-<p>Route to: CloudFront distribution → select distribution from 7.2</p>
-<p>Create record</p>
-
+<h2 id="module-7">Module 7: Authentication and Edge Layer</h2>
+<p>Protect the application with Cognito JWT authorization, CloudFront distribution settings, Route 53 DNS, and AWS WAF controls.</p>
+<h3 id="objectives">Objectives</h3><ul><li>Complete the configuration safely in the shared AWS environment.</li><li>Record configuration values and verify access before moving to the next module.</li><li>Apply least privilege, encryption, and monitoring where relevant.</li></ul>
+<h3 id="implementation-steps">Implementation Steps</h3><ol><li>Review the module prerequisites and the target architecture.</li><li>Configure the AWS resources shown below.</li><li>Test the result and capture evidence for the workshop report.</li></ol>
+<h3 id="screenshots">Workshop Screenshots</h3><p><img src="../../images/workshop/42.png" alt="Module 7 workshop screenshot 43" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/43.png" alt="Module 7 workshop screenshot 44" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/44.png" alt="Module 7 workshop screenshot 45" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/45.png" alt="Module 7 workshop screenshot 46" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/46.png" alt="Module 7 workshop screenshot 47" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/47.png" alt="Module 7 workshop screenshot 48" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/48.png" alt="Module 7 workshop screenshot 49" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<h3 id="verification">Verification</h3><p>Confirm that the configured resource is available, protected by the intended permissions, and integrated with the components required by the next module.</p>
 
 <footer class=" footline" >
 	
@@ -1381,10 +1315,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../1-worklog/" title="Worklog"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../5.6-module6/" title="Module 6: Frontend, Authentication, and AI Integration"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../1-worklog/1.2-week2/" title="Week 2 Worklog" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../5.8-module8/" title="Module 8: Notifications Pipeline" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

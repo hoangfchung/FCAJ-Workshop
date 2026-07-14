@@ -39,7 +39,7 @@
     
 
   </head>
-  <body class="" data-url="../../1-worklog/1.1-week1/">
+  <body class="" data-url="../../5-workshop/5.10-module10/">
     <nav
   id="sidebar"
   class="showVisitedLinks"
@@ -517,7 +517,12 @@
    
 </li>
     
-    </ul>
+    <li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li></ul>
 
      
     <section id="shortcuts">
@@ -553,7 +558,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.10-module10/"
                   selected
                 >
                   English
@@ -561,7 +566,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.10-module10/"
                 >
                   Tiếng Việt
                 </option>
@@ -671,56 +676,12 @@
         </div>
         
         <div id="body-inner">
-
-<h1 style="text-transform:uppercase; text-align:center;">Module 10: Monitoring &amp; Operations</h1>
-
-<p><em>Người phụ trách: Tất cả</em></p>
-<p><em>Thời gian: 1 tiếng</em></p>
-<h3>10.1 CloudWatch Logs</h3>
-<h4>Bước 1: AWS Console → CloudWatch → Log groups</h4>
-<p>Log Groups được tạo tự động:</p>
-<p>/aws/lambda/BudgetTracket-AuthFunction-dev</p>
-<p>/aws/lambda/BudgetTracket-TransactionFunction-dev</p>
-<p>/aws/lambda/BudgetTracket-NotificationFunction-dev</p>
-<h4>Bước 2: View Logs</h4>
-<pre><code># View logs via CLI</code></pre>
-<p>aws logs tail /aws/lambda/BudgetTracket-AuthFunction-dev --follow --region ap-southeast-1</p>
-<pre><code># Filter specific errors</code></pre>
-<p>aws logs filter-log-events \</p>
-<p>--log-group-name /aws/lambda/BudgetTracket-AuthFunction-dev \</p>
-<p>--filter-pattern "ERROR" \</p>
-<p>--region ap-southeast-1</p>
-<h3>10.2 CloudWatch Metrics &amp; Alarms</h3>
-<h4>Bước 1: Create Alarm for Lambda Errors</h4>
-<p>CloudWatch → Alarms → Create alarm</p>
-<p>Metric: Lambda → Errors</p>
-<p>Function: BudgetTracket-AuthFunction-dev</p>
-<p>Statistic: Sum</p>
-<p>Period: 5 minutes</p>
-<p>Threshold: &gt;= 5</p>
-<p>Action: Send SNS notification</p>
-<p>Create alarm</p>
-<h4>Bước 2: Create Alarm for DynamoDB</h4>
-<p>Metric: DynamoDB → ConsumedWriteCapacityUnits</p>
-<p>Table: BudgetTracket-dev</p>
-<p>Threshold: &gt;= 80% of provisioned capacity</p>
-<p>Create alarm</p>
-<h3>10.3 WAF Monitoring</h3>
-<p>WAF &amp; Shield → Web ACLs → BudgetTracketWAF</p>
-<p>Monitoring tab</p>
-<p>View blocked requests by rule</p>
-<h3>10.4 Lambda Performance Insights</h3>
-<pre><code># Get Lambda invocation metrics</code></pre>
-<p>aws cloudwatch get-metric-statistics \</p>
-<p>--namespace AWS/Lambda \</p>
-<p>--metric-name Duration \</p>
-<p>--dimensions Name=FunctionName,Value=BudgetTracket-AuthFunction-dev \</p>
-<p>--start-time 2026-01-15T00:00:00Z \</p>
-<p>--end-time 2026-01-16T00:00:00Z \</p>
-<p>--period 3600 \</p>
-<p>--statistics Average,Maximum \</p>
-<p>--region ap-southeast-1</p>
-
+<h2 id="module-10">Module 10: Monitoring and Operations</h2>
+<p>Use CloudWatch logs, metrics, dashboards, and alarms to observe health, performance, cost, and operational failures.</p>
+<h3 id="objectives">Objectives</h3><ul><li>Complete the configuration safely in the shared AWS environment.</li><li>Record configuration values and verify access before moving to the next module.</li><li>Apply least privilege, encryption, and monitoring where relevant.</li></ul>
+<h3 id="implementation-steps">Implementation Steps</h3><ol><li>Review the module prerequisites and the target architecture.</li><li>Configure the AWS resources shown below.</li><li>Test the result and capture evidence for the workshop report.</li></ol>
+<h3 id="screenshots">Workshop Screenshots</h3><p><img src="../../images/workshop/63.png" alt="Module 10 workshop screenshot 64" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/64.png" alt="Module 10 workshop screenshot 65" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/65.png" alt="Module 10 workshop screenshot 66" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/66.png" alt="Module 10 workshop screenshot 67" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/67.png" alt="Module 10 workshop screenshot 68" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/68.png" alt="Module 10 workshop screenshot 69" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/69.png" alt="Module 10 workshop screenshot 70" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<h3 id="verification">Verification</h3><p>Confirm that the configured resource is available, protected by the intended permissions, and integrated with the components required by the next module.</p>
 
 <footer class=" footline" >
 	
@@ -1354,10 +1315,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../1-worklog/" title="Worklog"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../5.9-module9/" title="Module 9: End-to-End Testing"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../1-worklog/1.2-week2/" title="Week 2 Worklog" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../5.11-module11/" title="Module 11: Deployment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

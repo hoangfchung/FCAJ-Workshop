@@ -553,14 +553,14 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.7-module7/"
                 >
                   English
                 </option>
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.7-module7/"
                   selected
                 >
                   Tiếng Việt
@@ -671,38 +671,66 @@
         </div>
         
         <div id="body-inner">
-
 <h1 style="text-transform:uppercase; text-align:center;">Module 7: Authentication &amp; Edge Layer</h1>
-
-<p><em>Người phụ trách: Khiêm</em></p>
-<p><em>Thời gian: 1 tiếng</em></p>
-<h3>7.1 JWT Token Validation in Lambda</h3>
-<p>// BudgetTracket.Lambda/Middleware/AuthenticationMiddleware.cs</p>
-<p>public class AuthenticationMiddleware</p>
-<p>{</p>
-<p>private readonly ILogger&lt;AuthenticationMiddleware&gt; _logger;</p>
-<p>private readonly CognitoUserPool _userPool;</p>
-<p>public async Task&lt;bool&gt; ValidateTokenAsync(string token)</p>
-<p>{</p>
-<p>try</p>
-<p>{</p>
-<p>var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(token);</p>
-<p>// Validate expiration</p>
-<p>if (jwtToken.ValidTo &lt; DateTime.UtcNow)</p>
-<p>return false;</p>
-<p>// Extract userId from token</p>
-<p>var userId = jwtToken.Claims.FirstOrDefault(c =&gt; c.Type == "sub")?.Value;</p>
-<p>return !string.IsNullOrEmpty(userId);</p>
-<p>}</p>
-<p>catch (Exception ex)</p>
-<p>{</p>
-<p>_logger.LogError($"Token validation failed: {ex.Message}");</p>
-<p>return false;</p>
-<p>}</p>
-<p>}</p>
-<p>}</p>
-<h3>7.2 CloudFront + Lambda@Edge Setup</h3>
+<p>Thành viên: Khiêm</p>
+<h3 id="71-api-gateway-cognito-authorizer-configuration">7.1 API Gateway Cognito Authorizer Configuration</h3>
+<p>Mục đích: Protect all API endpoints — chỉ request với valid JWT từ Cognito mới được phép gọi Lambda.</p>
+<p>Note: JWT validation xảy ra ở API Gateway level (offload sang managed service), không trong Lambda code. Lambda chỉ đọc pre-validated claims từ request.RequestContext.Authorizer.Claims. Đây là idiomatic AWS pattern — đơn giản hơn manual validation.</p>
+<h4>Bước 1: Configure API Gateway Authorizer (AWS Console)</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-7-1.png" alt="Workshop module 7 screenshot 1" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p>AWS Console → API Gateway → Select BudgetTracketAPI</p>
+<p><img src="../../../images/workshop/workshop-docx/module-7-2.png" alt="Workshop module 7 screenshot 2" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p>Authorizers (left menu)</p>
+<p>Create Authorizer</p>
+<p>Name: CognitoAuthorizer</p>
+<p>Type: Cognito</p>
+<p>Cognito User Pool: Select từ Module 6 (tên pool: budget-tracket-dev)</p>
+<p>Token source: Authorization (client gửi Authorization: Bearer &lt;token&gt;)</p>
+<p>Token validation expression: (để trống, default là Authorization)</p>
+<p>Create Authorizer</p>
+<p>Copy Authorizer ARN: (sẽ dùng trong SAM template)</p>
+<h4>Bước 2: Attach Authorizer to API Resources</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-7-3.png" alt="Workshop module 7 screenshot 3" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p>Cho mỗi method trong API (POST, GET, PUT, DELETE):</p>
+<p>Click Resource → Method (e.g., GET /api/v1/transactions)</p>
+<p>Method Request</p>
+<p>Authorization: Select CognitoAuthorizer</p>
+<p>Save</p>
+<p>Hoặc (recommended): Config trong SAM template một lần cho tất cả methods.</p>
+<h4>Bước 3: SAM Template Configuration (Recommended)</h4>
+<p>File: infrastructure/template.yaml</p>
+<p><img src="../../../images/workshop/workshop-docx/module-7-4.png" alt="Workshop module 7 screenshot 4" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<h4>Bước 4: Lambda Code Pattern (Extract Claims)</h4>
+<pre><code>// BudgetTracket.Lambda/Functions/TransactionFunction.cs</code></pre>
+<p><img src="../../../images/workshop/workshop-docx/module-7-5.png" alt="Workshop module 7 screenshot 5" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p><img src="../../../images/workshop/workshop-docx/module-7-6.png" alt="Workshop module 7 screenshot 6" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p>Key points:</p>
+<p>request.RequestContext.Authorizer.Claims chứa JWT claims đã được validate</p>
+<p>sub = userId (Cognito subject identifier)</p>
+<p>email, name, v.v. từ Cognito user attributes</p>
+<p>Không cần manual JWT parsing/validation — API Gateway xử lý rồi</p>
+<h4>Bước 5: Test Authorizer</h4>
+<pre><code># Get JWT token (login via React app hoặc CLI)</code></pre>
+<pre><code>curl -X POST https://cognito-idp.ap-southeast-1.amazonaws.com/&lt;UserPoolId&gt;/token \</code></pre>
+<p>-H &quot;Content-Type: application/x-www-form-urlencoded&quot; \</p>
+<p>-d &quot;grant_type=password&amp;client_id=&lt;ClientId&gt;&amp;username=test@example.com&amp;password=Password123!&quot;</p>
+<pre><code># Extract access_token từ response</code></pre>
+<pre><code># Call API with token</code></pre>
+<pre><code>curl -X GET https://&lt;api-id&gt;.execute-api.ap-southeast-1.amazonaws.com/dev/api/v1/transactions \</code></pre>
+<p>-H &quot;Authorization: Bearer &lt;access_token&gt;&quot;</p>
+<pre><code># Expected: 200 OK với transaction list</code></pre>
+<pre><code># Without token hoặc invalid token: 401 Unauthorized</code></pre>
+<h4>Bước 6: Cross-Origin (CORS) with Authorizer</h4>
+<p>API Gateway → Resources → Select resource → Actions → Enable CORS</p>
+<p><img src="../../../images/workshop/workshop-docx/module-7-7.png" alt="Workshop module 7 screenshot 7" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p>Default 4XX and 5XX CORS headers: Check</p>
+<p>Access-Control-Allow-Headers: Content-Type,Authorization</p>
+<p>Enable CORS and replace existing CORS headers</p>
+<h3 id="72-cloudfront-lambdaedge-setup">7.2 CloudFront + Lambda@Edge Setup</h3>
+<p><img src="../../../images/workshop/workshop-docx/module-7-8.png" alt="Workshop module 7 screenshot 8" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <h4>Bước 1: AWS Console → CloudFront → Create distribution</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-7-9.png" alt="Workshop module 7 screenshot 9" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p><img src="../../../images/workshop/workshop-docx/module-7-10.png" alt="Workshop module 7 screenshot 10" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Origin:</p>
 <p>Origin domain: budget-tracket-frontend-dev.s3.ap-southeast-1.amazonaws.com</p>
 <p>S3 access: Origin access control (OAC)</p>
@@ -710,6 +738,7 @@
 <p>OAC name: BudgetTracketOAC</p>
 <p>Create</p>
 <h4>Bước 2: Behaviors</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-7-11.png" alt="Workshop module 7 screenshot 11" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Path pattern: /*</p>
 <p>Viewer protocol policy: Redirect HTTP to HTTPS</p>
 <p>Allowed HTTP methods: GET, HEAD</p>
@@ -721,33 +750,33 @@
 <h4>Bước 4: Create Distribution</h4>
 <p>Copy Distribution domain name: d123abc456.cloudfront.net</p>
 <h4>Bước 5: Update S3 Bucket Policy</h4>
-<p>{</p>
-<p>"Version": "2012-10-17",</p>
-<p>"Statement": [</p>
-<p>{</p>
-<p>"Sid": "AllowCloudFrontAccess",</p>
-<p>"Effect": "Allow",</p>
-<p>"Principal": {</p>
-<p>"Service": "cloudfront.amazonaws.com"</p>
-<p>},</p>
-<p>"Action": "s3:GetObject",</p>
-<p>"Resource": "arn:aws:s3:::budget-tracket-frontend-dev/*",</p>
-<p>"Condition": {</p>
-<p>"StringEquals": {</p>
-<p>"AWS:SourceArn": "arn:aws:cloudfront::&lt;account-id&gt;:distribution/&lt;DISTRIBUTION_ID&gt;"</p>
-<p>}</p>
-<p>}</p>
-<p>}</p>
+<pre><code>{</code></pre>
+<p>&quot;Version&quot;: &quot;2012-10-17&quot;,</p>
+<p>&quot;Statement&quot;: [</p>
+<pre><code>{</code></pre>
+<p>&quot;Sid&quot;: &quot;AllowCloudFrontAccess&quot;,</p>
+<p>&quot;Effect&quot;: &quot;Allow&quot;,</p>
+<p>&quot;Principal&quot;: {</p>
+<p>&quot;Service&quot;: &quot;cloudfront.amazonaws.com&quot;</p>
+<pre><code>},</code></pre>
+<p>&quot;Action&quot;: &quot;s3:GetObject&quot;,</p>
+<p>&quot;Resource&quot;: &quot;arn:aws:s3:::budget-tracket-frontend-dev/*&quot;,</p>
+<p>&quot;Condition&quot;: {</p>
+<p>&quot;StringEquals&quot;: {</p>
+<p>&quot;AWS:SourceArn&quot;: &quot;arn:aws:cloudfront::&lt;account-id&gt;:distribution/&lt;DISTRIBUTION_ID&gt;&quot;</p>
+<pre><code>}</code></pre>
+<pre><code>}</code></pre>
+<pre><code>}</code></pre>
 <p>]</p>
-<p>}</p>
-<h3>7.3 Update Route 53 A Record</h3>
+<pre><code>}</code></pre>
+<h3 id="73-update-route-53-a-record">7.3 Update Route 53 A Record</h3>
 <p>Route 53 → Hosted zones → budget-tracket.com → Create record</p>
 <p>Record name: app (hoặc root domain)</p>
 <p>Type: A</p>
 <p>Alias: Yes</p>
 <p>Route to: CloudFront distribution → select distribution from 7.2</p>
 <p>Create record</p>
-
+<p><img src="../../../images/workshop/workshop-docx/module-7-12.png" alt="Workshop module 7 screenshot 12" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 
 <footer class=" footline" >
 	

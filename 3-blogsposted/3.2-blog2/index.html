@@ -517,7 +517,12 @@
    
 </li>
     
-    </ul>
+    <li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li></ul>
 
      
     <section id="shortcuts">
@@ -553,7 +558,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/3-blogsposted/3.2-blog2/"
+                  value="/3-blogsposted/3.2-blog2/"
                   selected
                 >
                   English
@@ -561,7 +566,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/3-blogsposted/3.2-blog2/"
+                  value="/vi/3-blogsposted/3.2-blog2/"
                 >
                   Tiếng Việt
                 </option>
@@ -666,7 +671,7 @@
                 </div>
                 
                     <div class="progress">
-  <div class="wrapper"><nav id="TableOfContents"></nav></div>
+  <div class="wrapper"><nav id="TableOfContents"><ul><li><a href="#blog-2">Building Production-Ready AI Agents for Financial Compliance: Lessons from Stripe</a></li><li><a href="#key-takeaways">Key Takeaways</a></li><li><a href="#implementation-guide">Implementation Guide</a></li></ul></nav></div>
 </div>
 
                 
@@ -683,27 +688,12 @@
             <h1>
               Blog 2
             </h1>
-
-<div
-  class="notices warning"
-  
->
-  <p>⚠️ <strong>Note:</strong> The information below is for reference purposes only. Please <strong>do not copy verbatim</strong> for your report, including this warning.</p>
-
-</div>
-
-<h1 id="production-grade-ai-agents-for-financial-compliance">Production-Grade AI Agents for Financial Compliance: Lessons from Stripe</h1>
-<p>This blog explains how a multi-agent AI architecture can support regulatory workflows such as KYC and AML in financial services.</p>
-<ul>
-<li>Use multiple specialized agents instead of a single monolithic prompt.</li>
-<li>Implement RAG to compare extracted information with trusted compliance rules.</li>
-<li>Apply Human-in-the-loop to review low-confidence cases and reduce hallucinations.</li>
-<li>Protect sensitive data by keeping it within the AWS VPC and encrypting input/output.</li>
-</ul>
-<p>These practices help build AI systems that are accurate, auditable, and safe for production compliance use cases.</p>
-<p>Link: <a href="https://aws.amazon.com/vi/blogs/machine-learning/production-grade-ai-agents-for-financial-compliance-lessons-from-stripe/">AWS blog</a></p>
-
-
+<h2 id="blog-2">Building Production-Ready AI Agents for Financial Compliance: Lessons from Stripe</h2>
+<p><img src="../../images/blog/blog2.png" alt="Illustration for blog 2" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<p>A case study on using multi-agent architecture with Amazon Bedrock to automate financial-compliance work while keeping accuracy and security central.</p>
+<h3 id="key-takeaways">Key Takeaways</h3><ul><li>Separate specialized responsibilities such as document review, policy validation, and escalation.</li><li>Use clear agent boundaries and auditable handoffs for KYC and AML workflows.</li><li>Add human review for high-risk decisions and preserve an evidence trail.</li><li>Secure sensitive data with least-privilege access, encryption, and monitored integrations.</li></ul>
+<h3 id="implementation-guide">Implementation Guide</h3><ol><li>Map the compliance workflow and identify decisions that require human approval.</li><li>Define focused agents and structured inputs and outputs.</li><li>Add evaluation datasets, guardrails, and confidence thresholds.</li><li>Monitor outcomes and continuously improve prompts, tools, and policies.</li></ol>
+<p><strong>Source:</strong> <a href="https://aws.amazon.com/blogs/machine-learning/building-responsible-ai-agents-for-financial-services/">AWS article and documentation</a></p>
 
 <footer class=" footline" >
 	

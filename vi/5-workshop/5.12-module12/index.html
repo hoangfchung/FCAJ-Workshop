@@ -553,14 +553,14 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.12-module12/"
                 >
                   English
                 </option>
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.12-module12/"
                   selected
                 >
                   Tiếng Việt
@@ -671,58 +671,70 @@
         </div>
         
         <div id="body-inner">
-
 <h1 style="text-transform:uppercase; text-align:center;">Module 12: Resource Cleanup</h1>
-
-<p><em>Người phụ trách: Chung</em></p>
-<p><em>Thời gian: 30 phút</em></p>
-<h3>12.1 Delete CloudFormation Stack</h3>
-<pre><code># Delete SAM stack (deletes all AWS resources)</code></pre>
-<p>aws cloudformation delete-stack \</p>
+<p>Người phụ trách: Chung
+Thời gian: 30 phút</p>
+<h3 id="121-delete-cloudformation-stack">12.1 Delete CloudFormation Stack</h3>
+<p>- Delete SAM stack (deletes all AWS resources)</p>
+<pre><code>aws cloudformation delete-stack \</code></pre>
 <p>--stack-name budget-tracket-dev \</p>
 <p>--region ap-southeast-1</p>
-<pre><code># Wait for deletion</code></pre>
-<p>aws cloudformation wait stack-delete-complete \</p>
+<p>- Wait for deletion</p>
+<pre><code>aws cloudformation wait stack-delete-complete \</code></pre>
 <p>--stack-name budget-tracket-dev \</p>
 <p>--region ap-southeast-1</p>
-<h3>12.2 Manual Cleanup (if needed)</h3>
-<pre><code># Delete S3 buckets</code></pre>
-<p>aws s3 rb s3://budget-tracket-frontend-dev --force</p>
-<p>aws s3 rb s3://budget-tracket-receipts-dev --force</p>
-<pre><code># Delete DynamoDB table</code></pre>
-<p>aws dynamodb delete-table --table-name BudgetTracket-dev</p>
-<pre><code># Delete SNS topic</code></pre>
-<p>aws sns delete-topic --topic-arn arn:aws:sns:ap-southeast-1:&lt;account&gt;:budget-tracket-notifications-dev</p>
-<pre><code># Delete SQS queue</code></pre>
-<p>aws sqs delete-queue --queue-url https://sqs.ap-southeast-1.amazonaws.com/&lt;account&gt;/budget-tracket-notifications-dev</p>
-<pre><code># Delete CloudFront distribution</code></pre>
-<p>aws cloudfront delete-distribution --id &lt;DISTRIBUTION_ID&gt;</p>
-<pre><code># Delete Route 53 hosted zone</code></pre>
-<p>aws route53 delete-hosted-zone --id /hostedzone/&lt;ZONE_ID&gt;</p>
-<pre><code># Delete WAF</code></pre>
-<p>aws wafv2 delete-web-acl --name BudgetTracketWAF --scope REGIONAL --region ap-southeast-1</p>
-<p>Checklist — Verification</p>
+<h3 id="122-manual-cleanup-if-needed">12.2 Manual Cleanup (if needed)</h3>
+<p>- Delete S3 buckets</p>
+<pre><code>aws s3 rb s3://budget-tracket-frontend-dev --force</code></pre>
+<pre><code>aws s3 rb s3://budget-tracket-receipts-dev --force</code></pre>
+<p>- Delete DynamoDB table</p>
+<pre><code>aws dynamodb delete-table --table-name BudgetTracket-dev</code></pre>
+<p>- Delete SNS topic</p>
+<pre><code>aws sns delete-topic --topic-arn arn:aws:sns:ap-southeast-1:&lt;account&gt;:budget-tracket-notifications-dev</code></pre>
+<p>- Delete SQS queue</p>
+<pre><code>aws sqs delete-queue --queue-url https://sqs.ap-southeast-1.amazonaws.com/&lt;account&gt;/budget-tracket-notifications-dev</code></pre>
+<p>- Delete CloudFront distribution</p>
+<pre><code>aws cloudfront delete-distribution --id &lt;DISTRIBUTION_ID&gt;</code></pre>
+<p>- Delete Route 53 hosted zone</p>
+<pre><code>aws route53 delete-hosted-zone --id /hostedzone/&lt;ZONE_ID&gt;</code></pre>
+<p>- Delete WAF</p>
+<pre><code>aws wafv2 delete-web-acl --name BudgetTracketWAF --scope REGIONAL --region ap-southeast-1</code></pre>
+<h2 id="checklist-verification">Checklist — Verification</h2>
 <p>After each module, run these checks:</p>
-<p>Useful AWS CLI Commands</p>
+<h2 id="useful-aws-cli-commands">Useful AWS CLI Commands</h2>
 <pre><code># List all Lambda functions</code></pre>
-<p>aws lambda list-functions --region ap-southeast-1</p>
-<pre><code># Get Lambda function details</code></pre>
-<p>aws lambda get-function --function-name BudgetTracket-AuthFunction-dev</p>
-<pre><code># Invoke Lambda locally</code></pre>
-<p>aws lambda invoke --function-name BudgetTracket-AuthFunction-dev /tmp/output.json</p>
+<p><img src="../../../images/workshop/workshop-docx/module-12-1.png" alt="Workshop module 12 screenshot 1" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <pre><code># List all DynamoDB tables</code></pre>
-<p>aws dynamodb list-tables</p>
-<pre><code># Scan DynamoDB table</code></pre>
-<p>aws dynamodb scan --table-name BudgetTracket-dev</p>
+<p><img src="../../../images/workshop/workshop-docx/module-12-2.png" alt="Workshop module 12 screenshot 2" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <pre><code># List API Gateway APIs</code></pre>
-<p>aws apigateway get-rest-apis</p>
-<pre><code># Get S3 bucket contents</code></pre>
-<p>aws s3 ls s3://budget-tracket-frontend-dev/</p>
-<pre><code># Monitor CloudWatch logs (real-time)</code></pre>
-<p>aws logs tail /aws/lambda/BudgetTracket-AuthFunction-dev --follow</p>
-<p>Last Updated: 2026-07-05</p>
-<p>Workshop Status: Ready for implementation</p>
-
+<p><img src="../../../images/workshop/workshop-docx/module-12-3.png" alt="Workshop module 12 screenshot 3" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p>Last Updated: 2026-07-05
+Workshop Status: Ready for implementation</p>
+<p>References (Tài liệu tham khảo)</p>
+<p>AWS Serverless – AWS Documentation</p>
+<p>AWS Lambda – Giới thiệu</p>
+<p>Amazon API Gateway – Giới thiệu</p>
+<p>Amazon DynamoDB – Tổng quan</p>
+<p>Amazon Cognito – Giới thiệu</p>
+<p>Amazon CloudFront – Giới thiệu</p>
+<p>Amazon S3 – Giới thiệu</p>
+<p>Amazon Route 53 – Giới thiệu</p>
+<p>AWS WAF – Giới thiệu</p>
+<p>Amazon SNS – Giới thiệu</p>
+<p>Amazon SQS – Giới thiệu</p>
+<p>Amazon EventBridge – Giới thiệu</p>
+<p>Amazon CloudWatch – Giới thiệu</p>
+<p>AWS Secrets Manager – Giới thiệu</p>
+<p>DynamoDB Data Modeling – Single Table Design</p>
+<p>MDN HTTP Status Codes</p>
+<p>Auth0 – Phân biệt ID Token và Access Token</p>
+<p>OAuth Refresh Tokens</p>
+<p>AWS IAM Best Practices – Least Privilege</p>
+<p>Gemini API Developer Competition – FinanMe App</p>
+<p>Atlassian – Các loại kiểm thử phần mềm</p>
+<p>AWS Prescriptive Guidance – AWS SAM (IaC)</p>
+<p>AWS Compute Blog – Tối ưu chi phí serverless</p>
+<p>DynamoDB Global Tables – AWS Documentation</p>
 
 <footer class=" footline" >
 	

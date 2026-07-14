@@ -39,7 +39,7 @@
     
 
   </head>
-  <body class="" data-url="../../1-worklog/1.1-week1/">
+  <body class="" data-url="../../5-workshop/5.6-module6/">
     <nav
   id="sidebar"
   class="showVisitedLinks"
@@ -517,7 +517,12 @@
    
 </li>
     
-    </ul>
+    <li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li></ul>
 
      
     <section id="shortcuts">
@@ -553,7 +558,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.6-module6/"
                   selected
                 >
                   English
@@ -561,7 +566,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.6-module6/"
                 >
                   Tiếng Việt
                 </option>
@@ -671,187 +676,12 @@
         </div>
         
         <div id="body-inner">
-
-<h1 style="text-transform:uppercase; text-align:center;">Module 6: Frontend, Auth &amp; AI Integration</h1>
-
-<p><em>Người phụ trách: Công</em></p>
-<p><em>Thời gian: 2 tiếng</em></p>
-<h3>6.1 Amazon Cognito User Pool</h3>
-<h4>Bước 1: AWS Console → Cognito → User pools → Create user pool</h4>
-<p>Authentication providers:</p>
-<p>☑ Email</p>
-<p>☐ Username</p>
-<p>☐ Phone number</p>
-<p>Next</p>
-<h4>Bước 2: Password Policy</h4>
-<p>Password policy: CUSTOM</p>
-<p>Minimum length: 8</p>
-<p>Require uppercase: Yes</p>
-<p>Require lowercase: Yes</p>
-<p>Require numbers: Yes</p>
-<p>Require special characters: No</p>
-<p>Next</p>
-<h4>Bước 3: MFA &amp; Account Recovery</h4>
-<p>MFA: Optional</p>
-<p>Account recovery: Enable self-service recovery with email</p>
-<p>Next</p>
-<h4>Bước 4: Message Customization</h4>
-<p>Email verification message: "Your Budget Tracket verification code: {####}"</p>
-<p>Next</p>
-<h4>Bước 5: Tag (optional)</h4>
-<p>Add tags: Project=BudgetTracket, Env=dev</p>
-<p>Next</p>
-<h4>Bước 6: Review &amp; Create</h4>
-<p>User pool name: BudgetTracketUserPool</p>
-<p>Create user pool</p>
-<h4>Bước 7: Create App Client</h4>
-<p>App integration → App clients and analytics → Create app client</p>
-<p>App client name: BudgetTracketWeb</p>
-<p>Client type: Web application</p>
-<p>Authentication flows:</p>
-<p>☑ ALLOW_USER_PASSWORD_AUTH</p>
-<p>☑ ALLOW_REFRESH_TOKEN_AUTH</p>
-<p>☑ ALLOW_ADMIN_USER_PASSWORD_AUTH</p>
-<p>Advanced settings:</p>
-<p>Explicit auth flows enabled</p>
-<p>Create app client</p>
-<p>Copy values:</p>
-<p>User Pool ID: ap-southeast-1_xxxxxxxxx</p>
-<p>Client ID: xxxxxxxxxxxxxxxxx</p>
-<h3>6.2 React Frontend Setup</h3>
-<h4>Bước 1: Setup environment</h4>
-<p>cd frontend</p>
-<p>npm install</p>
-<pre><code># Create .env file</code></pre>
-<p>cat &gt; .env &lt;&lt; EOF</p>
-<p>VITE_API_BASE_URL=https://&lt;api-id&gt;.execute-api.ap-southeast-1.amazonaws.com/dev</p>
-<p>VITE_COGNITO_USER_POOL_ID=ap-southeast-1_xxxxxxxxx</p>
-<p>VITE_COGNITO_CLIENT_ID=xxxxxxxxxxxxxxxxx</p>
-<p>VITE_AWS_REGION=ap-southeast-1</p>
-<p>VITE_APP_ENV=development</p>
-<p>EOF</p>
-<h4>Bước 2: Install React Cognito Library</h4>
-<p>npm install amazon-cognito-identity-js</p>
-<h4>Bước 3: Create Cognito Auth Service</h4>
-<p>// src/services/authService.js</p>
-<p>import { CognitoUserPool, CognitoUser } from 'amazon-cognito-identity-js';</p>
-<p>const userPoolId = import.meta.env.VITE_COGNITO_USER_POOL_ID;</p>
-<p>const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;</p>
-<p>const userPool = new CognitoUserPool({</p>
-<p>UserPoolId: userPoolId,</p>
-<p>ClientId: clientId,</p>
-<p>});</p>
-<p>export const login = (email, password) =&gt; {</p>
-<p>return new Promise((resolve, reject) =&gt; {</p>
-<p>const user = new CognitoUser({ Username: email, Pool: userPool });</p>
-<p>user.authenticateUser(</p>
-<p>{ Username: email, Password: password },</p>
-<p>{</p>
-<p>onSuccess: (result) =&gt; resolve(result.getAccessToken().getJwtToken()),</p>
-<p>onFailure: (err) =&gt; reject(err.message),</p>
-<p>}</p>
-<p>);</p>
-<p>});</p>
-<p>};</p>
-<p>export const register = (email, password) =&gt; {</p>
-<p>return userPool.signUp(email, password, [], null, (err, result) =&gt; {</p>
-<p>if (err) return Promise.reject(err.message);</p>
-<p>return Promise.resolve('Verification email sent');</p>
-<p>});</p>
-<p>};</p>
-<h3>6.3 React Components Setup</h3>
-<p>Create Login Component:</p>
-<p>// src/pages/Login.jsx</p>
-<p>import { useState } from 'react';</p>
-<p>import { login } from '../services/authService';</p>
-<p>export default function Login() {</p>
-<p>const [email, setEmail] = useState('');</p>
-<p>const [password, setPassword] = useState('');</p>
-<p>const [error, setError] = useState('');</p>
-<p>const handleLogin = async (e) =&gt; {</p>
-<p>e.preventDefault();</p>
-<p>try {</p>
-<p>const token = await login(email, password);</p>
-<p>localStorage.setItem('jwtToken', token);</p>
-<p>window.location.href = '/dashboard';</p>
-<p>} catch (err) {</p>
-<p>setError(err);</p>
-<p>}</p>
-<p>};</p>
-<p>return (</p>
-<p>&lt;form onSubmit={handleLogin} className="p-6 border rounded-lg"&gt;</p>
-<p>&lt;h2 className="text-2xl font-bold mb-4"&gt;Login&lt;/h2&gt;</p>
-<p>{error &amp;&amp; &lt;p className="text-red-500 mb-4"&gt;{error}&lt;/p&gt;}</p>
-<p>&lt;input</p>
-<p>type="email"</p>
-<p>placeholder="Email"</p>
-<p>value={email}</p>
-<p>onChange={(e) =&gt; setEmail(e.target.value)}</p>
-<p>className="w-full p-2 border rounded mb-4"</p>
-<p>required</p>
-<p>/&gt;</p>
-<p>&lt;input</p>
-<p>type="password"</p>
-<p>placeholder="Password"</p>
-<p>value={password}</p>
-<p>onChange={(e) =&gt; setPassword(e.target.value)}</p>
-<p>className="w-full p-2 border rounded mb-4"</p>
-<p>required</p>
-<p>/&gt;</p>
-<p>&lt;button type="submit" className="w-full bg-indigo-600 text-white p-2 rounded"&gt;</p>
-<p>Login</p>
-<p>&lt;/button&gt;</p>
-<p>&lt;/form&gt;</p>
-<p>);</p>
-<p>}</p>
-<h3>6.4 AI Integration - Google Gemini API</h3>
-<h4>Bước 1: Get Gemini API Key</h4>
-<p>Visit: https://ai.google.dev/</p>
-<p>Get API Key</p>
-<p>Create new API key</p>
-<p>Copy key</p>
-<p>Save to Secrets Manager (Module 4.4)</p>
-<h4>Bước 2: Create AI Service (Backend C#)</h4>
-<p>// BudgetTracket.Core/Services/AiService.cs</p>
-<p>public class AiService</p>
-<p>{</p>
-<p>private readonly HttpClient _httpClient;</p>
-<p>private readonly string _geminiApiKey;</p>
-<p>private readonly string _geminiModel = "gemini-2.5-flash";</p>
-<p>public AiService(IHttpClientFactory httpClientFactory, IConfiguration config)</p>
-<p>{</p>
-<p>_httpClient = httpClientFactory.CreateClient();</p>
-<p>_geminiApiKey = config["GEMINI_API_KEY"];</p>
-<p>}</p>
-<p>public async Task&lt;string&gt; CategorizeTransactionAsync(string description)</p>
-<p>{</p>
-<p>var prompt = $@"Categorize this transaction: '{description}'</p>
-<p>Return ONLY one of: food, shopping, bills, entertainment, transport, health, education, other";</p>
-<p>var request = new</p>
-<p>{</p>
-<p>contents = new[] { new { parts = new[] { new { text = prompt } } } },</p>
-<p>generationConfig = new</p>
-<p>{</p>
-<p>maxOutputTokens = 10,</p>
-<p>responseMimeType = "text/plain"</p>
-<p>}</p>
-<p>};</p>
-<p>var response = await _httpClient.PostAsJsonAsync(</p>
-<p>$"https://generativelanguage.googleapis.com/v1beta/models/{_geminiModel}:generateContent?key={_geminiApiKey}",</p>
-<p>request</p>
-<p>);</p>
-<p>var content = await response.Content.ReadAsStringAsync();</p>
-<p>// Parse and return category</p>
-<p>return ExtractCategory(content);</p>
-<p>}</p>
-<p>}</p>
-<h3>6.5 Build &amp; Deploy Frontend</h3>
-<p>npm run build</p>
-<pre><code># Upload to S3</code></pre>
-<p>aws s3 sync dist/ s3://budget-tracket-frontend-dev/ --delete</p>
-<pre><code># Invalidate CloudFront (tạo ở bước sau)</code></pre>
-<p>aws cloudfront create-invalidation --distribution-id &lt;DISTRIBUTION_ID&gt; --paths "/*"</p>
-
+<h2 id="module-6">Module 6: Frontend, Authentication, and AI Integration</h2>
+<p>Connect the React interface to Cognito authentication, API Gateway endpoints, and Gemini AI capabilities for categorization and advice.</p>
+<h3 id="objectives">Objectives</h3><ul><li>Complete the configuration safely in the shared AWS environment.</li><li>Record configuration values and verify access before moving to the next module.</li><li>Apply least privilege, encryption, and monitoring where relevant.</li></ul>
+<h3 id="implementation-steps">Implementation Steps</h3><ol><li>Review the module prerequisites and the target architecture.</li><li>Configure the AWS resources shown below.</li><li>Test the result and capture evidence for the workshop report.</li></ol>
+<h3 id="screenshots">Workshop Screenshots</h3><p><img src="../../images/workshop/35.png" alt="Module 6 workshop screenshot 36" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/36.png" alt="Module 6 workshop screenshot 37" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/37.png" alt="Module 6 workshop screenshot 38" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/38.png" alt="Module 6 workshop screenshot 39" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/39.png" alt="Module 6 workshop screenshot 40" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/40.png" alt="Module 6 workshop screenshot 41" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/41.png" alt="Module 6 workshop screenshot 42" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<h3 id="verification">Verification</h3><p>Confirm that the configured resource is available, protected by the intended permissions, and integrated with the components required by the next module.</p>
 
 <footer class=" footline" >
 	
@@ -1485,10 +1315,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../1-worklog/" title="Worklog"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../5.5-module5/" title="Module 5: Backend Core: Lambda and API"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../1-worklog/1.2-week2/" title="Week 2 Worklog" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../5.7-module7/" title="Module 7: Authentication and Edge Layer" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

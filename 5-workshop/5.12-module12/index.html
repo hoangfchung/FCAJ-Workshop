@@ -39,7 +39,7 @@
     
 
   </head>
-  <body class="" data-url="../../1-worklog/1.1-week1/">
+  <body class="" data-url="../../5-workshop/5.12-module12/">
     <nav
   id="sidebar"
   class="showVisitedLinks"
@@ -517,7 +517,12 @@
    
 </li>
     
-    </ul>
+    <li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li></ul>
 
      
     <section id="shortcuts">
@@ -553,7 +558,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.12-module12/"
                   selected
                 >
                   English
@@ -561,7 +566,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.12-module12/"
                 >
                   Tiếng Việt
                 </option>
@@ -671,58 +676,12 @@
         </div>
         
         <div id="body-inner">
-
-<h1 style="text-transform:uppercase; text-align:center;">Module 12: Resource Cleanup</h1>
-
-<p><em>Người phụ trách: Chung</em></p>
-<p><em>Thời gian: 30 phút</em></p>
-<h3>12.1 Delete CloudFormation Stack</h3>
-<pre><code># Delete SAM stack (deletes all AWS resources)</code></pre>
-<p>aws cloudformation delete-stack \</p>
-<p>--stack-name budget-tracket-dev \</p>
-<p>--region ap-southeast-1</p>
-<pre><code># Wait for deletion</code></pre>
-<p>aws cloudformation wait stack-delete-complete \</p>
-<p>--stack-name budget-tracket-dev \</p>
-<p>--region ap-southeast-1</p>
-<h3>12.2 Manual Cleanup (if needed)</h3>
-<pre><code># Delete S3 buckets</code></pre>
-<p>aws s3 rb s3://budget-tracket-frontend-dev --force</p>
-<p>aws s3 rb s3://budget-tracket-receipts-dev --force</p>
-<pre><code># Delete DynamoDB table</code></pre>
-<p>aws dynamodb delete-table --table-name BudgetTracket-dev</p>
-<pre><code># Delete SNS topic</code></pre>
-<p>aws sns delete-topic --topic-arn arn:aws:sns:ap-southeast-1:&lt;account&gt;:budget-tracket-notifications-dev</p>
-<pre><code># Delete SQS queue</code></pre>
-<p>aws sqs delete-queue --queue-url https://sqs.ap-southeast-1.amazonaws.com/&lt;account&gt;/budget-tracket-notifications-dev</p>
-<pre><code># Delete CloudFront distribution</code></pre>
-<p>aws cloudfront delete-distribution --id &lt;DISTRIBUTION_ID&gt;</p>
-<pre><code># Delete Route 53 hosted zone</code></pre>
-<p>aws route53 delete-hosted-zone --id /hostedzone/&lt;ZONE_ID&gt;</p>
-<pre><code># Delete WAF</code></pre>
-<p>aws wafv2 delete-web-acl --name BudgetTracketWAF --scope REGIONAL --region ap-southeast-1</p>
-<p>Checklist — Verification</p>
-<p>After each module, run these checks:</p>
-<p>Useful AWS CLI Commands</p>
-<pre><code># List all Lambda functions</code></pre>
-<p>aws lambda list-functions --region ap-southeast-1</p>
-<pre><code># Get Lambda function details</code></pre>
-<p>aws lambda get-function --function-name BudgetTracket-AuthFunction-dev</p>
-<pre><code># Invoke Lambda locally</code></pre>
-<p>aws lambda invoke --function-name BudgetTracket-AuthFunction-dev /tmp/output.json</p>
-<pre><code># List all DynamoDB tables</code></pre>
-<p>aws dynamodb list-tables</p>
-<pre><code># Scan DynamoDB table</code></pre>
-<p>aws dynamodb scan --table-name BudgetTracket-dev</p>
-<pre><code># List API Gateway APIs</code></pre>
-<p>aws apigateway get-rest-apis</p>
-<pre><code># Get S3 bucket contents</code></pre>
-<p>aws s3 ls s3://budget-tracket-frontend-dev/</p>
-<pre><code># Monitor CloudWatch logs (real-time)</code></pre>
-<p>aws logs tail /aws/lambda/BudgetTracket-AuthFunction-dev --follow</p>
-<p>Last Updated: 2026-07-05</p>
-<p>Workshop Status: Ready for implementation</p>
-
+<h2 id="module-12">Module 12: Resource Cleanup</h2>
+<p>Remove temporary resources, revoke unused credentials, review retained data, and confirm that no unnecessary charges remain.</p>
+<h3 id="objectives">Objectives</h3><ul><li>Complete the configuration safely in the shared AWS environment.</li><li>Record configuration values and verify access before moving to the next module.</li><li>Apply least privilege, encryption, and monitoring where relevant.</li></ul>
+<h3 id="implementation-steps">Implementation Steps</h3><ol><li>Review the module prerequisites and the target architecture.</li><li>Configure the AWS resources shown below.</li><li>Test the result and capture evidence for the workshop report.</li></ol>
+<h3 id="screenshots">Workshop Screenshots</h3><p><img src="../../images/workshop/77.png" alt="Module 12 workshop screenshot 78" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/78.png" alt="Module 12 workshop screenshot 79" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/79.png" alt="Module 12 workshop screenshot 80" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/80.png" alt="Module 12 workshop screenshot 81" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/81.png" alt="Module 12 workshop screenshot 82" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/82.png" alt="Module 12 workshop screenshot 83" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/83.png" alt="Module 12 workshop screenshot 84" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/84.png" alt="Module 12 workshop screenshot 85" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/85.png" alt="Module 12 workshop screenshot 86" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/86.png" alt="Module 12 workshop screenshot 87" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/87.png" alt="Module 12 workshop screenshot 88" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/88.png" alt="Module 12 workshop screenshot 89" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/89.png" alt="Module 12 workshop screenshot 90" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/90.png" alt="Module 12 workshop screenshot 91" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/91.png" alt="Module 12 workshop screenshot 92" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/92.png" alt="Module 12 workshop screenshot 93" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<h3 id="verification">Verification</h3><p>Confirm that the configured resource is available, protected by the intended permissions, and integrated with the components required by the next module.</p>
 
 <footer class=" footline" >
 	
@@ -1356,10 +1315,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../1-worklog/" title="Worklog"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../5.11-module11/" title="Module 11: Deployment"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../1-worklog/1.2-week2/" title="Week 2 Worklog" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../../6-self-evaluation/" title="Self Evaluation" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

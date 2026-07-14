@@ -39,7 +39,7 @@
     
 
   </head>
-  <body class="" data-url="../../1-worklog/1.1-week1/">
+  <body class="" data-url="../../5-workshop/5.3-module3/">
     <nav
   id="sidebar"
   class="showVisitedLinks"
@@ -517,7 +517,12 @@
    
 </li>
     
-    </ul>
+    <li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li></ul>
 
      
     <section id="shortcuts">
@@ -553,7 +558,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.3-module3/"
                   selected
                 >
                   English
@@ -561,7 +566,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.3-module3/"
                 >
                   Tiếng Việt
                 </option>
@@ -671,109 +676,12 @@
         </div>
         
         <div id="body-inner">
-
-<h1 style="text-transform:uppercase; text-align:center;">Module 3: IAM, Infrastructure Foundation</h1>
-
-<p><em>Người phụ trách: Chung</em></p>
-<p><em>Thời gian: 1 tiếng</em></p>
-<h3>3.1 Create IAM Roles &amp; Policies</h3>
-<h4>Bước 1: Lambda Execution Role</h4>
-<p>AWS Console → IAM → Roles → Create role</p>
-<p>Select trusted entity: AWS service</p>
-<p>Use case: Lambda</p>
-<p>Click Lambda</p>
-<p>Next</p>
-<h4>Bước 2: Thêm Permissions</h4>
-<p>Attach policies:</p>
-<p>AWSLambdaBasicExecutionRole (CloudWatch Logs)</p>
-<p>AmazonDynamoDBFullAccess</p>
-<p>AmazonS3FullAccess</p>
-<p>AmazonSNSFullAccess</p>
-<p>AmazonSQSFullAccess</p>
-<p>SecretsManagerReadWrite</p>
-<p>Next</p>
-<p>Role name: BudgetTracketLambdaRole</p>
-<p>Create role</p>
-<p>Copy ARN: arn:aws:iam::&lt;account-id&gt;:role/BudgetTracketLambdaRole (dùng cho Module 5)</p>
-<h4>Bước 3: API Gateway Invocation Policy (Add inline policy)</h4>
-<p>Add permissions → Create inline policy</p>
-<p>Policy editor: JSON</p>
-<p>{</p>
-<p>"Version": "2012-10-17",</p>
-<p>"Statement": [</p>
-<p>{</p>
-<p>"Effect": "Allow",</p>
-<p>"Action": [</p>
-<p>"apigateway:*"</p>
-<p>],</p>
-<p>"Resource": "arn:aws:apigateway:ap-southeast-1::/restapis/*"</p>
-<p>}</p>
-<p>]</p>
-<p>}</p>
-<p>Review policy</p>
-<p>Policy name: LambdaApiGatewayInvoke</p>
-<p>Create policy</p>
-<h4>Bước 4: Cognito Service Role</h4>
-<p>AWS Console → IAM → Roles → Create role</p>
-<p>Select trusted entity: AWS service</p>
-<p>Use case: Cognito</p>
-<p>Next</p>
-<p>Attach policies: AmazonCognitoPowerUser</p>
-<p>Role name: BudgetTracketCognitoRole</p>
-<p>Create role</p>
-<h3>3.2 Route 53 - DNS Setup</h3>
-<h4>Bước 1: AWS Console → Route 53 → Hosted zones</h4>
-<p>Create hosted zone</p>
-<p>Domain name: budget-tracket.com (hoặc domain của bạn)</p>
-<p>Type: Public</p>
-<p>Create hosted zone</p>
-<h4>Bước 2: Copy nameservers</h4>
-<p>Hosted zone vừa tạo</p>
-<p>Tab Nameservers</p>
-<p>Copy 4 nameserver records</p>
-<p>Update ở domain registrar (Namecheap, GoDaddy, v.v.)</p>
-<h4>Bước 3: Create A Record (cho CloudFront)</h4>
-<p>Create record</p>
-<p>Record name: api (subdomain)</p>
-<p>Type: A</p>
-<p>Alias: Yes</p>
-<p>Route to: CloudFront distribution (sẽ tạo ở Module 6)</p>
-<p>Create record</p>
-<p>Note: Tạm để trống, quay lại sau khi có CloudFront distribution</p>
-<h3>3.3 WAFv2 Setup</h3>
-<h4>Bước 1: AWS Console → WAF &amp; Shield → Web ACLs</h4>
-<p>Create web ACL</p>
-<p>Name: BudgetTracketWAF</p>
-<p>Resource type: API Gateway + CloudFront</p>
-<p>Region: us-east-1 (cho CloudFront) / ap-southeast-1 (cho API Gateway)</p>
-<p>Next</p>
-<h4>Bước 2: Add Rules</h4>
-<p>Rule 1: SQL Injection Protection</p>
-<p>Add rule → AWS managed rule</p>
-<p>Select rule: AWSManagedRulesSQLiRuleSet</p>
-<p>Action: Block</p>
-<p>Add rule</p>
-<p>Rule 2: XSS Protection</p>
-<p>Add rule → AWS managed rule</p>
-<p>Select rule: AWSManagedRulesKnownBadInputsRuleSet</p>
-<p>Action: Block</p>
-<p>Add rule</p>
-<p>Rule 3: Rate Limiting (on /auth/login)</p>
-<p>Add rule → Create custom rule</p>
-<p>Name: RateLimitLoginAttempts</p>
-<p>Type: Rate-based rule</p>
-<p>Rate limit: 10 requests per 5 minutes</p>
-<p>Scope: Single IP</p>
-<p>Action: Block</p>
-<p>Condition: Match /auth/login path</p>
-<p>Add rule</p>
-<h4>Bước 3: Set Default Action</h4>
-<p>Default action: Allow</p>
-<p>Create web ACL</p>
-<h4>Bước 4: Associate with Resources (sau khi tạo API Gateway &amp; CloudFront)</h4>
-<p>Associated resources → Add resources</p>
-<p>Select API Gateway &amp; CloudFront distribution</p>
-
+<h2 id="module-3">Module 3: IAM and Infrastructure Foundation</h2>
+<p>Create least-privilege IAM policies and establish Route 53, AWS WAF, and the foundational network and security configuration.</p>
+<h3 id="objectives">Objectives</h3><ul><li>Complete the configuration safely in the shared AWS environment.</li><li>Record configuration values and verify access before moving to the next module.</li><li>Apply least privilege, encryption, and monitoring where relevant.</li></ul>
+<h3 id="implementation-steps">Implementation Steps</h3><ol><li>Review the module prerequisites and the target architecture.</li><li>Configure the AWS resources shown below.</li><li>Test the result and capture evidence for the workshop report.</li></ol>
+<h3 id="screenshots">Workshop Screenshots</h3><p><img src="../../images/workshop/14.png" alt="Module 3 workshop screenshot 15" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/15.png" alt="Module 3 workshop screenshot 16" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/16.png" alt="Module 3 workshop screenshot 17" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/17.png" alt="Module 3 workshop screenshot 18" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/18.png" alt="Module 3 workshop screenshot 19" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/19.png" alt="Module 3 workshop screenshot 20" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/20.png" alt="Module 3 workshop screenshot 21" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<h3 id="verification">Verification</h3><p>Confirm that the configured resource is available, protected by the intended permissions, and integrated with the components required by the next module.</p>
 
 <footer class=" footline" >
 	
@@ -1407,10 +1315,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../1-worklog/" title="Worklog"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../5.2-module2/" title="Module 2: Shared Prerequisites"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../1-worklog/1.2-week2/" title="Week 2 Worklog" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../5.4-module4/" title="Module 4: Database and Data Layer" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

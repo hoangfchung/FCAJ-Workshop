@@ -553,14 +553,14 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.2-module2/"
                 >
                   English
                 </option>
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.2-module2/"
                   selected
                 >
                   Tiếng Việt
@@ -671,65 +671,47 @@
         </div>
         
         <div id="body-inner">
-
-<h1 style="text-transform:uppercase; text-align:center;">Module 2: Prerequisites</h1>
-
-<p><em>Người phụ trách: Tất cả</em></p>
-<p><em>Thời gian: 30 phút</em></p>
-<h3>2.1 AWS Account Setup</h3>
+<h1 style="text-transform:uppercase; text-align:center;">Module 2: Shared Prerequisites</h1>
+<h2 id="setup-chung-cho-tất-cả-thành-viên-nhóm">Setup Chung cho tất cả thành viên nhóm</h2>
+<h3 id="21-aws-account-setup">2.1 AWS Account Setup</h3>
 <h4>Bước 1: Truy cập AWS Console</h4>
 <p>URL: https://console.aws.amazon.com/</p>
 <p>Đăng nhập bằng AWS account</p>
 <p>Chọn Region: ap-southeast-1 (Singapore)</p>
-<h4>Bước 2: Tạo IAM User cho development (nếu chưa có)</h4>
+<h4>Bước 2: Tạo IAM User cho development</h4>
+<p><img src="../../../images/workshop/workshop-docx/module-2-1.png" alt="Workshop module 2 screenshot 1" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Vào IAM → Users → Create user</p>
+<p><img src="../../../images/workshop/workshop-docx/module-2-2.png" alt="Workshop module 2 screenshot 2" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>User name: budget-tracket-dev</p>
-<p>Enable: Provide user access to AWS Management Console</p>
-<p>Set password: Auto-generate hoặc tự đặt</p>
-<p>Next</p>
+<p><img src="../../../images/workshop/workshop-docx/module-2-3.png" alt="Workshop module 2 screenshot 3" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <h4>Bước 3: Gán quyền cho IAM User</h4>
-<p>Attach policies directly:</p>
-<p>AdministratorAccess (chỉ cho dev, production phải more restrictive)</p>
-<p>Hoặc tạo policy tùy chỉnh (xem Module 3)</p>
-<p>Create user</p>
+<p><img src="../../../images/workshop/workshop-docx/module-2-4.png" alt="Workshop module 2 screenshot 4" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <h4>Bước 4: Tạo Access Keys</h4>
-<p>Click vào user vừa tạo</p>
-<p>Security credentials tab</p>
-<p>Create access key</p>
-<p>Use case: CLI</p>
+<p><img src="../../../images/workshop/workshop-docx/module-2-5.png" alt="Workshop module 2 screenshot 5" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p><img src="../../../images/workshop/workshop-docx/module-2-6.png" alt="Workshop module 2 screenshot 6" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<p><img src="../../../images/workshop/workshop-docx/module-2-7.png" alt="Workshop module 2 screenshot 7" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
 <p>Copy: Access Key ID &amp; Secret Access Key</p>
-<h3>2.2 Local Development Tools</h3>
+<h3 id="22-local-development-tools">2.2 Local Development Tools</h3>
 <p>Cài đặt:</p>
-<pre><code># Node.js v18+</code></pre>
-<p>node --version</p>
-<p>npm --version</p>
-<pre><code># .NET 8 SDK</code></pre>
-<p>dotnet --version</p>
-<pre><code># AWS CLI</code></pre>
-<p>aws --version</p>
-<pre><code># AWS SAM CLI</code></pre>
-<p>sam --version</p>
-<pre><code># Docker (cho DynamoDB Local)</code></pre>
-<p>docker --version</p>
-<h3>2.3 Configure AWS CLI</h3>
-<p>aws configure</p>
-<pre><code># AWS Access Key ID: &lt;paste từ bước 2.4&gt;</code></pre>
-<pre><code># AWS Secret Access Key: &lt;paste từ bước 2.4&gt;</code></pre>
-<pre><code># Default region: ap-southeast-1</code></pre>
-<pre><code># Default output format: json</code></pre>
+<p><img src="../../../images/workshop/workshop-docx/module-2-8.png" alt="Workshop module 2 screenshot 8" style="max-width:100%; height:auto; margin:1rem 0; border:1px solid #ddd; border-radius:4px;"></p>
+<h3 id="23-configure-aws-cli">2.3 Configure AWS CLI</h3>
+<pre><code>aws configure</code></pre>
+<p>AWS Access Key ID: &lt;paste từ bước 2.4&gt;</p>
+<p>AWS Secret Access Key: &lt;paste từ bước 2.4&gt;</p>
+<p>Default region: ap-southeast-1</p>
+<p>Default output format: json</p>
 <p>Verify:</p>
-<p>aws sts get-caller-identity</p>
-<pre><code># Output: UserId, Account, Arn</code></pre>
-<h3>2.4 Clone Repository</h3>
-<p>git clone https://github.com/&lt;your-org&gt;/budget-tracket.git</p>
-<p>cd budget-tracket</p>
-<pre><code># Verify folder structure</code></pre>
-<p>ls -la</p>
-<pre><code># ├── frontend/</code></pre>
-<pre><code># ├── backend/</code></pre>
-<pre><code># ├── infrastructure/</code></pre>
-<pre><code># └── CLAUDE.md</code></pre>
-
+<pre><code>aws sts get-caller-identity</code></pre>
+<p>Output: UserId, Account, Arn</p>
+<h3 id="24-clone-repository">2.4 Clone Repository</h3>
+<pre><code>git clone https://github.com/giakhiem2902/budget-tracket.git</code></pre>
+<pre><code>cd budget-tracket</code></pre>
+<p>Verify folder structure</p>
+<pre><code>ls -la</code></pre>
+<p>├── frontend/</p>
+<p>├── backend/</p>
+<p>├── infrastructure/</p>
+<p>└── CLAUDE.md</p>
 
 <footer class=" footline" >
 	

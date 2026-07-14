@@ -39,7 +39,7 @@
     
 
   </head>
-  <body class="" data-url="../../1-worklog/1.1-week1/">
+  <body class="" data-url="../../5-workshop/5.2-module2/">
     <nav
   id="sidebar"
   class="showVisitedLinks"
@@ -517,7 +517,12 @@
    
 </li>
     
-    </ul>
+    <li data-nav-id="/8-website/" title="Website" class="dd-item">
+  <a href="../../8-website/">
+     <b> 8. </b> Website
+    <i class="fas fa-check read-icon"></i>
+  </a>
+</li></ul>
 
      
     <section id="shortcuts">
@@ -553,7 +558,7 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/1-worklog/1.1-week1/"
+                  value="/5-workshop/5.2-module2/"
                   selected
                 >
                   English
@@ -561,7 +566,7 @@
                             
                 <option
                   id="vi"
-                  value="http://localhost:1313/vi/1-worklog/1.1-week1/"
+                  value="/vi/5-workshop/5.2-module2/"
                 >
                   Tiếng Việt
                 </option>
@@ -671,65 +676,12 @@
         </div>
         
         <div id="body-inner">
-
-<h1 style="text-transform:uppercase; text-align:center;">Module 2: Prerequisites</h1>
-
-<p><em>Người phụ trách: Tất cả</em></p>
-<p><em>Thời gian: 30 phút</em></p>
-<h3>2.1 AWS Account Setup</h3>
-<h4>Bước 1: Truy cập AWS Console</h4>
-<p>URL: https://console.aws.amazon.com/</p>
-<p>Đăng nhập bằng AWS account</p>
-<p>Chọn Region: ap-southeast-1 (Singapore)</p>
-<h4>Bước 2: Tạo IAM User cho development (nếu chưa có)</h4>
-<p>Vào IAM → Users → Create user</p>
-<p>User name: budget-tracket-dev</p>
-<p>Enable: Provide user access to AWS Management Console</p>
-<p>Set password: Auto-generate hoặc tự đặt</p>
-<p>Next</p>
-<h4>Bước 3: Gán quyền cho IAM User</h4>
-<p>Attach policies directly:</p>
-<p>AdministratorAccess (chỉ cho dev, production phải more restrictive)</p>
-<p>Hoặc tạo policy tùy chỉnh (xem Module 3)</p>
-<p>Create user</p>
-<h4>Bước 4: Tạo Access Keys</h4>
-<p>Click vào user vừa tạo</p>
-<p>Security credentials tab</p>
-<p>Create access key</p>
-<p>Use case: CLI</p>
-<p>Copy: Access Key ID &amp; Secret Access Key</p>
-<h3>2.2 Local Development Tools</h3>
-<p>Cài đặt:</p>
-<pre><code># Node.js v18+</code></pre>
-<p>node --version</p>
-<p>npm --version</p>
-<pre><code># .NET 8 SDK</code></pre>
-<p>dotnet --version</p>
-<pre><code># AWS CLI</code></pre>
-<p>aws --version</p>
-<pre><code># AWS SAM CLI</code></pre>
-<p>sam --version</p>
-<pre><code># Docker (cho DynamoDB Local)</code></pre>
-<p>docker --version</p>
-<h3>2.3 Configure AWS CLI</h3>
-<p>aws configure</p>
-<pre><code># AWS Access Key ID: &lt;paste từ bước 2.4&gt;</code></pre>
-<pre><code># AWS Secret Access Key: &lt;paste từ bước 2.4&gt;</code></pre>
-<pre><code># Default region: ap-southeast-1</code></pre>
-<pre><code># Default output format: json</code></pre>
-<p>Verify:</p>
-<p>aws sts get-caller-identity</p>
-<pre><code># Output: UserId, Account, Arn</code></pre>
-<h3>2.4 Clone Repository</h3>
-<p>git clone https://github.com/&lt;your-org&gt;/budget-tracket.git</p>
-<p>cd budget-tracket</p>
-<pre><code># Verify folder structure</code></pre>
-<p>ls -la</p>
-<pre><code># ├── frontend/</code></pre>
-<pre><code># ├── backend/</code></pre>
-<pre><code># ├── infrastructure/</code></pre>
-<pre><code># └── CLAUDE.md</code></pre>
-
+<h2 id="module-2">Module 2: Shared Prerequisites</h2>
+<p>Prepare the shared AWS account, IAM users, access keys, AWS CLI, development tools, and the Singapore region before implementation.</p>
+<h3 id="objectives">Objectives</h3><ul><li>Complete the configuration safely in the shared AWS environment.</li><li>Record configuration values and verify access before moving to the next module.</li><li>Apply least privilege, encryption, and monitoring where relevant.</li></ul>
+<h3 id="implementation-steps">Implementation Steps</h3><ol><li>Review the module prerequisites and the target architecture.</li><li>Configure the AWS resources shown below.</li><li>Test the result and capture evidence for the workshop report.</li></ol>
+<h3 id="screenshots">Workshop Screenshots</h3><p><img src="../../images/workshop/7.png" alt="Module 2 workshop screenshot 8" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/8.png" alt="Module 2 workshop screenshot 9" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/9.png" alt="Module 2 workshop screenshot 10" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/10.png" alt="Module 2 workshop screenshot 11" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/11.png" alt="Module 2 workshop screenshot 12" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/12.png" alt="Module 2 workshop screenshot 13" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p><p><img src="../../images/workshop/13.png" alt="Module 2 workshop screenshot 14" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
+<h3 id="verification">Verification</h3><p>Confirm that the configured resource is available, protected by the intended permissions, and integrated with the components required by the next module.</p>
 
 <footer class=" footline" >
 	
@@ -1363,10 +1315,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../1-worklog/" title="Worklog"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../5.1-module1/" title="Module 1: Introduction"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../1-worklog/1.2-week2/" title="Week 2 Worklog" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../5.3-module3/" title="Module 3: IAM and Infrastructure Foundation" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
