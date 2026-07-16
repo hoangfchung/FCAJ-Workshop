@@ -677,29 +677,55 @@
             <h1>
               Workshop
             </h1>
-<h1 id="budget-tracket-workshop">Budget Tracket Workshop — AWS Console Implementation Guide</h1>
-<h3 id="overview">Overview</h3>
-<p>Budget Tracket là nền tảng quản lý tài chính cá nhân xây dựng trên AWS serverless (React + C# .NET 8 Lambda + DynamoDB), tích hợp AI phân loại giao dịch / chatbot tư vấn tài chính qua Google Gemini API (gemini-2.5-flash). Request từ React frontend → API Gateway (JWT qua Cognito Authorizer) → Lambda xử lý nghiệp vụ → DynamoDB/S3 lưu dữ liệu, có pipeline thông báo qua SNS + SQS + EventBridge gửi email cho user.</p>
-<h3 id="team-assignment">Phân công 4 thành viên — 1 account chung</h3>
-<div style="overflow-x:auto"><table><tbody><tr><th>Thành viên</th><th>Khối</th><th>Mục workshop</th></tr><tr><td>Chung</td><td>IAM + Route 53 + WAFv2 (Infrastructure Foundation)</td><td>3</td></tr><tr><td>Khiêm</td><td>DynamoDB + Secrets Manager + S3 (Database &amp; Data layer) + Cognito Auth &amp; Edge</td><td>4, 7</td></tr><tr><td>Huy</td><td>API Gateway + Lambda Core (Transaction/Budget/Report) + Notifications (SNS/SQS/EventBridge)</td><td>5, 8</td></tr><tr><td>Công</td><td>React Frontend + Cognito login flow + Gemini AI integration</td><td>6</td></tr></tbody></table></div>
-<p><em>(Modules 1, 2, 9, 10 — Introduction, Prerequisites, Testing, Monitoring — thực hiện chung cả nhóm)</em></p>
-<h3 id="production-flow">Luồng production</h3>
-<pre><code>Client Browser
-↓
-CloudFront (WAF) → S3 (React static site)
-↓
-API Gateway (Cognito JWT Authorizer + WAF)
-↓
-AWS Lambda
-├─ TransactionFunction / BudgetFunction / ReportFunction → DynamoDB
-├─ ProfileFunction → DynamoDB (+ SNS subscribe for email)
-├─ AiFunction → Google Gemini API (categorize / insights / chat)
-├─ NotificationFunction (SQS-triggered) → SNS → User email
-└─ MonthlySummaryFunction (EventBridge cron, 1st/month) → SQS → SNS
-↓
-CloudWatch (logs, metrics, alarms on all functions)</code></pre>
-<h3 id="workshop-modules">Workshop modules</h3>
-<ol>
+<h2 id="overview">Overview</h2>
+<p><strong>Budget Tracker Website:</strong> <a href="https://d3ja9nvtyjzo9o.cloudfront.net/" target="_blank" rel="noopener">https://d3ja9nvtyjzo9o.cloudfront.net/</a></p>
+<p>Chào mừng bạn đến với tài liệu Workshop triển khai ứng dụng quản lý tài chính cá nhân <strong>Budget Tracker</strong>. Trong chuỗi bài thực hành này, chúng ta sẽ từng bước xây dựng một hệ thống hoàn chỉnh ứng dụng kiến trúc <strong>AWS Serverless</strong> và <strong>Event-driven Architecture</strong>.</p>
+<p>Ứng dụng hướng đến cung cấp giải pháp quản lý chi tiêu cá nhân linh hoạt, tích hợp khả năng tự động phân loại giao dịch bằng trí tuệ nhân tạo (Google Gemini) và hệ thống thông báo đa kênh, đồng thời tối ưu hóa chi phí vận hành ở mức thấp nhất nhờ sức mạnh của điện toán đám mây.</p>
+<h2 id="objectives-achieved">Objectives Achieved</h2>
+<p>Sau khi hoàn thành 12 Module thực hành của khóa học này, bạn sẽ có khả năng:</p>
+<ul>
+<li>Thiết lập và quản lý định danh người dùng bảo mật qua <strong>Amazon Cognito</strong>.</li>
+<li>Xây dựng lớp API với <strong>Amazon API Gateway</strong> và các hàm xử lý serverless với <strong>AWS Lambda</strong>.</li>
+<li>Quản trị cơ sở dữ liệu NoSQL hiệu suất cao với <strong>Amazon DynamoDB</strong> (áp dụng mô hình Single-Table Design).</li>
+<li>Lưu trữ và phân phối ứng dụng React tĩnh toàn cầu qua <strong>Amazon S3</strong> và <strong>Amazon CloudFront</strong>.</li>
+<li>Xử lý các luồng nghiệp vụ bất đồng bộ sử dụng <strong>Amazon SNS</strong> và <strong>Amazon SQS</strong>.</li>
+<li>Triển khai hạ tầng dưới dạng mã (IaC) tự động thông qua <strong>AWS SAM</strong> và <strong>GitHub Actions</strong>.</li>
+</ul>
+<h2 id="team-assignment">Team Assignment &mdash; 4 Members, 1 Shared Account</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Thành viên</th>
+      <th>Khối (Area)</th>
+      <th>Mục workshop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Chung</td>
+      <td>IAM + Route 53 + WAFv2 (Infrastructure Foundation)</td>
+      <td>5.3</td>
+    </tr>
+    <tr>
+      <td>Khiêm</td>
+      <td>DynamoDB + Secrets Manager + S3 (Database &amp; Data layer) + Cognito Auth &amp; Edge</td>
+      <td>5.4, 5.7</td>
+    </tr>
+    <tr>
+      <td>Huy</td>
+      <td>API Gateway + Lambda Core (Transaction/Budget/Report) + Notifications (SNS/SQS/EventBridge)</td>
+      <td>5.5, 5.8</td>
+    </tr>
+    <tr>
+      <td>Công</td>
+      <td>React Frontend + Cognito login flow + Gemini AI integration</td>
+      <td>5.6</td>
+    </tr>
+  </tbody>
+</table>
+<p>(Modules 1, 2, 9, 10, 11, 12 &mdash; Introduction, Prerequisites, Testing, Monitoring, Deployment, Cleanup &mdash; được thực hiện chung bởi cả nhóm.)</p>
+<h2 id="content-structure">Content Structure</h2>
+<p>Workshop được chia thành 12 bài học (Modules) nối tiếp nhau, bao phủ toàn bộ vòng đời phát triển phần mềm:</p><ol>
 <li><a href="5.1-module1/">Module 1: Introduction — Tổng quan dự án</a></li>
 <li><a href="5.2-module2/">Module 2: Shared Prerequisites</a></li>
 <li><a href="5.3-module3/">Module 3: IAM, Infrastructure Foundation</a></li>

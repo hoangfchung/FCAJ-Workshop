@@ -517,12 +517,7 @@
    
 </li>
     
-<li data-nav-id="/8-website/" title="Website" class="dd-item">
-  <a href="../8-website/">
-     <b> 8. </b> Website
-    <i class="fas fa-check read-icon"></i>
-  </a>
-</li>
+
     </ul>
 
      
@@ -683,13 +678,55 @@
             <h1>
               Workshop
             </h1>
-<h2 id="overview">Budget Tracker Workshop: AWS Implementation Guide</h2>
-<p><img src="../images/workshop/0.png" alt="Budget Tracker workshop overview" style="max-width:100%;height:auto;margin:1rem 0;border:1px solid #ddd;border-radius:4px"></p>
-<p>This workshop guides the team through building, securing, testing, and operating the Budget Tracker platform on AWS.</p>
-<h3 id="architecture-flow">Architecture Flow</h3>
-<pre><code>React application → CloudFront → API Gateway → Lambda → DynamoDB/S3
-Cognito protects sign-in; Gemini AI provides insights; SNS/SQS/EventBridge deliver notifications.</code></pre>
-<h3 id="modules">Workshop Modules</h3><ol>
+<h2 id="overview">Overview</h2>
+<p><strong>Budget Tracker Website:</strong> <a href="https://d3ja9nvtyjzo9o.cloudfront.net/" target="_blank" rel="noopener">https://d3ja9nvtyjzo9o.cloudfront.net/</a></p>
+<p>Welcome to the Workshop documentation for deploying the <strong>Budget Tracker</strong> personal finance management application. In this series of practical exercises, we will step-by-step build a complete system applying <strong>AWS Serverless</strong> and <strong>Event-driven Architecture</strong>.</p>
+<p>The application aims to provide a flexible personal expense management solution, integrating automated transaction categorization using artificial intelligence (Google Gemini) and a multi-channel notification system, while keeping operational costs optimized at the lowest level thanks to the power of cloud computing.</p>
+<h2 id="objectives-achieved">Objectives Achieved</h2>
+<p>After completing the 12 practical Modules of this course, you will be able to:</p>
+<ul>
+<li>Set up and manage secure user identities via <strong>Amazon Cognito</strong>.</li>
+<li>Build an API layer with <strong>Amazon API Gateway</strong> and serverless processing functions with <strong>AWS Lambda</strong>.</li>
+<li>Manage a high-performance NoSQL database with <strong>Amazon DynamoDB</strong> (applying the Single-Table Design model).</li>
+<li>Host and distribute a static React application globally via <strong>Amazon S3</strong> and <strong>Amazon CloudFront</strong>.</li>
+<li>Process asynchronous business flows using <strong>Amazon SNS</strong> and <strong>Amazon SQS</strong>.</li>
+<li>Deploy Infrastructure as Code (IaC) automatically through <strong>AWS SAM</strong> and <strong>GitHub Actions</strong>.</li>
+</ul>
+<h2 id="team-assignment">Team Assignment &mdash; 4 Members, 1 Shared Account</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Member</th>
+      <th>Area</th>
+      <th>Workshop Sections</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Chung</td>
+      <td>IAM + Route 53 + WAFv2 (Infrastructure Foundation)</td>
+      <td>5.3</td>
+    </tr>
+    <tr>
+      <td>Khiem</td>
+      <td>DynamoDB + Secrets Manager + S3 (Database &amp; Data layer) + Cognito Auth &amp; Edge</td>
+      <td>5.4, 5.7</td>
+    </tr>
+    <tr>
+      <td>Huy</td>
+      <td>API Gateway + Lambda Core (Transaction/Budget/Report) + Notifications (SNS/SQS/EventBridge)</td>
+      <td>5.5, 5.8</td>
+    </tr>
+    <tr>
+      <td>Cong</td>
+      <td>React Frontend + Cognito login flow + Gemini AI integration</td>
+      <td>5.6</td>
+    </tr>
+  </tbody>
+</table>
+<p>(Modules 1, 2, 9, 10, 11, 12 &mdash; Introduction, Prerequisites, Testing, Monitoring, Deployment, Cleanup &mdash; were done together by the whole team.)</p>
+<h2 id="content-structure">Content Structure</h2>
+<p>The workshop is divided into 12 sequential lessons (Modules), covering the entire software development lifecycle:</p><ol>
 <li><a href="5.1-module1/">Module 1: Introduction</a></li>
 <li><a href="5.2-module2/">Module 2: Shared Prerequisites</a></li>
 <li><a href="5.3-module3/">Module 3: IAM and Infrastructure Foundation</a></li>
